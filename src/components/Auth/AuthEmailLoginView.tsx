@@ -2,6 +2,7 @@
 
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 
 import logger from '~/core/logger'
@@ -19,6 +20,8 @@ const MAX_OTP_LENGTH = 6
 const OTP_CLASS_NAME = 'size-16'
 
 export const AuthEmailLoginView = ({ onSuccess }: Props) => {
+    const { t } = useTranslation(['common'])
+
     const [email, setEmail] = useState('')
     const [isSent, setIsSent] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
@@ -63,9 +66,9 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
         <div className="flex flex-col gap-4">
             {!isSent ? (
                 <>
-                    <Input placeholder="Enter email address" value={email} onChange={handleEmailChange} />
+                    <Input placeholder={t('common:input.placeholder.email')} value={email} onChange={handleEmailChange} />
                     <Button isLoading={isLoading} onClick={handleSendVerificationOTP}>
-                        Continue
+                        {t('common:continue')}
                     </Button>
                 </>
             ) : (

@@ -1,4 +1,8 @@
 {
     "termsOfService.title": "Terms of Service",
-    "privacyPolicy.title": "Privacy Policy"
+    "privacyPolicy.title": "Privacy Policy",
+
+    "input.placeholder.email": "Enter email address",
+
+    "continue": "Continue"
 }
