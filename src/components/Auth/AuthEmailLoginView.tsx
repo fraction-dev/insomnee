@@ -1,0 +1,84 @@
+'use client'
+
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+import { useState } from 'react'
+import { z } from 'zod'
+
+import logger from '~/core/logger'
+import { authClient } from '~/lib/authClient'
+
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp'
+
+interface Props {
+    onSuccess: () => void
+}
+
+const MAX_OTP_LENGTH = 6
+const OTP_CLASS_NAME = 'size-16'
+
+export const AuthEmailLoginView = ({ onSuccess }: Props) => {
+    const [email, setEmail] = useState('')
+    const [isSent, setIsSent] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value)
+    }
+
+    const handleSendVerificationOTP = async () => {
+        try {
+            z.string().email().parse(email)
+
+            setIsLoading(true)
+
+            await authClient.emailOtp.sendVerificationOtp({ email, type: 'sign-in' })
+
+            setIsSent(true)
+            onSuccess()
+        } catch (error) {
+            logger.error(`Failed to send verification OTP: ${error}`)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    const handleVerifyOTP = async (otp: string) => {
+        try {
+            setIsLoading(true)
+
+            z.string().length(6).parse(otp)
+            await authClient.signIn.emailOtp({ email, otp })
+
+            onSuccess()
+        } catch (error) {
+            logger.error(`Failed to verify OTP: ${error}`)
+        } finally {
+            setIsLoading(false)
+        }
+    }
+
+    return (
+        <div className="flex flex-col gap-4">
+            {!isSent ? (
+                <>
+                    <Input placeholder="Enter email address" value={email} onChange={handleEmailChange} />
+                    <Button isLoading={isLoading} onClick={handleSendVerificationOTP}>
+                        Continue
+                    </Button>
+                </>
+            ) : (
+                <>
+                    <InputOTP disabled={isLoading} maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} onComplete={handleVerifyOTP}>
+                        <InputOTPGroup>
+                            {Array.from({ length: MAX_OTP_LENGTH }).map((_, index) => (
+                                <InputOTPSlot key={index} autoFocus={index === 0} index={index} className={OTP_CLASS_NAME} />
+                            ))}
+                        </InputOTPGroup>
+                    </InputOTP>
+                </>
+            )}
+        </div>
+    )
+}
