@@ -1,9 +1,9 @@
 'use client'
 
 import { GlobeIcon } from 'lucide-react'
-import { useState } from 'react'
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
+import { useChangeLanguage } from '~/hooks/useChangeLanguage'
 
 import { Button } from '../ui/button'
 
@@ -13,11 +13,12 @@ const LANGUAGES = [
     { code: 'ro', name: 'Română' },
     { code: 'ua', name: 'Українська' },
 ]
+
 export const LanguageSwitcher = () => {
-    const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0])
+    const { changeLanguage, currentLanguage } = useChangeLanguage()
 
     const handleLanguageChange = (language: (typeof LANGUAGES)[number]) => {
-        setSelectedLanguage(language)
+        changeLanguage(language.code)
     }
 
     return (
@@ -25,7 +26,7 @@ export const LanguageSwitcher = () => {
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost">
                     <GlobeIcon className="size-4" />
-                    {selectedLanguage.name}
+                    {LANGUAGES.find((language) => language.code === currentLanguage)?.name}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>

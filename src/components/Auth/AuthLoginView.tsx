@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 
 import { ROUTES } from '~/config/routes'
 import { signIn } from '~/lib/authClient'
@@ -15,6 +16,8 @@ import { Separator } from '../ui/separator'
 import { AuthEmailLoginView } from './AuthEmailLoginView'
 
 export const AuthLoginView = () => {
+    const { t } = useTranslation(['auth'])
+
     const [isExpanded, setIsExpanded] = useState(false)
     const [isShowMoreOptionsVisible, setIsShowMoreOptionsVisible] = useState(true)
 
@@ -27,14 +30,12 @@ export const AuthLoginView = () => {
     return (
         <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-4">
-                <h2 className="text-2xl font-medium">Login to insomnee.</h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                    Automate business tasks, stay organized, and make informed decisions effortlessly.
-                </p>
+                <h2 className="text-2xl font-medium">{t('auth:login.title')}</h2>
+                <p className="text-lg text-muted-foreground leading-relaxed">{t('auth:login.description')}</p>
 
                 <Button onClick={handleGoogleLogin}>
                     <Image src="/images/logos/google.svg" alt="Google" width={20} height={20} />
-                    <span>Continue with Google</span>
+                    <span>{t('auth:login.continueWithGoogle')}</span>
                 </Button>
             </div>
 
@@ -47,7 +48,7 @@ export const AuthLoginView = () => {
                             className="flex items-center gap-2 w-full justify-center text-sm cursor-pointer"
                             onClick={() => setIsExpanded(!isExpanded)}
                         >
-                            <span>More options</span>
+                            <span>{t('auth:login.moreOptions')}</span>
                             <ChevronDown className={cn('size-4 transition-transform duration-300', isExpanded && 'rotate-180')} />
                         </CollapsibleTrigger>
                     )}
@@ -63,15 +64,21 @@ export const AuthLoginView = () => {
             </Collapsible>
 
             <p className="text-muted-foreground text-xs leading-relaxed">
-                By clicking continue, you acknowledge that you have read and agree to Insomnee's{' '}
-                <Link href={ROUTES.TERMS} className="underline">
-                    Terms of Service
-                </Link>{' '}
-                and{' '}
-                <Link href={ROUTES.PRIVACY} className="underline">
-                    Privacy Policy
-                </Link>
-                .
+                <Trans
+                    i18nKey="auth:login.terms"
+                    components={{
+                        1: (
+                            <Link href={ROUTES.TERMS} className="underline">
+                                {t('common:termsOfService.title')}
+                            </Link>
+                        ),
+                        2: (
+                            <Link href={ROUTES.PRIVACY} className="underline">
+                                {t('common:privacyPolicy.title')}
+                            </Link>
+                        ),
+                    }}
+                />
             </p>
         </div>
     )
