@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
-import { emailOTP, username } from 'better-auth/plugins'
+import { emailOTP } from 'better-auth/plugins'
 import { prisma } from 'prisma/db'
 
 import logger from '~/core/logger'
@@ -18,7 +18,6 @@ export const auth = betterAuth({
     }),
 
     plugins: [
-        username(),
         emailOTP({
             async sendVerificationOTP({ email, otp, type }) {
                 // Implement the sendVerificationOTP method to send the OTP to the user's email address
@@ -36,13 +35,6 @@ export const auth = betterAuth({
             enabled: true,
             clientId: env.GOOGLE_CLIENT_ID,
             clientSecret: env.GOOGLE_CLIENT_SECRET,
-        },
-    },
-
-    onAPIError: {
-        throw: true,
-        onError: (error) => {
-            logger.error('[config/auth.ts] Error on API', { error })
         },
     },
 })

@@ -3,7 +3,8 @@ import '~/app/styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import { RootProvider } from '~/core/providers'
+import { Toaster } from '~/components/ui/sonner'
+import { RootProvider } from '~/core/providers/providers'
 import { detectLanguage } from '~/i18n/detect-language'
 
 const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
@@ -19,7 +20,10 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     return (
         <html lang={language}>
             <body className={inter.className}>
-                <RootProvider language={language}>{children}</RootProvider>
+                <RootProvider language={language}>
+                    {children}
+                    <Toaster />
+                </RootProvider>
             </body>
         </html>
     )

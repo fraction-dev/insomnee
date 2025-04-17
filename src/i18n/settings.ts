@@ -4,7 +4,7 @@ export const fallbackLanguage = 'en'
 export const languages = [fallbackLanguage, 'ro', 'ru', 'ua']
 export const defaultNS = 'common'
 
-export type ExtraInitOptions = {
+type ExtraInitOptions = {
     // Escape passed in values to avoid xss injection
     escapeValue?: boolean // default: true
 }

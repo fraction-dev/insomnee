@@ -7,13 +7,13 @@ import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ROUTES } from '~/config/routes'
-import { signIn } from '~/lib/authClient'
+import { signIn } from '~/lib/auth-client'
 import { cn } from '~/lib/utils'
 
 import { Button } from '../ui/button'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible'
 import { Separator } from '../ui/separator'
-import { AuthEmailLoginView } from './AuthEmailLoginView'
+import { AuthEmailLoginView } from './auth-email-login-view'
 
 export const AuthLoginView = () => {
     const { t } = useTranslation(['auth'])
@@ -21,9 +21,10 @@ export const AuthLoginView = () => {
     const [isExpanded, setIsExpanded] = useState(false)
     const [isShowMoreOptionsVisible, setIsShowMoreOptionsVisible] = useState(true)
 
-    const handleGoogleLogin = async () => {
-        await signIn.social({
+    const handleGoogleLogin = () => {
+        signIn.social({
             provider: 'google',
+            callbackURL: `${window.location.origin}${ROUTES.DASHBOARD.INDEX}`,
         })
     }
 

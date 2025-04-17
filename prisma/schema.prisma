@@ -10,19 +10,17 @@ datasource db {
 }
 
 model User {
-  id              String    @id @default(cuid())
-  email           String    @unique
-  name            String?
-  emailVerified   Boolean
-  image           String?
-  createdAt       DateTime
-  updatedAt       DateTime
-  username        String?
-  displayUsername String?
-  sessions        Session[]
-  accounts        Account[]
+  id                 String               @id @default(cuid())
+  email              String               @unique
+  name               String?
+  emailVerified      Boolean
+  image              String?
+  createdAt          DateTime
+  updatedAt          DateTime
+  sessions           Session[]
+  accounts           Account[]
+  OrganizationMember OrganizationMember[]
 
-  @@unique([username])
   @@map("user")
 }
 
@@ -69,4 +67,75 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum OrganizationVerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+
+  @@map("organization_verification_status")
+}
+
+enum OrganizationLanguage {
+  RU
+  EN
+  RO
+  UA
+
+  @@map("organization_language")
+}
+
+enum OrganizationCurrency {
+  MDL
+  USD
+  EUR
+  RON
+  UAH
+
+  @@map("organization_currency")
+}
+
+model Organization {
+  id                 String                          @id @default(cuid())
+  name               String
+  defaultLanguage    OrganizationLanguage            @default(RU)
+  defaultCurrency    OrganizationCurrency            @default(MDL)
+  websiteUrl         String?
+  logoUrl            String?
+  address            String?
+  phone              String?
+  email              String?
+  city               String?
+  country            String?
+  registrationNumber String?
+  referralCode       String?
+  isActive           Boolean?                        @default(true)
+  isVerified         Boolean?                        @default(false)
+  verificationStatus OrganizationVerificationStatus?
+  createdAt          DateTime?                       @default(now()) @db.Timestamptz(6)
+  updatedAt          DateTime?                       @default(now()) @db.Timestamptz(6)
+  deletedAt          DateTime?
+  members            OrganizationMember[]
+
+  @@map("organization")
+}
+
+enum OrganizationMemberRole {
+  ADMIN
+  MEMBER
+  GUEST
+
+  @@map("organization_member_role")
+}
+
+model OrganizationMember {
+  id             String                 @id @default(cuid())
+  organizationId String
+  userId         String
+  role           OrganizationMemberRole
+  organization   Organization           @relation(fields: [organizationId], references: [id])
+  user           User                   @relation(fields: [userId], references: [id])
+
+  @@map("organization_member")
 }

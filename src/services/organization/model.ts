@@ -1,0 +1,37 @@
+export type OrganizationLanguage = 'RU' | 'EN' | 'RO' | 'UA'
+export type OrganizationCurrency = 'MDL' | 'USD' | 'EUR' | 'RON' | 'UAH'
+type OrganizationVerificationStatus = 'PENDING' | 'VERIFIED' | 'REJECTED'
+
+export interface Organization {
+    id: string
+    name: string
+    defaultLanguage: OrganizationLanguage
+    defaultCurrency: OrganizationCurrency
+    websiteUrl: string | null
+    logoUrl: string | null
+    address: string | null
+    phone: string | null
+    email: string | null
+    city: string | null
+    country: string | null
+    registrationNumber: string | null
+    referralCode: string | null
+    isActive: boolean
+    isVerified: boolean
+    verificationStatus: OrganizationVerificationStatus | null
+    createdAt: Date
+    updatedAt: Date
+    deletedAt: Date | null
+    members: OrganizationMember[]
+}
+
+type OrganizationMemberRole = 'ADMIN' | 'MEMBER' | 'GUEST'
+
+interface OrganizationMember {
+    id: string
+    organizationId: string
+    userId: string
+    role: OrganizationMemberRole
+}
+
+export type OrganizationInput = Pick<Organization, 'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone'>

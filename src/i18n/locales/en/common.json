@@ -4,5 +4,13 @@
 
     "input.placeholder.email": "Enter email address",
 
-    "continue": "Continue"
+    "continue": "Continue",
+
+    "error.invalidOTP": "Invalid OTP",
+    "error.invalidEmail": "Invalid email address",
+    "error.userAlreadyExists": "User already exists",
+    "error.tooManyAttempts": "Too many attempts",
+
+    "success.verificationOTPSent": "Verification OTP sent",
+    "success.verificationOTPVerified": "Verification OTP verified"
 }
