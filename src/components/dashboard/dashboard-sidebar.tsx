@@ -1,6 +1,6 @@
 'use client'
 
-import { Bot, ChartNoAxesColumn, Command, Currency, Frame, LifeBuoy, Map, PieChart, Send, Settings2 } from 'lucide-react'
+import { Bot, ChartNoAxesColumn, Command, Currency, Inbox, LayoutTemplate, LifeBuoy, Link, Send, Settings2, Vault } from 'lucide-react'
 import * as React from 'react'
 
 import {
@@ -12,20 +12,20 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '~/components/ui/sidebar'
+import { ROUTES } from '~/config/routes'
 import { Organization } from '~/services/organization/model'
 import { User } from '~/services/user/model'
 
 import { SidebarNavMain } from '../sidebar/sidebar-nav-main'
-import { SidebarNavProjects } from '../sidebar/sidebar-nav-projects'
 import { SidebarNavSecondary } from '../sidebar/sidebar-nav-secondary'
 import { SidebarNavUser } from '../sidebar/sidebar-nav-user'
 
 // This is sample data.
-const data = {
+const data = (organizationId: string) => ({
     navMain: [
         {
             title: 'Overview',
-            url: '#',
+            url: ROUTES.DASHBOARD.OVERVIEW(organizationId),
             icon: ChartNoAxesColumn,
             isActive: true,
         },
@@ -102,6 +102,26 @@ const data = {
                 },
             ],
         },
+        {
+            title: 'Vault',
+            url: '#',
+            icon: Vault,
+        },
+        {
+            title: 'Inbox',
+            url: '#',
+            icon: Inbox,
+        },
+        {
+            title: 'Integrations',
+            url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
+            icon: Link,
+        },
+        {
+            title: 'My Web Card',
+            url: ROUTES.DASHBOARD.WEB_CARD(organizationId),
+            icon: LayoutTemplate,
+        },
     ],
     navSecondary: [
         {
@@ -115,24 +135,7 @@ const data = {
             icon: Send,
         },
     ],
-    projects: [
-        {
-            name: 'Design Engineering',
-            url: '#',
-            icon: Frame,
-        },
-        {
-            name: 'Sales & Marketing',
-            url: '#',
-            icon: PieChart,
-        },
-        {
-            name: 'Travel',
-            url: '#',
-            icon: Map,
-        },
-    ],
-}
+})
 
 interface Props {
     organization: Organization
@@ -140,6 +143,8 @@ interface Props {
 }
 
 export function DashboardSidebar({ organization, user, ...props }: Props & React.ComponentProps<typeof Sidebar>) {
+    const sidebarData = React.useMemo(() => data(organization.id), [organization.id])
+
     return (
         <Sidebar variant="inset" {...props}>
             <SidebarHeader>
@@ -159,9 +164,8 @@ export function DashboardSidebar({ organization, user, ...props }: Props & React
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <SidebarNavMain items={data.navMain} />
-                <SidebarNavProjects projects={data.projects} />
-                <SidebarNavSecondary items={data.navSecondary} className="mt-auto" />
+                <SidebarNavMain items={sidebarData.navMain} />
+                <SidebarNavSecondary items={sidebarData.navSecondary} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
                 <SidebarNavUser user={user} />

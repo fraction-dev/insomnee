@@ -38,6 +38,15 @@ const envSchema = z.object({
     BETTER_AUTH_SECRET: prepareToValidate('BETTER_AUTH_SECRET'),
     GOOGLE_CLIENT_ID: prepareToValidate('GOOGLE_CLIENT_ID'),
     GOOGLE_CLIENT_SECRET: prepareToValidate('GOOGLE_CLIENT_SECRET'),
+
+    META_APP_ID: prepareToValidate('META_APP_ID'),
+    META_APP_SECRET: prepareToValidate('META_APP_SECRET'),
+
+    INSTAGRAM_APP_ID: prepareToValidate('INSTAGRAM_APP_ID'),
+    INSTAGRAM_APP_SECRET: prepareToValidate('INSTAGRAM_APP_SECRET'),
+    INSTAGRAM_TESTER_ACCESS_TOKEN: prepareToValidate('INSTAGRAM_TESTER_ACCESS_TOKEN'),
+
+    NGROK_URL: prepareToValidate('NGROK_URL'),
 })
 
 const getEnv = () => {

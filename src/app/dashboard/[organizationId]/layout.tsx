@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 
+import { DashboardNavbar } from '~/components/dashboard/dashboard-navbar'
 import { DashboardSidebar } from '~/components/dashboard/dashboard-sidebar'
 import { SidebarInset, SidebarProvider } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
@@ -24,7 +25,13 @@ export default async function DashboardLayout({
     return (
         <SidebarProvider>
             <DashboardSidebar organization={organization} user={user} />
-            <SidebarInset className="max-w-full p-4">{children}</SidebarInset>
+            <SidebarInset className="max-w-full p-4">
+                <div className="mb-4">
+                    <DashboardNavbar />
+                </div>
+
+                {children}
+            </SidebarInset>
         </SidebarProvider>
     )
 }

@@ -7,7 +7,9 @@ export const ROUTES = {
     PRIVACY: '/privacy',
     DASHBOARD: {
         INDEX: '/dashboard',
-        OVERVIEW: (organizationId: string) => `/dashboard/${organizationId}`,
+        OVERVIEW: (organizationId: string) => `/dashboard/${organizationId}/overview`,
+        INTEGRATIONS: (organizationId: string) => `/dashboard/${organizationId}/integrations`,
+        WEB_CARD: (organizationId: string) => `/dashboard/${organizationId}/webcard`,
     },
     ORGANIZATION: {
         CREATE: '/organization/create',

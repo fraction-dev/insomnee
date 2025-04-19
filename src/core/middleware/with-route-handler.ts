@@ -27,6 +27,27 @@ type RouteHandlerContext<
     userId: string
 }
 
+const getErrorDetails = (error: unknown): { message: string; statusCode: number; stack?: string } => {
+    if (error instanceof ZodError) {
+        return { message: fromError(error).message.toString(), statusCode: 400 }
+    }
+
+    if (error instanceof Error) {
+        return { message: error.message, statusCode: 500 }
+    }
+
+    if (typeof error === 'string') {
+        return { message: error, statusCode: 500 }
+    }
+
+    return { message: 'An unknown error occurred', statusCode: 500 }
+}
+
+function getHeaders(req: NextRequest) {
+    const headers = new Headers(req.headers)
+    return Object.fromEntries(headers.entries())
+}
+
 async function readRequestBody(req: NextRequest) {
     if (!req.body) return null
 
@@ -119,25 +140,4 @@ export function createRouteHandler<T>() {
             }
         }
     }
-}
-
-const getErrorDetails = (error: unknown): { message: string; statusCode: number; stack?: string } => {
-    if (error instanceof ZodError) {
-        return { message: fromError(error).message.toString(), statusCode: 400 }
-    }
-
-    if (error instanceof Error) {
-        return { message: error.message, statusCode: 500 }
-    }
-
-    if (typeof error === 'string') {
-        return { message: error, statusCode: 500 }
-    }
-
-    return { message: 'An unknown error occurred', statusCode: 500 }
-}
-
-function getHeaders(req: NextRequest) {
-    const headers = new Headers(req.headers)
-    return Object.fromEntries(headers.entries())
 }

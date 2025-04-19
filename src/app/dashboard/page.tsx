@@ -16,10 +16,10 @@ export default WithAuth(
 
         const organizations = await getUserOrganizations(user.id)
 
-        if (organizations.length === 1) {
+        if (organizations.length > 0) {
             redirect(ROUTES.DASHBOARD.OVERVIEW(organizations[0].id))
         }
 
-        return <div>Dashboard</div>
+        return null
     }),
 )
