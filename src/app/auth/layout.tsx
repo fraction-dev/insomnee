@@ -1,6 +1,8 @@
+import { ReactNode } from 'react'
+
 import { OnboardingNavbar } from '~/components/navbar/onboarding-navbar'
 
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default function AuthLayout({ children }: { children: ReactNode }) {
     return (
         <div className="min-h-screen py-12">
             <OnboardingNavbar />

@@ -1,10 +1,11 @@
 import { redirect } from 'next/navigation'
+import { ReactNode } from 'react'
 
 import { OnboardingNavbar } from '~/components/navbar/onboarding-navbar'
 import { ROUTES } from '~/config/routes'
 import { withAuth } from '~/lib/with-auth'
 
-export default async function OrganizationCreateLayout({ children }: { children: React.ReactNode }) {
+export default async function OrganizationCreateLayout({ children }: { children: ReactNode }) {
     const { user } = await withAuth()
 
     if (!user) {

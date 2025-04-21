@@ -47,7 +47,7 @@ const extractErrorData = (metadata?: LogMetadata & { error?: LogError }) => {
     }
 
     // Remove the original error to avoid duplication
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
     const { error: _, ...restMetadata } = metadata
 
     return { errorData, cleanMetadata: restMetadata }

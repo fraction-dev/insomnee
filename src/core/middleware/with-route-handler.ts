@@ -5,6 +5,7 @@ import { ZodError, ZodSchema } from 'zod'
 import { fromError } from 'zod-validation-error'
 
 import { auth } from '~/config/auth'
+import { getURLSearchParams } from '~/lib/url'
 import { BaseResponse } from '~/types/response'
 
 import logger from '../logger'
@@ -80,7 +81,12 @@ export function createRouteHandler<T>() {
         } & Config,
         handlerFn: (context: RouteHandlerContext<BodySchema, ParamsSchema, QuerySchema>) => Promise<NextResponse<BaseResponse<T>>>,
     ) {
-        return async (req: NextRequest) => {
+        return async (
+            req: NextRequest,
+            context?: {
+                params?: Record<string, string> | Promise<Record<string, string>>
+            },
+        ) => {
             let body = null
             let params = null
             let query = null
@@ -90,8 +96,8 @@ export function createRouteHandler<T>() {
 
                 const [parsedBody, parsedParams, parsedQuery] = await Promise.all([
                     bodySchema ? bodySchema.parse(await readRequestBody(req)) : await readRequestBody(req),
-                    paramsSchema ? paramsSchema.parse(req.nextUrl.searchParams) : null,
-                    querySchema ? querySchema.parse(req.nextUrl.searchParams) : null,
+                    paramsSchema ? paramsSchema.parse(context?.params ? await context?.params : null) : null,
+                    querySchema ? querySchema.parse(getURLSearchParams(req.url)) : null,
                 ])
 
                 body = parsedBody

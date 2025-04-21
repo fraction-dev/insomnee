@@ -1,7 +1,7 @@
 'use client'
 
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { z, ZodError } from 'zod'
@@ -27,7 +27,7 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
     const [isSent, setIsSent] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
 

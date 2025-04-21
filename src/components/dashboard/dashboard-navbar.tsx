@@ -8,8 +8,8 @@ import { AssistantModal } from '../assistant/assistant-modal'
 export const DashboardNavbar = () => {
     const [isAssistantOpen, setIsAssistantOpen] = useState(false)
 
-    useHotkeys('space+k', () => {
-        console.log('space+k')
+    useHotkeys('command+k', () => {
+        setIsAssistantOpen(true)
     })
 
     return (
@@ -21,7 +21,7 @@ export const DashboardNavbar = () => {
                     </p>
 
                     <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded-xs bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground group-hover:text-neutral-500 transition-colors">
-                        <span className="text-xs">space + k</span>
+                        <span className="text-xs">⌘+k</span>
                     </kbd>
                 </div>
             </div>

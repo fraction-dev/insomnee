@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { ReactNode } from 'react'
 
 import { DashboardNavbar } from '~/components/dashboard/dashboard-navbar'
 import { DashboardSidebar } from '~/components/dashboard/dashboard-sidebar'
@@ -7,13 +8,7 @@ import { ROUTES } from '~/config/routes'
 import { withAuth } from '~/lib/with-auth'
 import { getOrganizationById } from '~/services/organization'
 
-export default async function DashboardLayout({
-    children,
-    params,
-}: {
-    children: React.ReactNode
-    params: Promise<{ organizationId: string }>
-}) {
+export default async function DashboardLayout({ children, params }: { children: ReactNode; params: Promise<{ organizationId: string }> }) {
     const { organizationId } = await params
     const organization = await getOrganizationById(organizationId)
     const { user } = await withAuth()

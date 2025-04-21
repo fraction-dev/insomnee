@@ -10,16 +10,17 @@ datasource db {
 }
 
 model User {
-  id                 String               @id @default(cuid())
-  email              String               @unique
-  name               String?
-  emailVerified      Boolean
-  image              String?
-  createdAt          DateTime
-  updatedAt          DateTime
-  sessions           Session[]
-  accounts           Account[]
-  OrganizationMember OrganizationMember[]
+  id                      String                    @id @default(cuid())
+  email                   String                    @unique
+  name                    String?
+  emailVerified           Boolean
+  image                   String?
+  createdAt               DateTime
+  updatedAt               DateTime
+  sessions                Session[]
+  accounts                Account[]
+  OrganizationMember      OrganizationMember[]
+  OrganizationTransaction OrganizationTransaction[]
 
   @@map("user")
 }
@@ -97,27 +98,29 @@ enum OrganizationCurrency {
 }
 
 model Organization {
-  id                 String                          @id @default(cuid())
-  name               String
-  defaultLanguage    OrganizationLanguage            @default(RU)
-  defaultCurrency    OrganizationCurrency            @default(MDL)
-  websiteUrl         String?
-  logoUrl            String?
-  address            String?
-  phone              String?
-  email              String?
-  city               String?
-  country            String?
-  registrationNumber String?
-  referralCode       String?
-  isActive           Boolean?                        @default(true)
-  isVerified         Boolean?                        @default(false)
-  verificationStatus OrganizationVerificationStatus?
-  createdAt          DateTime?                       @default(now()) @db.Timestamptz(6)
-  updatedAt          DateTime?                       @default(now()) @db.Timestamptz(6)
-  deletedAt          DateTime?
-  members            OrganizationMember[]
-  Integration        Integration[]
+  id                              String                            @id @default(cuid())
+  name                            String
+  defaultLanguage                 OrganizationLanguage              @default(RU)
+  defaultCurrency                 OrganizationCurrency              @default(MDL)
+  websiteUrl                      String?
+  logoUrl                         String?
+  address                         String?
+  phone                           String?
+  email                           String?
+  city                            String?
+  country                         String?
+  registrationNumber              String?
+  referralCode                    String?
+  isActive                        Boolean?                          @default(true)
+  isVerified                      Boolean?                          @default(false)
+  verificationStatus              OrganizationVerificationStatus?
+  createdAt                       DateTime?                         @default(now()) @db.Timestamptz(6)
+  updatedAt                       DateTime?                         @default(now()) @db.Timestamptz(6)
+  deletedAt                       DateTime?
+  members                         OrganizationMember[]
+  Integration                     Integration[]
+  OrganizationTransactionCategory OrganizationTransactionCategory[]
+  OrganizationTransaction         OrganizationTransaction[]
 
   @@map("organization")
 }
@@ -162,4 +165,37 @@ model Integration {
   updatedAt      DateTime        @updatedAt
 
   @@map("integration")
+}
+
+model OrganizationTransactionCategory {
+  id                      String                    @id @default(cuid())
+  type                    String
+  organizationId          String
+  organization            Organization              @relation(fields: [organizationId], references: [id])
+  OrganizationTransaction OrganizationTransaction[]
+  createdAt               DateTime                  @default(now())
+  updatedAt               DateTime                  @updatedAt
+  color                   String?
+
+  @@map("organization_transaction_category")
+}
+
+model OrganizationTransaction {
+  id             String                          @id @default(cuid())
+  description    String
+  amount         Int
+  currency       String
+  date           DateTime
+  categoryId     String
+  category       OrganizationTransactionCategory @relation(fields: [categoryId], references: [id])
+  assignedTo     String?
+  assignedToUser User?                           @relation(fields: [assignedTo], references: [id])
+  attachmentUrl  String?
+  notes          String?
+  organizationId String
+  organization   Organization                    @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime                        @default(now())
+  updatedAt      DateTime                        @updatedAt
+
+  @@map("organization_transaction")
 }

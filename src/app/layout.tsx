@@ -2,6 +2,7 @@ import '~/app/styles/globals.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ReactNode } from 'react'
 
 import { Toaster } from '~/components/ui/sonner'
 import { RootProvider } from '~/core/providers/providers'
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Insomnee is a platform that helps you manage your business life 24/7',
 }
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     const language = await detectLanguage()
 
     return (

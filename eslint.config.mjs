@@ -10,7 +10,6 @@ import pluginReactHooks from 'eslint-plugin-react-hooks'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import globals from 'globals'
 import { dirname } from 'path'
-import tseslint from 'typescript-eslint'
 import { fileURLToPath } from 'url'
 
 // Setup dirname for ESM
@@ -20,14 +19,14 @@ const __dirname = dirname(__filename)
 // Initialize flat compatibility layer for older configs
 const compat = new FlatCompat({
     baseDirectory: __dirname,
+    recommendedConfig: js.configs.recommended,
 })
 
 const eslintConfig = [
-    // Base configurations
-    ...compat.extends('next/core-web-vitals', 'next/typescript'),
-    js.configs.recommended,
+    ...compat.config({
+        extends: ['eslint:recommended', 'next'],
+    }),
     eslintConfigPrettier,
-    ...tseslint.configs.recommended,
 
     // Main configuration object
     {

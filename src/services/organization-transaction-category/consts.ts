@@ -1,0 +1,40 @@
+export const DEFAULT_ORGANIZATION_TRANSACTION_CATEGORIES = [
+    'INCOME',
+    'EXPENSE',
+    'TRAVEL',
+    'OFFICE_SUPPLIES',
+    'MEALS',
+    'SOFTWARE',
+    'EQUIPMENT',
+    'SALARY',
+    'INTERNAL_TRANSFER',
+    'INTERNET_AND_PHONE',
+    'FACILITIES',
+    'ACTIVITY',
+    'FEES',
+    'TAXES',
+    'RENT',
+    'OTHER',
+] as const
+
+export const DEFAULT_ORGANIZATION_TRANSACTION_CATEGORY_COLORS: Record<
+    (typeof DEFAULT_ORGANIZATION_TRANSACTION_CATEGORIES)[number],
+    string
+> = {
+    INCOME: 'rgba(0, 201, 105, 1)',
+    EXPENSE: 'rgba(240, 62, 62, 1)',
+    TRAVEL: 'rgba(171, 221, 29, 1)',
+    OFFICE_SUPPLIES: 'rgba(187, 70, 71, 1)',
+    MEALS: 'rgba(26, 219, 219, 1)',
+    SOFTWARE: 'rgba(0, 100, 217, 1)',
+    EQUIPMENT: 'rgba(233, 190, 38, 1)',
+    SALARY: 'rgba(211, 229, 0, 1)',
+    INTERNAL_TRANSFER: 'rgba(255, 144, 43, 1)',
+    INTERNET_AND_PHONE: 'rgba(255, 137, 118, 1)',
+    FACILITIES: 'rgba(168, 170, 188, 1)',
+    ACTIVITY: 'rgba(229, 233, 38, 1)',
+    FEES: 'rgba(64, 185, 254, 1)',
+    TAXES: 'rgba(179, 156, 208, 1)',
+    RENT: 'rgba(168, 67, 203, 1)',
+    OTHER: 'rgba(var(--primary), 1)',
+}

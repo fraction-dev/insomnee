@@ -1,6 +1,6 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
-export function WithAuth(PageComponent: (props: PropsWithChildren) => React.ReactNode) {
+export function WithAuth(PageComponent: (props: PropsWithChildren) => ReactNode) {
     return async function AuthPageWrapper({ children }: PropsWithChildren) {
         return <PageComponent>{children}</PageComponent>
     }

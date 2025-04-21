@@ -11,11 +11,11 @@ import { defaultNS, fallbackLanguage, getCommonI18nextOptions } from './settings
 // Load common namespace resources upfront
 const resources = {
     en: {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
+         
         common: require('./locales/en/common.json'),
     },
     ru: {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports
+         
         common: require('./locales/ru/common.json'),
     },
 }

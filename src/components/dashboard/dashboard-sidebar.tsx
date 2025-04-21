@@ -1,6 +1,6 @@
 'use client'
 
-import { Bot, ChartNoAxesColumn, Command, Currency, Inbox, LayoutTemplate, LifeBuoy, Link, Send, Settings2, Vault } from 'lucide-react'
+import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LayoutTemplate, LifeBuoy, Link, Send, Settings2, Vault } from 'lucide-react'
 import * as React from 'react'
 
 import {
@@ -108,9 +108,9 @@ const data = (organizationId: string) => ({
             icon: Vault,
         },
         {
-            title: 'Inbox',
-            url: '#',
-            icon: Inbox,
+            title: 'Transactions',
+            url: ROUTES.DASHBOARD.TRANSACTIONS(organizationId),
+            icon: CreditCard,
         },
         {
             title: 'Integrations',
