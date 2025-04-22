@@ -1,15 +1,17 @@
 import { Integration as PrismaIntegration } from '@prisma/client'
 import { prisma } from 'prisma/db'
 
-import { Integration } from '~/services/integration/model'
+import { InstagramIntegrationCredentials, Integration } from '~/services/integration/model'
 
-export const addInstagramIntegration = async (organizationId: string, code: string) => {
+export const addInstagramIntegration = async (organizationId: string, credentials: InstagramIntegrationCredentials) => {
     const integration = await prisma.integration.create({
         data: {
             organizationId,
             type: 'INSTAGRAM',
             credentials: {
-                code,
+                code: credentials.code,
+                accessToken: credentials.accessToken,
+                userId: credentials.userId,
             },
         },
     })
@@ -31,7 +33,7 @@ const mapPrismaIntegrationToInstagramIntegration = (integration: PrismaIntegrati
     return {
         id: integration.id,
         type: integration.type as 'INSTAGRAM',
-        credentials: integration.credentials as { code: string },
+        credentials: integration.credentials as InstagramIntegrationCredentials,
         organizationId: integration.organizationId,
         createdAt: integration.createdAt,
         updatedAt: integration.updatedAt,

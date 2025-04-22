@@ -1,6 +1,6 @@
 'use client'
 
-import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LayoutTemplate, LifeBuoy, Link, Send, Settings2, Vault } from 'lucide-react'
+import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LifeBuoy, LinkIcon, Send, Settings2 } from 'lucide-react'
 import * as React from 'react'
 
 import {
@@ -16,6 +16,7 @@ import { ROUTES } from '~/config/routes'
 import { Organization } from '~/services/organization/model'
 import { User } from '~/services/user/model'
 
+import Link from 'next/link'
 import { SidebarNavMain } from '../sidebar/sidebar-nav-main'
 import { SidebarNavSecondary } from '../sidebar/sidebar-nav-secondary'
 import { SidebarNavUser } from '../sidebar/sidebar-nav-user'
@@ -83,29 +84,6 @@ const data = (organizationId: string) => ({
             title: 'Settings',
             url: '#',
             icon: Settings2,
-            items: [
-                {
-                    title: 'Notification Channels',
-                    url: '#',
-                },
-                {
-                    title: 'Organization',
-                    url: '#',
-                },
-                {
-                    title: 'Billing',
-                    url: '#',
-                },
-                {
-                    title: 'Limits',
-                    url: '#',
-                },
-            ],
-        },
-        {
-            title: 'Vault',
-            url: '#',
-            icon: Vault,
         },
         {
             title: 'Transactions',
@@ -115,12 +93,7 @@ const data = (organizationId: string) => ({
         {
             title: 'Integrations',
             url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
-            icon: Link,
-        },
-        {
-            title: 'My Web Card',
-            url: ROUTES.DASHBOARD.WEB_CARD(organizationId),
-            icon: LayoutTemplate,
+            icon: LinkIcon,
         },
     ],
     navSecondary: [
@@ -151,14 +124,14 @@ export function DashboardSidebar({ organization, user, ...props }: Props & React
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild size="lg">
-                            <a href="#">
+                            <Link href={ROUTES.DASHBOARD.OVERVIEW(organization.id)}>
                                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                                     <Command className="size-4" />
                                 </div>
                                 <div className="grid flex-1 text-left text-sm leading-tight">
                                     <span className="truncate font-semibold">{organization.name}</span>
                                 </div>
-                            </a>
+                            </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>

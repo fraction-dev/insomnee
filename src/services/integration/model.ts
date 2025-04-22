@@ -11,6 +11,8 @@ export interface Integration {
 
 type IntegrationCredentials = InstagramIntegrationCredentials
 
-type InstagramIntegrationCredentials = {
+export type InstagramIntegrationCredentials = {
     code: string
+    accessToken: string
+    userId: string
 }

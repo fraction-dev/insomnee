@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { env } from '~/config/env'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
+import { getAccessTokenByCode } from '~/lib/server/instagram/api'
 import { addInstagramIntegration } from '~/services/integration'
 
 export const GET = createRouteHandler()({ auth: true }, async ({ req: request }) => {
@@ -11,8 +12,13 @@ export const GET = createRouteHandler()({ auth: true }, async ({ req: request })
 
     if (state && code && 'organizationId' in JSON.parse(state)) {
         const organizationId = JSON.parse(state).organizationId
+        const accessToken = await getAccessTokenByCode(code)
 
-        await addInstagramIntegration(organizationId, code)
+        await addInstagramIntegration(organizationId, {
+            code,
+            accessToken: accessToken.access_token,
+            userId: accessToken.user_id,
+        })
     }
 
     if (!code) {
