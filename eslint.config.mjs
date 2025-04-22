@@ -24,7 +24,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
     ...compat.config({
-        extends: ['eslint:recommended', 'next'],
+        // extends: ['eslint:recommended', 'next'],
     }),
     eslintConfigPrettier,
 

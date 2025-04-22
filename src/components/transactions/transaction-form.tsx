@@ -51,8 +51,8 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
 
     const { mutate: createTransaction, isPending: isCreating } = useCreateOrganizationTransaction(organizationId)
     const { mutate: updateTransaction, isPending: isUpdating } = useUpdateOrganizationTransaction(organizationId)
-    const { mutate: addFileToTransaction, isPending: isAddingFile } = useAddFileToTransaction(organizationId, transaction?.id)
-    const { mutate: removeFileFromTransaction, isPending: isRemovingFile } = useRemoveFileFromTransaction(organizationId, transaction?.id)
+    const { mutate: addFileToTransaction } = useAddFileToTransaction(organizationId, transaction?.id)
+    const { mutate: removeFileFromTransaction } = useRemoveFileFromTransaction(organizationId, transaction?.id)
 
     const isLoading = isCreating || isUpdating
 
@@ -231,7 +231,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                             <AccordionItem value="notes">
                                 <AccordionTrigger className="text-base font-normal">Notes</AccordionTrigger>
                                 <AccordionContent>
-                                    <Textarea {...form.register('notes')} placeholder="Notes" />
+                                    <Textarea {...form.register('notes')} placeholder="Notes" className="min-h-40" />
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>

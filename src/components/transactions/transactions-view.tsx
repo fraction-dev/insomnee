@@ -5,12 +5,12 @@ import { useState } from 'react'
 import { useOrganizationMembers } from '~/hooks/organization-member/useOrganizationMembers'
 import { useOrganizationTransactions } from '~/hooks/organization-transaction/useOrganizationTransactions'
 import { useOrganizationTransactionSheet } from '~/hooks/organization-transaction/useOrganizationTransactionSheet'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
+import { OrganizationTransaction } from '~/services/organization-transaction/model'
 
 import { TransactionsHeader } from './transactions-header'
 import { TransactionsSheet } from './transactions-sheet'
-import { TransactionsTable } from './transactions-table'
+import { TransactionsTable } from './transactions-table/transactions-table'
 import { TransactionsViewSkeleton } from './transactions-view-skeleton'
 
 interface Props {
