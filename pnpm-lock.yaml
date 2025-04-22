@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@bunny.net/storage-sdk':
+        specifier: ^0.3.0
+        version: 0.3.0
       '@faker-js/faker':
         specifier: ^9.7.0
         version: 9.7.0
@@ -1054,6 +1057,9 @@ packages:
 
   '@better-fetch/fetch@1.1.18':
     resolution: {integrity: sha512-rEFOE1MYIsBmoMJtQbl32PGHHXuG2hDxvEd7rUHE0vCBoFQVSDqaVs9hkZEtHCxRoY+CljXKFCOuJ8uxqw1LcA==}
+
+  '@bunny.net/storage-sdk@0.3.0':
+    resolution: {integrity: sha512-fRtYdztE01tVdQFX25GlYYnjCeTrW44ZsVlUNOcczKzPg6ellZ/awCzg+WsqY7bwIlUD7dTgy/Jtj8qOTmAs+Q==}
 
   '@cnakazawa/watch@1.0.4':
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
@@ -4220,6 +4226,10 @@ packages:
 
   dotenv-expand@5.1.0:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
+
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
+    engines: {node: '>=12'}
 
   dotenv@8.2.0:
     resolution: {integrity: sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==}
@@ -10330,6 +10340,11 @@ snapshots:
 
   '@better-fetch/fetch@1.1.18': {}
 
+  '@bunny.net/storage-sdk@0.3.0':
+    dependencies:
+      dotenv: 16.5.0
+      zod: 3.24.2
+
   '@cnakazawa/watch@1.0.4':
     dependencies:
       exec-sh: 0.3.6
@@ -13939,6 +13954,8 @@ snapshots:
       is-obj: 2.0.0
 
   dotenv-expand@5.1.0: {}
+
+  dotenv@16.5.0: {}
 
   dotenv@8.2.0: {}
 

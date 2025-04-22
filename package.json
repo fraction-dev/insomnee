@@ -17,6 +17,7 @@
         "auth:generate": "pnpx @better-auth/cli generate --config src/config/auth.ts"
     },
     "dependencies": {
+        "@bunny.net/storage-sdk": "^0.3.0",
         "@faker-js/faker": "^9.7.0",
         "@hookform/resolvers": "^5.0.1",
         "@paralleldrive/cuid2": "^2.2.2",

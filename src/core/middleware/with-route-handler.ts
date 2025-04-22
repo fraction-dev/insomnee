@@ -94,8 +94,27 @@ export function createRouteHandler<T>() {
             try {
                 const { bodySchema, paramsSchema, querySchema } = options
 
+                const contentType = req.headers.get('content-type')
+                let rawBody = null
+
+                if (contentType?.includes('multipart/form-data')) {
+                    rawBody = await req.formData()
+                } else if (req.body) {
+                    const reader = req.body.getReader()
+                    const chunks = []
+
+                    while (true) {
+                        const { done, value } = await reader.read()
+                        if (done) break
+                        chunks.push(value)
+                    }
+
+                    const bodyText = Buffer.concat(chunks).toString('utf-8')
+                    rawBody = bodyText ? JSON.parse(bodyText) : null
+                }
+
                 const [parsedBody, parsedParams, parsedQuery] = await Promise.all([
-                    bodySchema ? bodySchema.parse(await readRequestBody(req)) : await readRequestBody(req),
+                    bodySchema ? bodySchema.parse(rawBody) : rawBody,
                     paramsSchema ? paramsSchema.parse(context?.params ? await context?.params : null) : null,
                     querySchema ? querySchema.parse(getURLSearchParams(req.url)) : null,
                 ])

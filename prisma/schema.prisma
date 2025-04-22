@@ -21,6 +21,7 @@ model User {
   accounts                Account[]
   OrganizationMember      OrganizationMember[]
   OrganizationTransaction OrganizationTransaction[]
+  FileUpload              FileUpload[]
 
   @@map("user")
 }
@@ -196,6 +197,42 @@ model OrganizationTransaction {
   organization   Organization                    @relation(fields: [organizationId], references: [id])
   createdAt      DateTime                        @default(now())
   updatedAt      DateTime                        @updatedAt
+  files          FileUpload[]
 
   @@map("organization_transaction")
+}
+
+enum FileUploadType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  OTHER
+
+  @@map("file_upload_type")
+}
+
+enum FileUploadAccessType {
+  PUBLIC
+  PRIVATE
+
+  @@map("file_upload_access_type")
+}
+
+model FileUpload {
+  id                        String                   @id @default(cuid())
+  name                      String
+  type                      FileUploadType
+  mimeType                  String
+  accessType                FileUploadAccessType
+  size                      Int
+  url                       String
+  createdBy                 String
+  createdByUser             User                     @relation(fields: [createdBy], references: [id])
+  createdAt                 DateTime                 @default(now())
+  updatedAt                 DateTime                 @updatedAt
+  organizationTransactionId String?
+  organizationTransaction   OrganizationTransaction? @relation(fields: [organizationTransactionId], references: [id])
+
+  @@map("file_upload")
 }

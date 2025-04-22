@@ -41,3 +41,11 @@ export const updateTransaction = async (transactionId: string, organizationTrans
 export const deleteTransactions = async (organizationId: string, transactionIds: string[]) => {
     return OrganizationTransactionDB.deleteTransactions(organizationId, transactionIds)
 }
+
+export const addFileToTransaction = async (transactionId: string, fileId: string) => {
+    return OrganizationTransactionDB.addFileToTransaction(transactionId, fileId)
+}
+
+export const removeFileFromTransaction = async (transactionId: string, fileId: string) => {
+    return OrganizationTransactionDB.removeFileFromTransaction(transactionId, fileId)
+}

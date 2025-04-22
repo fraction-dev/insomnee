@@ -2,14 +2,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useAddFileToTransaction } from '~/hooks/organization-transaction/useAddFileToTransaction'
 import { useCreateOrganizationTransaction } from '~/hooks/organization-transaction/useCreateOrganizationTransaction'
+import { useRemoveFileFromTransaction } from '~/hooks/organization-transaction/useRemoveFileFromTransaction'
 import { useUpdateOrganizationTransaction } from '~/hooks/organization-transaction/useUpdateOrganizationTransaction'
+import { useSession } from '~/lib/auth-client'
 import { CURRENCIES } from '~/lib/consts/currencies'
 import { cn } from '~/lib/utils'
+import { FileUpload } from '~/services/file-upload/model'
 import { OrganizationMember } from '~/services/organization-member/model'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
 import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
+import { OrganizationTransaction } from '~/services/organization-transaction/model'
 
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
@@ -43,8 +47,12 @@ interface Props {
 type TransactionForm = z.infer<typeof transactionSchema>
 
 export const TransactionForm = ({ organizationId, transaction, transactionCategories, organizationMembers, onSubmit }: Props) => {
+    const { data: session } = useSession()
+
     const { mutate: createTransaction, isPending: isCreating } = useCreateOrganizationTransaction(organizationId)
     const { mutate: updateTransaction, isPending: isUpdating } = useUpdateOrganizationTransaction(organizationId)
+    const { mutate: addFileToTransaction, isPending: isAddingFile } = useAddFileToTransaction(organizationId, transaction?.id)
+    const { mutate: removeFileFromTransaction, isPending: isRemovingFile } = useRemoveFileFromTransaction(organizationId, transaction?.id)
 
     const isLoading = isCreating || isUpdating
 
@@ -91,6 +99,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                 attachmentUrl: null,
                 notes: data.notes ?? null,
                 amount: Number(data.amount),
+                files: [],
             },
             {
                 onSuccess: () => {
@@ -99,6 +108,14 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                 },
             },
         )
+    }
+
+    const handleUploadFile = (file: FileUpload) => {
+        addFileToTransaction(file.id)
+    }
+
+    const handleRemoveFile = (fileId: string) => {
+        removeFileFromTransaction(fileId)
     }
 
     return (
@@ -193,14 +210,22 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                     </div>
 
                     <div className="flex flex-col gap-3">
-                        <Accordion collapsible type="single" defaultValue="attachments">
-                            <AccordionItem value="attachments">
-                                <AccordionTrigger className="text-base font-normal">Attachments</AccordionTrigger>
-                                <AccordionContent>
-                                    <FileInput />
-                                </AccordionContent>
-                            </AccordionItem>
-                        </Accordion>
+                        {session?.user.id && (
+                            <Accordion collapsible type="single" defaultValue="attachments">
+                                <AccordionItem value="attachments">
+                                    <AccordionTrigger className="text-base font-normal">Attachments</AccordionTrigger>
+                                    <AccordionContent>
+                                        <FileInput
+                                            userId={session.user.id}
+                                            accept={['image/*']}
+                                            files={transaction?.files}
+                                            onUpload={handleUploadFile}
+                                            onFileRemove={handleRemoveFile}
+                                        />
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+                        )}
 
                         <Accordion collapsible type="single">
                             <AccordionItem value="notes">

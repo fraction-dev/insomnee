@@ -47,6 +47,11 @@ const envSchema = z.object({
     INSTAGRAM_TESTER_ACCESS_TOKEN: prepareToValidate('INSTAGRAM_TESTER_ACCESS_TOKEN'),
 
     NGROK_URL: prepareToValidate('NGROK_URL'),
+
+    BUNNY_API_KEY: prepareToValidate('BUNNY_API_KEY'),
+    BUNNY_STORAGE_ZONE: prepareToValidate('BUNNY_STORAGE_ZONE'),
+    BUNNY_STORAGE_ACCESS_KEY: prepareToValidate('BUNNY_STORAGE_ACCESS_KEY'),
+    BUNNY_STORAGE_HOSTNAME: prepareToValidate('BUNNY_STORAGE_HOSTNAME'),
 })
 
 const getEnv = () => {

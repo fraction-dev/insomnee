@@ -1,3 +1,4 @@
+import { FileUpload } from '../file-upload/model'
 import { OrganizationTransactionCategory } from '../organization-transaction-category/model'
 import { User } from '../user/model'
 
@@ -13,6 +14,7 @@ export interface OrganizationTransaction {
     notes: string | null
     createdAt: Date
     updatedAt: Date
+    files: FileUpload[]
 }
 
 export type OrganizationTransactionCreate = Omit<OrganizationTransaction, 'id' | 'createdAt' | 'updatedAt' | 'category' | 'assignedTo'> & {

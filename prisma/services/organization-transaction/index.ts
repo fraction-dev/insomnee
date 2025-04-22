@@ -1,6 +1,8 @@
 import { OrganizationTransaction as PrismaOrganizationTransaction } from '@prisma/client'
 import dayjs from 'dayjs'
 import { prisma } from 'prisma/db'
+
+import { FileUpload } from '~/services/file-upload/model'
 import { ORGANIZATION_BASE_TRANSACTION_CATEGORY } from '~/services/organization-transaction-category/model'
 import {
     OrganizationTransaction,
@@ -19,6 +21,7 @@ type PrismaOrganizationTransactionWithRelations = PrismaOrganizationTransaction 
         color: string | null
     }
     assignedToUser: User | null
+    files: FileUpload[]
 }
 
 export const getOrganizationTransactions = async (organizationId: string): Promise<OrganizationTransaction[]> => {
@@ -29,6 +32,7 @@ export const getOrganizationTransactions = async (organizationId: string): Promi
         include: {
             category: true,
             assignedToUser: true,
+            files: true,
         },
         orderBy: {
             date: 'desc',
@@ -54,6 +58,7 @@ export const createOrganizationTransaction = async (organizationId: string, orga
         include: {
             category: true,
             assignedToUser: true,
+            files: true,
         },
     })
 
@@ -76,6 +81,7 @@ export const updateTransaction = async (transactionId: string, transaction: Orga
         include: {
             category: true,
             assignedToUser: true,
+            files: true,
         },
     })
 
@@ -88,6 +94,24 @@ export const deleteTransactions = async (organizationId: string, transactionIds:
             id: { in: transactionIds },
             organizationId,
         },
+    })
+}
+
+export const addFileToTransaction = async (transactionId: string, fileId: string) => {
+    await prisma.organizationTransaction.update({
+        where: { id: transactionId },
+        data: {
+            files: {
+                connect: { id: fileId },
+            },
+        },
+    })
+}
+
+export const removeFileFromTransaction = async (transactionId: string, fileId: string) => {
+    await prisma.organizationTransaction.update({
+        where: { id: transactionId },
+        data: { files: { disconnect: { id: fileId } } },
     })
 }
 
@@ -110,5 +134,6 @@ const mapPrismaOrganizationTransactionToOrganizationTransaction = (
         notes: prismaOrganizationTransaction.notes,
         createdAt: prismaOrganizationTransaction.createdAt,
         updatedAt: prismaOrganizationTransaction.updatedAt,
+        files: prismaOrganizationTransaction.files,
     }
 }
