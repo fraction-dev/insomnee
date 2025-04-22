@@ -6,11 +6,8 @@ import { FileUpload } from '~/services/file-upload/model'
 import { BaseResponse } from '~/types/response'
 
 export const useUploadFile = (userId: string | undefined) => {
-    if (!userId) {
-        throw new Error('User ID is required in [useUploadFile] hook')
-    }
-
-    return useMutation<BaseResponse<FileUpload>, Error, FormData>({
-        mutationFn: (formData: FormData) => fetch('POST', API_ROUTES.FILE_UPLOAD.UPLOAD(userId), formData),
+    return useMutation<BaseResponse<FileUpload | null>, Error, FormData>({
+        mutationFn: (formData: FormData) =>
+            userId ? fetch('POST', API_ROUTES.FILE_UPLOAD.UPLOAD(userId), formData) : Promise.resolve({ data: null }),
     })
 }

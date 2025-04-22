@@ -82,7 +82,7 @@ const data = (organizationId: string) => ({
         },
         {
             title: 'Settings',
-            url: '#',
+            url: ROUTES.DASHBOARD.SETTINGS(organizationId),
             icon: Settings2,
         },
         {

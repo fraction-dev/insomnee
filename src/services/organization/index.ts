@@ -24,6 +24,14 @@ export const getOrganizationById = async (organizationId: string): Promise<Organ
     return organization
 }
 
+export const updateOrganizationLogo = async (organizationId: string, logo: string) => {
+    await OrganizationDB.updateOrganizationLogo(organizationId, logo)
+}
+
+export const updateOrganizationName = async (organizationId: string, name: string) => {
+    await OrganizationDB.updateOrganizationName(organizationId, name)
+}
+
 const bootstrapOrganization = async (organization: Organization) => {
     /**
      * 1. Create transaction categories

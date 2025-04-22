@@ -58,6 +58,20 @@ export const getOrganizationById = async (organizationId: string): Promise<Organ
     return mapPrismaOrganizationToOrganizationModel(organization)
 }
 
+export const updateOrganizationLogo = async (organizationId: string, logo: string) => {
+    await prisma.organization.update({
+        where: { id: organizationId },
+        data: { logoUrl: logo },
+    })
+}
+
+export const updateOrganizationName = async (organizationId: string, name: string) => {
+    await prisma.organization.update({
+        where: { id: organizationId },
+        data: { name },
+    })
+}
+
 const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizationWithRelations): Organization => {
     return {
         ...organization,

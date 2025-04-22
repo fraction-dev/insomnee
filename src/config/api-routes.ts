@@ -1,6 +1,9 @@
 export const API_ROUTES = {
     ORGANIZATION: {
         INDEX: '/organization',
+        GET: (organizationId: string) => `/organization/${organizationId}`,
+        UPDATE_LOGO: (organizationId: string) => `/organization/${organizationId}/logo`,
+        UPDATE_NAME: (organizationId: string) => `/organization/${organizationId}/name`,
     },
     ORGANIZATION_TRANSACTIONS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/transaction`,

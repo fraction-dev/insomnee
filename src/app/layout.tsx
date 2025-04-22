@@ -8,7 +8,7 @@ import { Toaster } from '~/components/ui/sonner'
 import { RootProvider } from '~/core/providers/providers'
 import { detectLanguage } from '~/i18n/detect-language'
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
+const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
 
 export const metadata: Metadata = {
     title: 'Insomnee - Manage your business life 24/7',
