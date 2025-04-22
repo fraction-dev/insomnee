@@ -26,13 +26,14 @@ const bodySchema = z.object({
     date: z.string(),
     categoryId: z.string(),
     notes: z.string().optional(),
+    files: z.array(z.string()).optional(),
 })
 
 export const POST = createRouteHandler<OrganizationTransaction>()(
     { auth: true, paramsSchema: baseOrganizationIdSchema, bodySchema: bodySchema },
     async ({ params, body }) => {
         const { organizationId } = params
-        const { description, amount, currency, categoryId, notes, assignedTo } = body
+        const { description, amount, currency, categoryId, notes, assignedTo, files } = body
 
         const transaction = await createOrganizationTransaction(organizationId, {
             description,
@@ -43,6 +44,7 @@ export const POST = createRouteHandler<OrganizationTransaction>()(
             date: new Date(),
             assignedTo: assignedTo,
             attachmentUrl: null,
+            files: files ?? [],
         })
 
         return NextResponse.json({ data: transaction })

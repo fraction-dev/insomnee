@@ -15,6 +15,7 @@ import { formatOrganizationTransactionCategoryType } from '~/services/organizati
 import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
 import { OrganizationTransaction } from '~/services/organization-transaction/model'
 
+import { useEffect, useState } from 'react'
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
 import { Select } from '../shared/select'
@@ -68,6 +69,14 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
         },
     })
 
+    const [transactionFiles, setTransactionFiles] = useState<FileUpload[]>([])
+
+    useEffect(() => {
+        if (transaction) {
+            setTransactionFiles(transaction.files)
+        }
+    }, [transaction])
+
     const handleSubmit = async (data: TransactionForm) => {
         if (transaction) {
             return updateTransaction(
@@ -93,13 +102,15 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
 
         return createTransaction(
             {
-                ...data,
+                description: data.description,
+                currency: data.currency,
+                categoryId: data.categoryId,
                 date: new Date(),
                 assignedTo: data.assignedTo,
                 attachmentUrl: null,
                 notes: data.notes ?? null,
                 amount: Number(data.amount),
-                files: [],
+                files: transactionFiles.map((file) => file.id),
             },
             {
                 onSuccess: () => {
@@ -111,11 +122,20 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
     }
 
     const handleUploadFile = (file: FileUpload) => {
-        addFileToTransaction(file.id)
+        if (transaction?.id) {
+            addFileToTransaction(file.id)
+        } else {
+            setTransactionFiles([...transactionFiles, file])
+        }
     }
 
     const handleRemoveFile = (fileId: string) => {
-        removeFileFromTransaction(fileId)
+        if (transaction?.id) {
+            removeFileFromTransaction(fileId)
+        } else {
+            const updatedFiles = transactionFiles.filter((file) => file.id !== fileId)
+            setTransactionFiles(updatedFiles)
+        }
     }
 
     return (
@@ -129,7 +149,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                             control={form.control}
                             name="description"
                             errorMessage={form.formState.errors.description?.message}
-                            render={(field) => <Input {...field} placeholder="Acme Inc." />}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="Acme Inc." />}
                         />
                     )}
 
@@ -141,7 +161,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                                 control={form.control}
                                 name="amount"
                                 errorMessage={form.formState.errors.amount?.message}
-                                render={(field) => <Input {...field} type="number" placeholder="100" />}
+                                render={(field) => <Input {...field} value={field.value as string} type="number" placeholder="100" />}
                             />
 
                             <FormField
@@ -218,7 +238,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                                         <FileInput
                                             userId={session.user.id}
                                             accept={['image/*']}
-                                            files={transaction?.files}
+                                            files={transactionFiles}
                                             onUpload={handleUploadFile}
                                             onFileRemove={handleRemoveFile}
                                         />

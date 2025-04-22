@@ -32,7 +32,9 @@ export const FileInput = ({ userId, accept, files = [], onUpload, onFileRemove }
 
             uploadFile(formData, {
                 onSuccess: (fileUpload) => {
-                    onUpload(fileUpload.data)
+                    if (fileUpload.data) {
+                        onUpload(fileUpload.data)
+                    }
                 },
             })
         }

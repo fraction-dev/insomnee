@@ -6,11 +6,9 @@ import { DashboardSidebar } from '~/components/dashboard/dashboard-sidebar'
 import { SidebarInset, SidebarProvider } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
 import { withAuth } from '~/lib/with-auth'
-import { getOrganizationById } from '~/services/organization'
 
 export default async function DashboardLayout({ children, params }: { children: ReactNode; params: Promise<{ organizationId: string }> }) {
     const { organizationId } = await params
-    const organization = await getOrganizationById(organizationId)
     const { user } = await withAuth()
 
     if (!user) {
@@ -19,7 +17,7 @@ export default async function DashboardLayout({ children, params }: { children: 
 
     return (
         <SidebarProvider>
-            <DashboardSidebar organization={organization} user={user} />
+            <DashboardSidebar organizationId={organizationId} user={user} />
             <SidebarInset className="max-w-full p-4">
                 <div className="mb-4">
                     <DashboardNavbar />

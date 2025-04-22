@@ -13,13 +13,16 @@ import {
     SidebarMenuItem,
 } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
-import { Organization } from '~/services/organization/model'
 import { User } from '~/services/user/model'
 
+import { upperCase } from 'lodash'
 import Link from 'next/link'
+import { useOrganization } from '~/hooks/organization/useOrganization'
 import { SidebarNavMain } from '../sidebar/sidebar-nav-main'
 import { SidebarNavSecondary } from '../sidebar/sidebar-nav-secondary'
 import { SidebarNavUser } from '../sidebar/sidebar-nav-user'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Skeleton } from '../ui/skeleton'
 
 // This is sample data.
 const data = (organizationId: string) => ({
@@ -111,12 +114,16 @@ const data = (organizationId: string) => ({
 })
 
 interface Props {
-    organization: Organization
+    organizationId: string
     user: User
 }
 
-export function DashboardSidebar({ organization, user, ...props }: Props & React.ComponentProps<typeof Sidebar>) {
-    const sidebarData = React.useMemo(() => data(organization.id), [organization.id])
+export function DashboardSidebar({ organizationId, user, ...props }: Props & React.ComponentProps<typeof Sidebar>) {
+    const { data: organizationData, isLoading } = useOrganization(organizationId)
+
+    const organization = organizationData?.data
+
+    const sidebarData = React.useMemo(() => data(organization?.id ?? ''), [organization?.id])
 
     return (
         <Sidebar variant="inset" {...props}>
@@ -124,21 +131,45 @@ export function DashboardSidebar({ organization, user, ...props }: Props & React
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton asChild size="lg">
-                            <Link href={ROUTES.DASHBOARD.OVERVIEW(organization.id)}>
-                                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                                    <Command className="size-4" />
-                                </div>
-                                <div className="grid flex-1 text-left text-sm leading-tight">
-                                    <span className="truncate font-semibold">{organization.name}</span>
-                                </div>
-                            </Link>
+                            {isLoading || !organization ? (
+                                <Skeleton className="h-8 w-full" />
+                            ) : (
+                                <Link href={ROUTES.DASHBOARD.OVERVIEW(organization.id)}>
+                                    {organization.logoUrl ? (
+                                        <Avatar>
+                                            <AvatarImage src={organization.logoUrl} />
+                                            <AvatarFallback>{upperCase(organization.name.slice(0, 2))}</AvatarFallback>
+                                        </Avatar>
+                                    ) : (
+                                        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                                            <Command className="size-4" />
+                                        </div>
+                                    )}
+
+                                    <div className="grid flex-1 text-left text-sm leading-tight">
+                                        <span className="truncate font-semibold">{organization.name}</span>
+                                    </div>
+                                </Link>
+                            )}
                         </SidebarMenuButton>
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
             <SidebarContent>
-                <SidebarNavMain items={sidebarData.navMain} />
-                <SidebarNavSecondary items={sidebarData.navSecondary} className="mt-auto" />
+                {isLoading || !organization ? (
+                    <div className="flex flex-col gap-4">
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                        <Skeleton className="h-10 w-full" />
+                    </div>
+                ) : (
+                    <>
+                        <SidebarNavMain items={sidebarData.navMain} />
+                        <SidebarNavSecondary items={sidebarData.navSecondary} className="mt-auto" />
+                    </>
+                )}
             </SidebarContent>
             <SidebarFooter>
                 <SidebarNavUser user={user} />

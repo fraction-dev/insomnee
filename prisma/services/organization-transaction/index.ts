@@ -54,6 +54,9 @@ export const createOrganizationTransaction = async (organizationId: string, orga
             attachmentUrl: organizationTransaction.attachmentUrl,
             notes: organizationTransaction.notes,
             organizationId,
+            files: {
+                connect: organizationTransaction.files.map((file) => ({ id: file })),
+            },
         },
         include: {
             category: true,

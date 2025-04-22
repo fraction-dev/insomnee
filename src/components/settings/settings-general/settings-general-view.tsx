@@ -98,7 +98,12 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
                 footer={
                     <div className="flex w-full items-center justify-between gap-12">
                         <p className="text-xs text-muted-foreground">Please use 32 characters at maximum.</p>
-                        <Button size="sm" onClick={handleOrganizationNameUpdate} isLoading={isUpdatingOrganizationName}>
+                        <Button
+                            disabled={organizationName === data?.data.name || organizationName.length === 0}
+                            size="sm"
+                            onClick={handleOrganizationNameUpdate}
+                            isLoading={isUpdatingOrganizationName}
+                        >
                             Save
                         </Button>
                     </div>

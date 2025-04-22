@@ -17,9 +17,13 @@ export interface OrganizationTransaction {
     files: FileUpload[]
 }
 
-export type OrganizationTransactionCreate = Omit<OrganizationTransaction, 'id' | 'createdAt' | 'updatedAt' | 'category' | 'assignedTo'> & {
+export type OrganizationTransactionCreate = Omit<
+    OrganizationTransaction,
+    'id' | 'createdAt' | 'updatedAt' | 'category' | 'assignedTo' | 'files'
+> & {
     categoryId: string
     assignedTo: string
+    files: string[]
 }
 
 export type OrganizationTransactionUpdate = Partial<OrganizationTransactionCreate>
