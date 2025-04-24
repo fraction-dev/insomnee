@@ -10,7 +10,7 @@ export const exchangeCodeForToken = async (code: string) => {
             client_id: env.INSTAGRAM_APP_ID,
             client_secret: env.INSTAGRAM_APP_SECRET,
             code,
-            redirect_uri: `${env.NGROK_URL}/api/instagram/access-token`,
+            redirect_uri: `${env.BASE_URL}/api/instagram/access-token`,
             grant_type: 'authorization_code',
         })
 

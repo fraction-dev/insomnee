@@ -18,6 +18,8 @@ export const ROUTES = {
         SETTINGS_MEMBERS: (organizationId: string) => `/dashboard/${organizationId}/settings/members`,
         SETTINGS_NOTIFICATIONS: (organizationId: string) => `/dashboard/${organizationId}/settings/notifications`,
         AGENTS: (organizationId: string) => `/dashboard/${organizationId}/agents`,
+
+        MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
     },
     ORGANIZATION: {
         CREATE: '/organization/create',

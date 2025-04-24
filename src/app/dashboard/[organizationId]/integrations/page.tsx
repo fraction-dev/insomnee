@@ -24,7 +24,6 @@ export default async function Page({ params }: { params: Promise<{ organizationI
         <IntegrationsView
             integrations={integrations}
             instagramAppId={ENV_CREDENTIALS.INSTAGRAM_APP_ID}
-            ngrokUrl={env.NGROK_URL}
             organizationId={organizationId as string}
         />
     )

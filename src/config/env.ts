@@ -39,14 +39,9 @@ const envSchema = z.object({
     GOOGLE_CLIENT_ID: prepareToValidate('GOOGLE_CLIENT_ID'),
     GOOGLE_CLIENT_SECRET: prepareToValidate('GOOGLE_CLIENT_SECRET'),
 
-    META_APP_ID: prepareToValidate('META_APP_ID'),
-    META_APP_SECRET: prepareToValidate('META_APP_SECRET'),
-
     INSTAGRAM_APP_ID: prepareToValidate('INSTAGRAM_APP_ID'),
     INSTAGRAM_APP_SECRET: prepareToValidate('INSTAGRAM_APP_SECRET'),
     INSTAGRAM_TESTER_ACCESS_TOKEN: prepareToValidate('INSTAGRAM_TESTER_ACCESS_TOKEN'),
-
-    NGROK_URL: prepareToValidate('NGROK_URL'),
 
     BUNNY_API_KEY: prepareToValidate('BUNNY_API_KEY'),
     BUNNY_STORAGE_ZONE: prepareToValidate('BUNNY_STORAGE_ZONE'),

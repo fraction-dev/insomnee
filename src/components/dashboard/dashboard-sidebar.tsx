@@ -89,6 +89,11 @@ const data = (organizationId: string) => ({
             icon: Settings2,
         },
         {
+            title: 'Messaging',
+            url: ROUTES.DASHBOARD.MESSAGING(organizationId),
+            icon: Send,
+        },
+        {
             title: 'Transactions',
             url: ROUTES.DASHBOARD.TRANSACTIONS(organizationId),
             icon: CreditCard,

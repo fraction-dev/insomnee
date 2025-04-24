@@ -2,15 +2,14 @@ import Image from 'next/image'
 import { createElement } from 'react'
 import { IconType } from 'react-icons/lib'
 
-import { IntegrationType } from '~/services/integration/model'
-
+import { OrganizationIntegrationType } from '~/services/integration/model'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardFooter } from '../ui/card'
 import { IntegrationInstagramButton } from './integration-instagram-button'
 
 export interface IntegrationCardItem {
-    type: IntegrationType
+    type: OrganizationIntegrationType
     icon?: IconType
     image?: string
     title: string
@@ -21,18 +20,17 @@ export interface IntegrationCardItem {
 
 interface Props {
     instagramAppId: string
-    ngrokUrl: string
     organizationId: string
     integration: IntegrationCardItem
 }
 
-export const IntegrationCard = ({ instagramAppId, ngrokUrl, organizationId, integration }: Props) => {
+export const IntegrationCard = ({ instagramAppId, organizationId, integration }: Props) => {
     const { icon, image, title, description, isComingSoon, isConnected } = integration
 
     const renderConnectComponent = () => {
         switch (integration.type) {
             case 'INSTAGRAM':
-                return <IntegrationInstagramButton appId={instagramAppId} ngrokUrl={ngrokUrl} organizationId={organizationId} />
+                return <IntegrationInstagramButton appId={instagramAppId} organizationId={organizationId} />
             default:
                 return null
         }

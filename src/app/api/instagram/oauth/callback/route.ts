@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 
 import { env } from '~/config/env'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
-import { getAccessTokenByCode } from '~/lib/server/instagram/api'
+import { getLongLivedAccessToken, getShortLivedAccessToken } from '~/lib/server/instagram/api'
 import { addInstagramIntegration } from '~/services/integration'
 
 export const GET = createRouteHandler()({ auth: true }, async ({ req: request }) => {
@@ -12,12 +12,15 @@ export const GET = createRouteHandler()({ auth: true }, async ({ req: request })
 
     if (state && code && 'organizationId' in JSON.parse(state)) {
         const organizationId = JSON.parse(state).organizationId
-        const accessToken = await getAccessTokenByCode(code)
+
+        const shortLivedAccessToken = await getShortLivedAccessToken(code)
+        const longLivedAccessToken = await getLongLivedAccessToken(shortLivedAccessToken.access_token, env.INSTAGRAM_APP_SECRET)
 
         await addInstagramIntegration(organizationId, {
-            code,
-            accessToken: accessToken.access_token,
-            userId: accessToken.user_id,
+            accessToken: longLivedAccessToken.access_token,
+            tokenType: longLivedAccessToken.token_type,
+            expiresIn: longLivedAccessToken.expires_in,
+            instagramUserId: shortLivedAccessToken.user_id,
         })
     }
 

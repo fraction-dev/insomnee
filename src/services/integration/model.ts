@@ -1,18 +1,17 @@
-export type IntegrationType = 'INSTAGRAM' | 'FACEBOOK' | 'WHATSAPP' | 'TWITTER' | 'TELEGRAM' | 'SIMPALS'
+export type OrganizationIntegrationType = 'INSTAGRAM' | 'FACEBOOK' | 'WHATSAPP' | 'TWITTER' | 'TELEGRAM' | 'SIMPALS'
 
-export interface Integration {
+export interface OrganizationIntegration {
     id: string
-    type: IntegrationType
+    type: OrganizationIntegrationType
     organizationId: string
-    credentials: IntegrationCredentials
+    instagramIntegration: OrganizationIntegrationInstagramPayload | null
     createdAt: Date
     updatedAt: Date
 }
 
-type IntegrationCredentials = InstagramIntegrationCredentials
-
-export type InstagramIntegrationCredentials = {
-    code: string
+export type OrganizationIntegrationInstagramPayload = {
     accessToken: string
-    userId: string
+    tokenType: string
+    expiresIn: number
+    instagramUserId: string
 }

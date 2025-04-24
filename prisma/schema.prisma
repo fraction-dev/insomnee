@@ -119,7 +119,7 @@ model Organization {
   updatedAt                       DateTime?                         @default(now()) @db.Timestamptz(6)
   deletedAt                       DateTime?
   members                         OrganizationMember[]
-  Integration                     Integration[]
+  OrganizationIntegration         OrganizationIntegration[]
   OrganizationTransactionCategory OrganizationTransactionCategory[]
   OrganizationTransaction         OrganizationTransaction[]
 
@@ -145,7 +145,7 @@ model OrganizationMember {
   @@map("organization_member")
 }
 
-enum IntegrationType {
+enum OrganizationIntegrationType {
   INSTAGRAM
   FACEBOOK
   WHATSAPP
@@ -153,19 +153,31 @@ enum IntegrationType {
   TELEGRAM
   SIMPALS
 
-  @@map("integration_type")
+  @@map("organization_integration_type")
 }
 
-model Integration {
-  id             String          @id @default(cuid())
-  type           IntegrationType
-  credentials    Json
-  organizationId String
-  organization   Organization    @relation(fields: [organizationId], references: [id])
-  createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+model OrganizationIntegration {
+  id                     String                            @id @default(cuid())
+  type                   OrganizationIntegrationType
+  instagramIntegrationId String?
+  instagramIntegration   OrganizationIntegrationInstagram? @relation(fields: [instagramIntegrationId], references: [id])
+  organizationId         String
+  organization           Organization                      @relation(fields: [organizationId], references: [id])
+  createdAt              DateTime                          @default(now())
+  updatedAt              DateTime                          @updatedAt
 
-  @@map("integration")
+  @@map("organization_integration")
+}
+
+model OrganizationIntegrationInstagram {
+  id                      String                    @id @default(cuid())
+  accessToken             String
+  tokenType               String
+  expiresIn               Int
+  instagramUserId         String
+  OrganizationIntegration OrganizationIntegration[]
+
+  @@map("organization_integration_instagram")
 }
 
 model OrganizationTransactionCategory {

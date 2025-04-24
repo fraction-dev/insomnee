@@ -1,49 +1,49 @@
-import axios from 'axios'
 import { env } from '~/config/env'
-import logger from '~/core/logger'
+import {
+    InstagramConversation,
+    InstagramConversationMessage,
+    InstagramLongLivedAccessTokenResponse,
+    InstagramShortLivedAccessTokenResponse,
+} from './lib'
+import { fetchInstagram } from './lib/fetchInstagram'
 
-export const getAccessTokenByCode = async (
-    code: string,
-): Promise<{
-    access_token: string
-    user_id: string
-}> => {
-    try {
-        const response = await axios.post(
-            'https://api.instagram.com/oauth/access_token',
-            {
-                client_id: env.INSTAGRAM_APP_ID,
-                client_secret: env.INSTAGRAM_APP_SECRET,
-                grant_type: 'authorization_code',
-                redirect_uri: `${env.NGROK_URL}/api/instagram/oauth/callback`,
-                code: code,
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-            },
-        )
-        return response.data
-    } catch (error) {
-        logger.error(`[getAccessTokenByCode] Error fetching access token: ${error}`)
-        throw error
-    }
+export const getShortLivedAccessToken = async (code: string) => {
+    const response = await fetchInstagram<InstagramShortLivedAccessTokenResponse>(
+        'POST',
+        '/oauth/access_token',
+        {
+            client_id: env.INSTAGRAM_APP_ID,
+            client_secret: env.INSTAGRAM_APP_SECRET,
+            grant_type: 'authorization_code',
+            redirect_uri: `${env.BASE_URL}/api/instagram/oauth/callback`,
+            code: code,
+        },
+        { 'Content-Type': 'application/x-www-form-urlencoded' },
+    )
+
+    return response
 }
 
-export const getUserProfile = async (accessToken: string) => {
-    try {
-        const response = await axios.get('https://graph.instagram.com/me', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`,
-            },
-            params: {
-                fields: 'id,username,profile_picture_url,account_type,followers_count,follows_count,media_count',
-            },
-        })
-        return response.data
-    } catch (error) {
-        logger.error(`[getUserProfile] Error fetching user profile: ${error}`)
-        throw error
-    }
+export const getLongLivedAccessToken = async (shortLivedAccessToken: string, clientSecret: string) => {
+    const response = await fetchInstagram<InstagramLongLivedAccessTokenResponse>(
+        'GET',
+        `/access_token?grant_type=ig_exchange_token&client_secret=${clientSecret}&access_token=${shortLivedAccessToken}`,
+    )
+
+    return response
+}
+
+export const getConversations = async (accessToken: string) => {
+    const response = await fetchInstagram<InstagramConversation>('GET', `/me/conversations?platform=instagram&access_token=${accessToken}`)
+
+    return response.data
+}
+
+export const getConversationMessages = async (accessToken: string, conversationId: string) => {
+    const response = await fetchInstagram<InstagramConversationMessage>(
+        'GET',
+        `/me/conversations/${conversationId}/messages?platform=instagram&access_token=${accessToken}`,
+    )
+
+    return response.data
 }

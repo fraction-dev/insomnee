@@ -2,20 +2,19 @@
 
 import { FaFacebook, FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa'
 
-import { Integration, IntegrationType } from '~/services/integration/model'
+import { OrganizationIntegration, OrganizationIntegrationType } from '~/services/integration/model'
 
 import { IntegrationCard, IntegrationCardItem } from './integration-card'
 
 interface Props {
-    integrations: Integration[]
+    integrations: OrganizationIntegration[]
 
     instagramAppId: string
-    ngrokUrl: string
     organizationId: string
 }
 
-export const IntegrationsView = ({ integrations, instagramAppId, ngrokUrl, organizationId }: Props) => {
-    const isIntegrationConnected = (type: IntegrationType) => {
+export const IntegrationsView = ({ integrations, instagramAppId, organizationId }: Props) => {
+    const isIntegrationConnected = (type: OrganizationIntegrationType) => {
         return integrations.some((integration) => integration.type === type)
     }
 
@@ -71,7 +70,6 @@ export const IntegrationsView = ({ integrations, instagramAppId, ngrokUrl, organ
                         isConnected: isIntegrationConnected(integration.type),
                     }}
                     instagramAppId={instagramAppId}
-                    ngrokUrl={ngrokUrl}
                     organizationId={organizationId}
                 />
             ))}

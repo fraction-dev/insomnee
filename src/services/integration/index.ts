@@ -1,17 +1,17 @@
-import * as IntegrationDB from 'prisma/services/integration'
+import * as IntegrationDB from 'prisma/services/organization-integration'
 
-import { InstagramIntegrationCredentials, Integration } from './model'
+import { OrganizationIntegration, OrganizationIntegrationInstagramPayload } from './model'
 
 export const addInstagramIntegration = async (
     organizationId: string,
-    credentials: InstagramIntegrationCredentials,
-): Promise<Integration> => {
-    const integration = await IntegrationDB.addInstagramIntegration(organizationId, credentials)
+    payload: OrganizationIntegrationInstagramPayload,
+): Promise<OrganizationIntegration> => {
+    const integration = await IntegrationDB.addInstagramIntegration(organizationId, payload)
 
     return integration
 }
 
-export const getOrganizationIntegrations = async (organizationId: string): Promise<Integration[]> => {
+export const getOrganizationIntegrations = async (organizationId: string): Promise<OrganizationIntegration[]> => {
     const integrations = await IntegrationDB.getOrganizationIntegrations(organizationId)
 
     return integrations
