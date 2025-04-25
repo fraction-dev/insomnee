@@ -9,8 +9,8 @@ import { env } from './env'
 
 export const auth = betterAuth({
     secret: env.BETTER_AUTH_SECRET,
-    baseURL: env.BASE_URL,
 
+    baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : env.BASE_URL,
     trustedOrigins: [env.BASE_URL, 'http://localhost:3000'],
 
     database: prismaAdapter(prisma, {

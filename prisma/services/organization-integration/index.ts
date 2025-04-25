@@ -1,5 +1,6 @@
 import { OrganizationIntegrationInstagram, OrganizationIntegration as PrismaIntegration } from '@prisma/client'
 import { prisma } from 'prisma/db'
+import { IntegrationNotFoundError } from '~/services/integration/errors'
 
 import { OrganizationIntegration, OrganizationIntegrationInstagramPayload } from '~/services/integration/model'
 
@@ -42,6 +43,19 @@ export const getOrganizationIntegrations = async (organizationId: string) => {
     })
 
     return integrations.map(mapPrismaIntegrationToInstagramIntegration)
+}
+
+export const getInstagramIntegrationByOrganizationId = async (organizationId: string) => {
+    const integration = await prisma.organizationIntegration.findFirst({
+        where: { organizationId, type: 'INSTAGRAM' },
+        include: { instagramIntegration: true },
+    })
+
+    if (!integration) {
+        throw IntegrationNotFoundError(organizationId, 'instagram')
+    }
+
+    return mapPrismaIntegrationToInstagramIntegration(integration)
 }
 
 const mapPrismaIntegrationToInstagramIntegration = (integration: PrismaOrganizationIntegrationWithRelations): OrganizationIntegration => {

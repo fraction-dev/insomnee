@@ -3,18 +3,31 @@ import { useEffect, useRef, useState } from 'react'
 import { cn } from '~/lib/utils'
 
 import { Input } from '../ui/input'
-import { Select as ShadcnSelect,SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
+import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select as ShadcnSelect } from '../ui/select'
 
 interface Props {
+    id?: string
+    disabled?: boolean
     withSearch?: boolean
     options: { label: string | React.ReactNode; value: string }[]
     value: string | undefined
     placeholder?: string
     searchInputPlaceholder?: string
+    className?: string
     onChange: (value: string) => void
 }
 
-export const Select = ({ options, value, onChange, placeholder, withSearch = false, searchInputPlaceholder = 'Search' }: Props) => {
+export const Select = ({
+    id,
+    disabled,
+    options,
+    value,
+    onChange,
+    placeholder,
+    withSearch = false,
+    searchInputPlaceholder = 'Search',
+    className,
+}: Props) => {
     const [search, setSearch] = useState('')
     const inputRef = useRef<HTMLInputElement>(null)
 
@@ -53,11 +66,11 @@ export const Select = ({ options, value, onChange, placeholder, withSearch = fal
     })
 
     return (
-        <ShadcnSelect value={value} onValueChange={onChange} onOpenChange={() => setSearch('')}>
-            <SelectTrigger className="w-full">
+        <ShadcnSelect disabled={disabled} value={value} onValueChange={onChange} onOpenChange={() => setSearch('')}>
+            <SelectTrigger className={cn('w-full', className)}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent id={id}>
                 {withSearch && (
                     <div className="fixed top-0 z-10 bg-white p-1 w-full">
                         <Input

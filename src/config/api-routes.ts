@@ -16,7 +16,16 @@ export const API_ROUTES = {
     ORGANIZATION_MEMBERS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/member`,
     },
+    ORGANIZATION_INTEGRATIONS: {
+        INDEX: (organizationId: string) => `/organization/${organizationId}/integrations`,
+    },
     FILE_UPLOAD: {
         UPLOAD: (userId: string) => `/user/${userId}/file-upload`,
+    },
+    DIALOGS: {
+        INSTAGRAM: {
+            INDEX: (organizationId: string) => `/organization/${organizationId}/dialogs/instagram`,
+            MESSAGE: (organizationId: string) => `/organization/${organizationId}/dialogs/instagram/message`,
+        },
     },
 }

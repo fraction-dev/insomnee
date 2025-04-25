@@ -1,11 +1,17 @@
 import { env } from '~/config/env'
+import { fetchInstagram } from './lib/fetchInstagram'
 import {
     InstagramConversation,
     InstagramConversationMessage,
+    InstagramConversationMessageEntity,
     InstagramLongLivedAccessTokenResponse,
     InstagramShortLivedAccessTokenResponse,
-} from './lib'
-import { fetchInstagram } from './lib/fetchInstagram'
+    InstagramUser,
+} from './model'
+
+export const getInstagramUserById = async (accessToken: string, userId: string) => {
+    return await fetchInstagram<InstagramUser>('GET', `/${userId}?fields=username&access_token=${accessToken}`)
+}
 
 export const getShortLivedAccessToken = async (code: string) => {
     const response = await fetchInstagram<InstagramShortLivedAccessTokenResponse>(
@@ -42,8 +48,22 @@ export const getConversations = async (accessToken: string) => {
 export const getConversationMessages = async (accessToken: string, conversationId: string) => {
     const response = await fetchInstagram<InstagramConversationMessage>(
         'GET',
-        `/me/conversations/${conversationId}/messages?platform=instagram&access_token=${accessToken}`,
+        `/${conversationId}?fields=messages&access_token=${accessToken}`,
     )
 
-    return response.data
+    return response
+}
+
+export const getConversationMessage = async (accessToken: string, messageId: string) => {
+    return await fetchInstagram<InstagramConversationMessageEntity>(
+        'GET',
+        `/${messageId}?fields=id,created_time,from,to,message&access_token=${accessToken}`,
+    )
+}
+
+export const sendTextMessage = async (accessToken: string, payload: { recipientId: string; message: string }) => {
+    return await fetchInstagram<InstagramConversationMessageEntity>('POST', `/me/messages?access_token=${accessToken}`, {
+        recipient: { id: payload.recipientId },
+        message: { text: payload.message },
+    })
 }

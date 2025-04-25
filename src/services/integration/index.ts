@@ -16,3 +16,7 @@ export const getOrganizationIntegrations = async (organizationId: string): Promi
 
     return integrations
 }
+
+export const getInstagramIntegrationByOrganizationId = async (organizationId: string): Promise<OrganizationIntegration> => {
+    return await IntegrationDB.getInstagramIntegrationByOrganizationId(organizationId)
+}

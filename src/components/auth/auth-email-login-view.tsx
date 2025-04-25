@@ -1,7 +1,7 @@
 'use client'
 
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { z, ZodError } from 'zod'
@@ -9,9 +9,19 @@ import { z, ZodError } from 'zod'
 import logger from '~/core/logger'
 import { authClient } from '~/lib/auth-client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { ROUTES } from '~/config/routes'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp'
+
+const formSchema = z.object({
+    email: z.string().email(),
+})
+
+type FormSchema = z.infer<typeof formSchema>
 
 interface Props {
     onSuccess: () => void
@@ -22,19 +32,20 @@ const OTP_CLASS_NAME = 'size-16'
 
 export const AuthEmailLoginView = ({ onSuccess }: Props) => {
     const { t } = useTranslation(['common'])
+    const router = useRouter()
 
-    const [email, setEmail] = useState('')
+    const form = useForm<FormSchema>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            email: '',
+        },
+    })
+
     const [isSent, setIsSent] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
-    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-    }
-
-    const handleSendVerificationOTP = async () => {
+    const handleSendVerificationOTP = async ({ email }: FormSchema) => {
         try {
-            z.string().email().parse(email)
-
             setIsLoading(true)
 
             const response = await authClient.emailOtp.sendVerificationOtp({ email, type: 'sign-in' })
@@ -65,8 +76,9 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
     const handleVerifyOTP = async (otp: string) => {
         try {
             setIsLoading(true)
-
+            const { email } = form.getValues()
             z.string().length(6).parse(otp)
+
             const response = await authClient.signIn.emailOtp({ email, otp })
 
             if (response.error) {
@@ -74,7 +86,7 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
             }
 
             toast.success(t('common:success.verificationOTPVerified'))
-            onSuccess()
+            router.push(ROUTES.DASHBOARD.INDEX)
         } catch (error) {
             if (error instanceof Error || (typeof error === 'string' && error.includes('Invalid OTP'))) {
                 toast.error(t('common:error.invalidOTP'))
@@ -97,12 +109,12 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
     return (
         <div className="flex flex-col gap-4">
             {!isSent ? (
-                <>
-                    <Input placeholder={t('common:input.placeholder.email')} value={email} onChange={handleEmailChange} />
-                    <Button isLoading={isLoading} onClick={handleSendVerificationOTP}>
+                <form onSubmit={form.handleSubmit(handleSendVerificationOTP)} className="flex flex-col gap-4">
+                    <Input placeholder={t('common:input.placeholder.email')} {...form.register('email')} />
+                    <Button isLoading={isLoading} type="submit">
                         {t('common:continue')}
                     </Button>
-                </>
+                </form>
             ) : (
                 <>
                     <InputOTP disabled={isLoading} maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS} onComplete={handleVerifyOTP}>

@@ -16,6 +16,11 @@ export const GET = createRouteHandler()({ auth: true }, async ({ req: request })
         const shortLivedAccessToken = await getShortLivedAccessToken(code)
         const longLivedAccessToken = await getLongLivedAccessToken(shortLivedAccessToken.access_token, env.INSTAGRAM_APP_SECRET)
 
+        console.log({
+            shortLivedAccessToken,
+            longLivedAccessToken,
+        })
+
         await addInstagramIntegration(organizationId, {
             accessToken: longLivedAccessToken.access_token,
             tokenType: longLivedAccessToken.token_type,
