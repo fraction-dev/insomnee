@@ -10,6 +10,7 @@ const bodySchema = z.object({
     defaultLanguage: z.string().min(1),
     defaultCurrency: z.string().min(1),
     phone: z.string().min(1),
+    websiteUrl: z.string().url(),
 })
 
 export const POST = createRouteHandler()({ auth: true, bodySchema }, async ({ body, userId }) => {
@@ -18,6 +19,7 @@ export const POST = createRouteHandler()({ auth: true, bodySchema }, async ({ bo
         defaultLanguage: body.defaultLanguage as OrganizationLanguage,
         defaultCurrency: body.defaultCurrency as OrganizationCurrency,
         phone: body.phone,
+        websiteUrl: body.websiteUrl,
     })
 
     return NextResponse.json({ data: organization })

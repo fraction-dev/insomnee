@@ -49,10 +49,10 @@ export const fetchInstagram = async <T>(method: Method, url: string, data?: any,
             url,
             method,
             error: {
-                message: err.response.data.error.message,
+                message: err.response?.data?.error?.message ?? 'Error fetching Instagram API',
             },
         })
 
-        throw new InternalError(err.response.data.error.message ?? 'Error fetching Instagram API')
+        throw new InternalError(err.response?.data?.error?.message ?? 'Error fetching Instagram API')
     }
 }

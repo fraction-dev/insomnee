@@ -20,11 +20,13 @@ export const ChatDialog = ({
     onSelect: () => void
 }) => {
     return (
-        <Card className={cn('p-2 cursor-pointer hover:bg-muted transition-colors', { 'bg-muted': isSelected })} onClick={onSelect}>
+        <Card className={cn('p-2 cursor-pointer hover:bg-muted transition-colors group', { 'bg-muted': isSelected })} onClick={onSelect}>
             <CardContent className="flex justify-start items-center gap-3 relative">
-                <Avatar className="size-12 text-sm">
+                <Avatar className="size-9 text-sm">
                     <AvatarImage src={avatar ?? ''} />
-                    <AvatarFallback>{username?.slice(0, 2)}</AvatarFallback>
+                    <AvatarFallback className={cn('group-hover:bg-white transition-colors', { 'bg-white': isSelected })}>
+                        {username?.slice(0, 2)}
+                    </AvatarFallback>
                 </Avatar>
 
                 <div className="flex flex-col gap-1">

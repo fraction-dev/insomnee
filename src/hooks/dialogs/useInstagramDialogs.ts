@@ -8,5 +8,10 @@ export const useInstagramDialogs = (organizationId: string) => {
     return useQuery<BaseResponse<Dialog[]>>({
         queryKey: ['instagram-dialogs', organizationId],
         queryFn: () => fetch('GET', API_ROUTES.DIALOGS.INSTAGRAM.INDEX(organizationId)),
+        refetchInterval: 10000, // 10 seconds (the execution of the endpoint is about 2-5 seconds)
+        refetchIntervalInBackground: true,
+        refetchOnWindowFocus: true,
+        refetchOnMount: true,
+        refetchOnReconnect: true,
     })
 }

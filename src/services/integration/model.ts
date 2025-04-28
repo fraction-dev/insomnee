@@ -14,4 +14,17 @@ export type OrganizationIntegrationInstagramPayload = {
     tokenType: string
     expiresIn: number
     instagramUserId: string
+    instagramBusinessId: string | null
+    configuration?: OrganizationIntegrationInstagramConfiguration
+}
+
+export type OrganizationIntegrationVoiceMessageService = 'ELEVENLABS'
+export type OrganizationIntegrationVoiceMessageVoice = 'SARAH' | 'ALEX' | 'DOMINIQUE' | 'EMMA' | 'SOPHIA' | 'LUCIA'
+
+export type OrganizationIntegrationInstagramConfiguration = {
+    isBotEnabled: boolean
+    isVoiceMessageResponseEnabled: boolean
+    replyDelay: number
+    voiceMessageService: OrganizationIntegrationVoiceMessageService
+    voiceMessageVoice: OrganizationIntegrationVoiceMessageVoice
 }

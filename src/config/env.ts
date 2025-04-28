@@ -47,6 +47,13 @@ const envSchema = z.object({
     BUNNY_STORAGE_ZONE: prepareToValidate('BUNNY_STORAGE_ZONE'),
     BUNNY_STORAGE_ACCESS_KEY: prepareToValidate('BUNNY_STORAGE_ACCESS_KEY'),
     BUNNY_STORAGE_HOSTNAME: prepareToValidate('BUNNY_STORAGE_HOSTNAME'),
+
+    TRIGGER_SECRET_KEY: prepareToValidate('TRIGGER_SECRET_KEY'),
+
+    OPENAI_API_KEY: prepareToValidate('OPENAI_API_KEY'),
+    DEEPSEEK_API_KEY: prepareToValidate('DEEPSEEK_API_KEY'),
+    ELEVENLABS_API_KEY: prepareToValidate('ELEVENLABS_API_KEY'),
+    PERPLEXITY_API_KEY: prepareToValidate('PERPLEXITY_API_KEY'),
 })
 
 const getEnv = () => {

@@ -12,12 +12,13 @@ export const ROUTES = {
         INTEGRATIONS: (organizationId: string) => `/dashboard/${organizationId}/integrations`,
         WEB_CARD: (organizationId: string) => `/dashboard/${organizationId}/webcard`,
         TRANSACTIONS: (organizationId: string) => `/dashboard/${organizationId}/transactions`,
-
-        SETTINGS: (organizationId: string) => `/dashboard/${organizationId}/settings`,
-        SETTINGS_CATEGORIES: (organizationId: string) => `/dashboard/${organizationId}/settings/categories`,
-        SETTINGS_MEMBERS: (organizationId: string) => `/dashboard/${organizationId}/settings/members`,
-        SETTINGS_NOTIFICATIONS: (organizationId: string) => `/dashboard/${organizationId}/settings/notifications`,
-        AGENTS: (organizationId: string) => `/dashboard/${organizationId}/agents`,
+        SETTINGS: {
+            INDEX: (organizationId: string) => `/dashboard/${organizationId}/settings`,
+            CATEGORIES: (organizationId: string) => `/dashboard/${organizationId}/settings/categories`,
+            MEMBERS: (organizationId: string) => `/dashboard/${organizationId}/settings/members`,
+            NOTIFICATIONS: (organizationId: string) => `/dashboard/${organizationId}/settings/notifications`,
+            AGENTS: (organizationId: string) => `/dashboard/${organizationId}/settings/agents`,
+        },
 
         MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
     },

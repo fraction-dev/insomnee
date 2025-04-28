@@ -19,14 +19,9 @@ interface Props {
 
 export const MessagingView = ({ organizationId }: Props) => {
     const { data: integrations, isLoading: isLoadingIntegrations } = useOrganizationIntegrations(organizationId)
-    const {
-        data: instagramDialogsData,
-        isLoading: isLoadingInstagramDialogs,
-        isRefetching: isRefetchingInstagramDialogs,
-    } = useInstagramDialogs(organizationId)
+    const { data: instagramDialogsData, isLoading: isLoadingInstagramDialogs } = useInstagramDialogs(organizationId)
 
     const [selectedIntegration, setSelectedIntegration] = useState<OrganizationIntegration | null>(null)
-    const [isBotEnabled, setIsBotEnabled] = useState(false)
     const [selectedDialog, setSelectedDialog] = useState<Dialog | null>(null)
 
     const isDialogsLoading = isLoadingInstagramDialogs
@@ -62,12 +57,10 @@ export const MessagingView = ({ organizationId }: Props) => {
     return (
         <div className="flex flex-col gap-4">
             <MessagingHeader
-                isLoading={isLoadingIntegrations}
+                organizationId={organizationId}
                 integrations={integrations?.data ?? []}
-                isBotEnabled={isBotEnabled}
                 selectedIntegration={selectedIntegration}
                 onSelectIntegration={setSelectedIntegration}
-                onToggleBot={() => setIsBotEnabled(!isBotEnabled)}
             />
 
             <Separator />
@@ -99,9 +92,10 @@ export const MessagingView = ({ organizationId }: Props) => {
                                 type={selectedIntegration.type}
                                 targetUser={selectedDialog.targetUser}
                                 messages={selectedDialog.messages ?? []}
-                                isBotEnabled={isBotEnabled}
                                 organizationId={organizationId}
-                                isSubmitting={isRefetchingInstagramDialogs}
+                                isSubmitting={isLoadingInstagramDialogs}
+                                isBotEnabled={selectedIntegration.instagramIntegration?.configuration?.isBotEnabled ?? false}
+                                selectedIntegration={selectedIntegration}
                             />
                         )}
                     </div>

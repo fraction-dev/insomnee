@@ -122,6 +122,9 @@ model Organization {
   OrganizationIntegration         OrganizationIntegration[]
   OrganizationTransactionCategory OrganizationTransactionCategory[]
   OrganizationTransaction         OrganizationTransaction[]
+  OrganizationMessagingAgent      OrganizationMessagingAgent[]
+  OrganizationAIUsage             OrganizationAIUsage[]
+  OrganizationProductsAndServices OrganizationProductsAndServices[]
 
   @@map("organization")
 }
@@ -157,25 +160,45 @@ enum OrganizationIntegrationType {
 }
 
 model OrganizationIntegration {
-  id                     String                            @id @default(cuid())
-  type                   OrganizationIntegrationType
-  instagramIntegrationId String?
-  instagramIntegration   OrganizationIntegrationInstagram? @relation(fields: [instagramIntegrationId], references: [id])
-  organizationId         String
-  organization           Organization                      @relation(fields: [organizationId], references: [id])
-  createdAt              DateTime                          @default(now())
-  updatedAt              DateTime                          @updatedAt
+  id                         String                            @id @default(cuid())
+  type                       OrganizationIntegrationType
+  instagramIntegrationId     String?
+  instagramIntegration       OrganizationIntegrationInstagram? @relation(fields: [instagramIntegrationId], references: [id], onDelete: Cascade)
+  organizationId             String
+  organization               Organization                      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt                  DateTime                          @default(now())
+  updatedAt                  DateTime                          @updatedAt
+  OrganizationMessagingAgent OrganizationMessagingAgent[]
 
   @@map("organization_integration")
 }
 
+enum OrganizationIntegrationVoiceMessageService {
+  ELEVENLABS
+}
+
+enum OrganizationIntegrationVoiceMessageVoice {
+  SARAH
+  ALEX
+  DOMINIQUE
+  EMMA
+  SOPHIA
+  LUCIA
+}
+
 model OrganizationIntegrationInstagram {
-  id                      String                    @id @default(cuid())
-  accessToken             String
-  tokenType               String
-  expiresIn               Int
-  instagramUserId         String
-  OrganizationIntegration OrganizationIntegration[]
+  id                            String                                     @id @default(cuid())
+  instagramUserId               String                                     @unique
+  accessToken                   String
+  tokenType                     String
+  expiresIn                     Int
+  instagramBusinessId           String?
+  OrganizationIntegration       OrganizationIntegration[]
+  isBotEnabled                  Boolean                                    @default(false)
+  isVoiceMessageResponseEnabled Boolean                                    @default(false)
+  replyDelay                    Int                                        @default(0)
+  voiceMessageService           OrganizationIntegrationVoiceMessageService @default(ELEVENLABS)
+  voiceMessageVoice             OrganizationIntegrationVoiceMessageVoice   @default(SARAH)
 
   @@map("organization_integration_instagram")
 }
@@ -232,19 +255,79 @@ enum FileUploadAccessType {
 }
 
 model FileUpload {
-  id                        String                   @id @default(cuid())
-  name                      String
-  type                      FileUploadType
-  mimeType                  String
-  accessType                FileUploadAccessType
-  size                      Int
-  url                       String
-  createdBy                 String
-  createdByUser             User                     @relation(fields: [createdBy], references: [id])
-  createdAt                 DateTime                 @default(now())
-  updatedAt                 DateTime                 @updatedAt
-  organizationTransactionId String?
-  organizationTransaction   OrganizationTransaction? @relation(fields: [organizationTransactionId], references: [id])
+  id                                String                           @id @default(cuid())
+  name                              String
+  type                              FileUploadType
+  mimeType                          String
+  accessType                        FileUploadAccessType
+  size                              Int
+  url                               String
+  createdBy                         String
+  createdByUser                     User                             @relation(fields: [createdBy], references: [id])
+  createdAt                         DateTime                         @default(now())
+  updatedAt                         DateTime                         @updatedAt
+  organizationTransactionId         String?
+  organizationTransaction           OrganizationTransaction?         @relation(fields: [organizationTransactionId], references: [id])
+  OrganizationProductsAndServices   OrganizationProductsAndServices? @relation(fields: [organizationProductsAndServicesId], references: [id])
+  organizationProductsAndServicesId String?
 
   @@map("file_upload")
+}
+
+enum OrganizationAgentStatus {
+  PENDING
+  ACTIVE
+
+  @@map("organization_agent_status")
+}
+
+model OrganizationMessagingAgent {
+  id             String                   @id @default(cuid())
+  organizationId String
+  organization   Organization             @relation(fields: [organizationId], references: [id])
+  status         OrganizationAgentStatus  @default(PENDING)
+  prompt         String?
+  integrationId  String?
+  integration    OrganizationIntegration? @relation(fields: [integrationId], references: [id])
+  createdAt      DateTime                 @default(now())
+  updatedAt      DateTime                 @updatedAt
+
+  @@map("organization_messaging_agent")
+}
+
+model OrganizationAIUsage {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  tokens         Int          @default(0)
+  description    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@map("organization_ai_usage")
+}
+
+enum OrganizationProductsAndServiceStatus {
+  ACTIVE
+  IN_REVIEW
+  DELETED
+
+  @@map("organization_products_and_service_status")
+}
+
+model OrganizationProductsAndServices {
+  id             String                               @id @default(cuid())
+  organizationId String
+  organization   Organization                         @relation(fields: [organizationId], references: [id])
+  name           String
+  description    String?
+  price          Int?                                 @default(0)
+  currency       String?                              @default("MDL")
+  status         OrganizationProductsAndServiceStatus @default(ACTIVE)
+  images         FileUpload[]
+  color          String?
+  createdAt      DateTime                             @default(now())
+  updatedAt      DateTime                             @updatedAt
+
+  @@map("organization_products_and_services")
 }

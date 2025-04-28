@@ -18,6 +18,7 @@ import { Input } from '../ui/input'
 
 const formSchema = z.object({
     name: z.string().min(1),
+    websiteUrl: z.string().url(),
     defaultLanguage: z.string().min(1),
     defaultCurrency: z.string().min(1),
     phone: z.string().min(1),
@@ -46,6 +47,7 @@ export const OrganizationsCreateForm = () => {
                 defaultLanguage: data.defaultLanguage,
                 defaultCurrency: data.defaultCurrency,
                 phone: data.phone,
+                websiteUrl: data.websiteUrl,
             })
 
             toast.success('Organization created successfully')
@@ -76,6 +78,15 @@ export const OrganizationsCreateForm = () => {
                         name="phone"
                         errorMessage={form.formState.errors.phone?.message}
                         render={(field) => <Input {...field} placeholder="+373 60 123 456" />}
+                    />
+
+                    <FormField
+                        isRequired
+                        label="Website URL"
+                        control={form.control}
+                        name="websiteUrl"
+                        errorMessage={form.formState.errors.websiteUrl?.message}
+                        render={(field) => <Input {...field} placeholder="https://acme.com" />}
                     />
 
                     <div className="grid grid-cols-2 gap-4">

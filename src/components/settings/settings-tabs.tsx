@@ -8,23 +8,23 @@ import { cn } from '~/lib/utils'
 const SECTIONS = (organizationId: string) => [
     {
         title: 'General',
-        href: ROUTES.DASHBOARD.SETTINGS(organizationId),
+        href: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),
     },
     {
         title: 'Agents',
-        href: ROUTES.DASHBOARD.AGENTS(organizationId),
+        href: ROUTES.DASHBOARD.SETTINGS.AGENTS(organizationId),
     },
     {
         title: 'Categories',
-        href: ROUTES.DASHBOARD.SETTINGS_CATEGORIES(organizationId),
+        href: ROUTES.DASHBOARD.SETTINGS.CATEGORIES(organizationId),
     },
     {
         title: 'Members',
-        href: ROUTES.DASHBOARD.SETTINGS_MEMBERS(organizationId),
+        href: ROUTES.DASHBOARD.SETTINGS.MEMBERS(organizationId),
     },
     {
         title: 'Notifications',
-        href: ROUTES.DASHBOARD.SETTINGS_NOTIFICATIONS(organizationId),
+        href: ROUTES.DASHBOARD.SETTINGS.NOTIFICATIONS(organizationId),
     },
 ]
 

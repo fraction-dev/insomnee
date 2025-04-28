@@ -1,0 +1,648 @@
+[
+  {
+    "id": "2047311059085671",
+    "platform": "instagram",
+    "targetUser": {
+      "id": "2047311059085671",
+      "username": "insomnee.ai",
+      "avatar": null
+    },
+    "messages": [
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwMDkyNDA0NDA0NzI0Njc1MDQ2ODQ3NTY1NDc2NjU5MgZDZD",
+        "content": "hello",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T21:13:10+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM4ODAzNzQ1NjE3NDA5NTI1MzkzMzAwMTgwMTcyOAZDZD",
+        "content": "добрый день! я бы хотел поинтерисоваться - сколько по времени займет разработка одностраничного сайта по продаже кроватей?",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:26:23+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM4ODE4OTYzMTU3NDc2MDM5NjgyNTAzMjY1NDg0OAZDZD",
+        "content": "Добрый день! Спасибо за ваш интерес к нашим услугам. Разработка одностраничного сайта может занять от нескольких дней до нескольких недель, в зависимости от сложности и ваших требований. Мы будем рады обсудить детали вашего проекта и предложить оптимальные сроки. Свяжитесь с нами, чтобы начать работу!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:26:32+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM4OTIxMTU1NDQ0ODY2NDk5OTEwNTcwOTIxMTY0OAZDZD",
+        "content": "очень интересно! а как можно связаться?",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:27:27+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM4OTM0NDA4NDkzMzg4ODYxMjc4OTYxNzk1MDcyMAZDZD",
+        "content": "Здорово, что вы заинтересовались! Связаться с нами можно через наш сайт Fraction.dev, где вы найдете все необходимые контактные данные. Мы с нетерпением ждем возможности обсудить ваш проект и помочь воплотить ваши идеи в жизнь. Напишите нам, чтобы начать!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:27:34+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM4OTkxNjIyNjM2MjYyMDQzMzExMjM5NzUxMjcwNAZDZD",
+        "content": "а где вы находитесь? у вас есть офис в Молдове?",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:28:05+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM5MDAyNzQ4OTcwNzI4MTkzMTQ5NjUwNTQ3NTA3MgZDZD",
+        "content": "Привет! Мы в Fraction.dev работаем удаленно, что позволяет нам сотрудничать с клиентами по всему миру, включая Молдову. Если у вас есть проект или идея, которую вы хотите обсудить, не стесняйтесь связаться с нами. Мы будем рады помочь вам! 😊",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:28:11+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM5MDQ3NDg2MjQ4NzI5NDAzMjkwMzQwOTc2MjMwNAZDZD",
+        "content": "спасибо. как найдется время - обязательно отвечу.",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:28:35+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM5MDU4MjE3MTYwNjM0MjYzNDk4MTc0Mjg3MDUyOAZDZD",
+        "content": "Пожалуйста, не торопитесь. Если у вас появятся вопросы или вы будете готовы обсудить проект, дайте нам знать. Мы всегда рады помочь!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:28:41+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM5MTc2MDc2NzI3MDkwNDUyNjgzNzk3MjQ2NzcxMgZDZD",
+        "content": "пока!",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:29:45+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTM5MTg3NzI0Njg1NjcyNzk4MDI5MzExOTU0MTI0OAZDZD",
+        "content": "Привет! Если у вас есть какие-либо вопросы или вы хотите узнать больше о наших услугах по разработке приложений, не стесняйтесь обращаться. Мы всегда рады помочь и обсудить, как мы можем воплотить ваши идеи в жизнь. До скорой встречи!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:29:51+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQwMjY4NDEzMjM0MTEzODU0NzU2ODMwNDcxNzgyNAZDZD",
+        "content": "привет!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:39:37+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQwNTY3NTUzNjg2MTcyMjQyNjEyNjgzODUzMDA0OAZDZD",
+        "content": "привет! расскажите пожалуйста больше про ваши услуги.",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:42:19+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQwNTgzNzczMTUwMDc1MDczOTkxOTU3MjMwMzg3MgZDZD",
+        "content": "Привет! Спасибо за ваш интерес к нашим услугам. В Fraction.dev мы специализируемся на разработке инновационных приложений, которые адаптированы под ваши нужды. Наша команда фокусируется на создании пользовательских решений с использованием передовых технологий. Давайте обсудим ваш проект и посмотрим, как мы можем воплотить ваши идеи в жизнь. Свяжитесь с нами, чтобы начать!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:42:28+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQwNjQ0MjIwNTI5NDEzNzA1Nzk5NTU2MDg0NTMxMgZDZD",
+        "content": "сколько времени и денег стоит чтобы разработать мобильное приложение на тему фитнеса?",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:43:01+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQwNjU3ODY3MDY1NDMzOTAzNDY2MzkyNDc5MzM0NAZDZD",
+        "content": "Привет! Спасибо за ваш интерес к разработке мобильного приложения на тему фитнеса. В Fraction.dev мы специализируемся на создании инновационных приложений, адаптированных под ваши нужды. \n\nСтоимость и время разработки зависят от множества факторов, таких как сложность функционала, дизайн и другие особенности. Мы будем рады обсудить детали вашего проекта и предложить оптимальное решение. \n\nСвяжитесь с нами, чтобы начать обсуждение и получить более точную оценку. Ждем вашего ответа!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:43:08+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQyMDQwNjUzNDI1ODA3MTUyMjc2NjI3OTkzMzk1MgZDZD",
+        "content": "привет!",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:55:38+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQyMDk2NDgzMzYxODk4NTMxMjkxNTcxNzg4MTg1NgZDZD",
+        "content": "аууу",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:56:08+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQyMjg1ODg5OTQ5NzIwODI3NDY1NDgzMjA5OTMyOAZDZD",
+        "content": "аууу вы меня слышите ??",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:57:51+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQyMzU2ODQ2NzI1MDgyNzg0NzQ3MTM1NzQ5MzI0OAZDZD",
+        "content": "аууу вы меня слышите ??",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:58:29+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNDMzMDQzMzY0MDU5MzU5MDkwMjM5ODY0ODMyMAZDZD",
+        "content": "я не поянл",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:08:13+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNDQ4NDIxNDc1NjU0MzM3MzkxNjA1OTQ2Nzc3NgZDZD",
+        "content": "Здравствуйте! Спасибо за ваше сообщение. Если у вас есть вопросы о нашей мебели или услугах, пожалуйста, дайте нам знать, и мы будем рады помочь. Вы можете также посетить наш веб-сайт, чтобы узнать больше о наших уникальных предложениях. Если вам нужна помощь, не стесняйтесь обращаться к нам напрямую. Спасибо!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:08:21+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNDg0NDg0NTYxNDgxMTg1NTcwOTIwNDkwNTk4NAZDZD",
+        "content": "какие кровати у вас есть в наличии?",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:08:41+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNDk3MjQ0NDY5NTA0ODc1NjQ3MTI2MTAzNjU0NAZDZD",
+        "content": "Здравствуйте! Спасибо за ваш интерес к нашей мебели. В данный момент у нас есть широкий ассортимент кроватей, включая стандартные модели и возможность создания кроватей на заказ по вашим индивидуальным предпочтениям. Мы гордимся нашим мастерством и вниманием к деталям, используя только качественные материалы. Пожалуйста, свяжитесь с нами, чтобы обсудить ваши потребности и получить более подробную информацию. Вы также можете посетить наш веб-сайт, чтобы ознакомиться с нашей коллекцией. Ждем вашего ответа!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:08:48+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNTMyMDk3NTcyNTEzNjczNzczNzA4NjMzNzAyNAZDZD",
+        "content": "предложите мне любую модель из вашего сайта",
+        "type": "text",
+        "user": {
+          "id": "2047311059085671",
+          "username": "insomnee.ai",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:09:07+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI3NjAyMDM0MzIyMzU1MTc1OTozMjIwNTQzNTQ0MDU1NTYzNjc4OTkxNTQ4Mjg2Mzk2MDA2NAZDZD",
+        "content": "Здравствуйте! Спасибо за ваш интерес к нашей мебели. Мы предлагаем широкий ассортимент мебели, включая диваны, кровати, столы и стулья, а также индивидуальные мебельные решения, которые можно настроить по вашему вкусу. Пожалуйста, посетите наш веб-сайт, чтобы ознакомиться с нашей коллекцией и выбрать модель, которая вам понравится. Если у вас есть особые пожелания, свяжитесь с нами, и мы с радостью поможем вам создать мебель вашей мечты. Ждем вашего ответа!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T17:09:13+0000",
+        "isBot": false
+      }
+    ]
+  },
+  {
+    "id": "1370184550849372",
+    "platform": "instagram",
+    "targetUser": {
+      "id": "1370184550849372",
+      "username": "me.fedotov",
+      "avatar": "https://scontent-otp1-1.cdninstagram.com/v/t51.2885-19/473779738_1507677170078193_2342295520234624284_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=108&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=B0qDB-I4uyYQ7kNvwHpT42v&_nc_oc=Adkj_oaDATjVr_vhlXGFTgKZImBFQkaEVVbYRTtgHJVZvu0cMHu-Nk_J0NeOaM67psU&_nc_zt=24&_nc_ht=scontent-otp1-1.cdninstagram.com&edm=ALmAK4EEAAAA&oh=00_AfHTxd7uDHI9umee7m82iXeekQlFKS3eS4yVY2Ui5yGJ-A&oe=68158286"
+    },
+    "messages": [
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDcxNzI3MTYzMzc1Mjk5NTY1NTcyNjI0ODQ5MzA1NgZDZD",
+        "content": "ррр",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:06:21+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDcxODE0MzE3MDA4MDc5NDkxOTAyNDk1MjYwNjcyMAZDZD",
+        "content": "всё хорошо. у тебя как дела?",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:07:08+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDcxODQ4OTYzNzIzMzgxNTcwMTQ0NTAxNDQ1NDI3MgZDZD",
+        "content": "тоже все хорошо. расскажи о себе!",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:07:27+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDcxOTMxOTc1OTI3NDU1NzE2OTQxOTU0MzM3OTk2OAZDZD",
+        "content": "да нечего рассказывать. разрабатываю приложение... Кстати, сейчас как-раз тебе через него отвечаю! Круто, не так ли?",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:08:12+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDcxOTQ4MzUzOTQxMTIzODYxODU0ODIzODU0ODk5MgZDZD",
+        "content": "оооо дааааа",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:08:20+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc1MTkyMjk4Mjg3NzE4NTIxMzU3MTc5OTE4NzQ1NgZDZD",
+        "content": "вооы",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:37:39+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc1NDczNjk5NDMzODcyNDQ5NjQ0ODM0NjM5MDUyOAZDZD",
+        "content": "как настроение?",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:40:12+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc1NDkyOTI1OTMyODg2MjAxMzQzNDIzMTc4MzQyNAZDZD",
+        "content": "все хорошо",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:40:22+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc3Mzk3NTk1NzMzNzgzMTQ1NDY2NDQ2NDI2OTMxMgZDZD",
+        "content": "адлаа",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:57:35+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc3NDcwNjkwMDc1NDIwODUyODQxNDA4MjU5Njg2NAZDZD",
+        "content": "ааа",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:58:14+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc3NTE5NDQ5NDcwNDMxODQ4MTY4NTA3MzEwMDgwMAZDZD",
+        "content": "тоо",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:58:41+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc3NTc4MDgxNjkxOTk4MzAxMzYzNTk4MTA0OTg1NgZDZD",
+        "content": "роо",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T18:59:12+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDc4MDUzMjUyNjUyNzk3MDI0NDE5MTE3NTMxMTM2MAZDZD",
+        "content": "неее",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T19:03:30+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDgzMTY3MjMyNjM5ODQwNTY2MzY5MjExNDg4NjY1NgZDZD",
+        "content": "привет",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T19:49:42+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDgzMTk4MTM3NTY5NjEzMTk4Nzc0MTIzMDQ5Nzc5MgZDZD",
+        "content": "рпр",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T19:49:59+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDkyNDM2NzI2NjU3Njk1NzcwOTE4MDIzMDE3MjY3MgZDZD",
+        "content": "ружжщ",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T21:13:27+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwMDkyNDUxNTYzNzM1NTEwNDM5MzU1MDk0OTc3NzQwOAZDZD",
+        "content": "гоо",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-25T21:13:35+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNDc2NDY3NDg5MzIyMDg4NzM3OTYyNTI0OTg2NTcyOAZDZD",
+        "content": "привет",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T07:03:11+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNDc2NTQ0ODUwOTIxMzYyOTAwNDU3NDk3ODIxMTg0MAZDZD",
+        "content": "привет",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T07:03:53+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNDc2NjMxMzMxNDQ1MzY0Mjk3OTc3NDI2NDUwODQxNgZDZD",
+        "content": "как дела",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T07:04:40+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM3ODYyMDUzMTE3Njk4NDk5MDY2NDUxMzAyODA5NgZDZD",
+        "content": "привет",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:17:53+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM4MDk0Nzc2OTIxODAzNzQ2Mjk0NDYzNTE1ODUyOAZDZD",
+        "content": "ауе",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:19:59+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM4MTc0MTIwOTgxNTk1NDYzOTEwNzIyNzkxMDE0NAZDZD",
+        "content": "нрг",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:20:42+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM4MzExMjc3MzczNDMyNTExNDA1MjI4ODcwODYwOAZDZD",
+        "content": "рн",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:21:56+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM4MzkwMzA1ODg1MDY0Nzc4NTUzMjY5MTU3ODg4MAZDZD",
+        "content": "арн",
+        "type": "text",
+        "user": {
+          "id": "1370184550849372",
+          "username": "me.fedotov",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:22:39+0000",
+        "isBot": false
+      },
+      {
+        "id": "aWdfZAG1faXRlbToxOklHTWVzc2FnZAUlEOjE3ODQxNDcwODIzNzQ4MzA5OjM0MDI4MjM2Njg0MTcxMDMwMTI0NDI1OTgyMjAxNjA5Mzc3OTQwMDozMjIwNTM4NDAyMDEzNTUwMjIzNjY3Mjc0NDg5NTgwNzQ4OAZDZD",
+        "content": "Hello! It seems like your message got cut off. Could you please provide more details or let us know how we can assist you? We're here to help with any inquiries you might have about our application development services or anything else you need. Looking forward to hearing from you!",
+        "type": "text",
+        "user": {
+          "id": "17841470823748309",
+          "username": "fraction.dev",
+          "avatar": null
+        },
+        "createdAt": "2025-04-28T16:22:46+0000",
+        "isBot": false
+      }
+    ]
+  }
+]

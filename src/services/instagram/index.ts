@@ -1,6 +1,12 @@
-import { flatten } from 'lodash'
-import { getConversationMessage, getConversationMessages, getConversations, getInstagramUserById } from '~/lib/server/instagram/api'
-import { InstagramConversationMessageEntity } from '~/lib/server/instagram/model'
+import { flatten, union } from 'lodash'
+import {
+    getConversationMessage,
+    getConversationMessages,
+    getConversations,
+    getInstagramUserById,
+    getUserById,
+} from '~/lib/server/instagram/api'
+import { InstagramConversationMessageEntity, InstagramUser } from '~/lib/server/instagram/model'
 import { getInstagramIntegrationByOrganizationId } from '../integration'
 import { Dialog, DialogMessage, DialogUser } from '../messaging/model'
 import { InstagramAccessTokenNotFoundError } from './errors'
@@ -39,7 +45,12 @@ export const getInstagramConversations = async (organizationId: string): Promise
         ),
     )
 
-    return transformInstagramData(conversationMessages, username)
+    const userIds = union(conversationMessages.map((message) => message.from.id))
+    const users = await Promise.all(userIds.map((userId) => getUserById(integration.accessToken, userId)))
+
+    const dialogs = transformInstagramData(conversationMessages, username)
+    const dialogsWithProfilePics = formatDialogsWithProfilePics(dialogs, users)
+    return dialogsWithProfilePics
 }
 
 const transformInstagramData = (conversationMessages: InstagramConversationMessageEntity[], username: string): Dialog[] => {
@@ -142,10 +153,23 @@ const transformInstagramData = (conversationMessages: InstagramConversationMessa
         const sortedMessages = messages.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
 
         return {
-            id: `instagram-${conversation.userId}`,
+            id: `${conversation.userId}`,
             platform: 'instagram',
             targetUser,
             messages: sortedMessages,
+        }
+    })
+}
+
+const formatDialogsWithProfilePics = (dialogs: Dialog[], users: InstagramUser[]) => {
+    return dialogs.map((dialog) => {
+        const user = users.find((user) => user.id === dialog.targetUser.id)
+        return {
+            ...dialog,
+            targetUser: {
+                ...dialog.targetUser,
+                avatar: user?.profile_pic ?? null,
+            },
         }
     })
 }

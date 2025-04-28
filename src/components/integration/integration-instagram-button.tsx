@@ -9,7 +9,8 @@ interface Props {
 
 export const IntegrationInstagramButton = ({ appId, organizationId }: Props) => {
     const redirectToInstagramAuth = () => {
-        const redirectUri = `${process.env.NEXT_PUBLIC_BASE_URL}/api/instagram/oauth/callback`
+        // TODO: Remove this once we have a production URL
+        const redirectUri = `https://caring-kangaroo-composed.ngrok-free.app/api/instagram/oauth/callback`
         const state = JSON.stringify({ organizationId })
 
         const authUrl = `https://www.instagram.com/oauth/authorize?enable_fb_login=0&force_authentication=1&client_id=${appId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=instagram_business_basic%2Cinstagram_business_manage_messages%2Cinstagram_business_manage_comments%2Cinstagram_business_content_publish%2Cinstagram_business_manage_insights&state=${encodeURIComponent(state)}`

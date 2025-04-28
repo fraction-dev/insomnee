@@ -10,6 +10,7 @@ interface Body {
     defaultLanguage: string
     defaultCurrency: string
     phone: string
+    websiteUrl: string
 }
 
 export const useCreateOrganization = () => {

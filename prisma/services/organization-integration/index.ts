@@ -1,14 +1,24 @@
 import { OrganizationIntegrationInstagram, OrganizationIntegration as PrismaIntegration } from '@prisma/client'
 import { prisma } from 'prisma/db'
-import { IntegrationNotFoundError } from '~/services/integration/errors'
+import {
+    InstagramIntegrationNotFoundForInstagramBusinessIdError,
+    InstagramIntegrationNotFoundForIntegrationIdError,
+} from '~/services/integration/errors'
 
-import { OrganizationIntegration, OrganizationIntegrationInstagramPayload } from '~/services/integration/model'
+import {
+    OrganizationIntegration,
+    OrganizationIntegrationInstagramConfiguration,
+    OrganizationIntegrationInstagramPayload,
+} from '~/services/integration/model'
 
 type PrismaOrganizationIntegrationWithRelations = PrismaIntegration & {
     instagramIntegration: OrganizationIntegrationInstagram | null
 }
 
-export const addInstagramIntegration = async (organizationId: string, payload: OrganizationIntegrationInstagramPayload) => {
+export const addInstagramIntegration = async (
+    organizationId: string,
+    payload: Omit<OrganizationIntegrationInstagramPayload, 'configuration'>,
+) => {
     const instagramIntegration = await prisma.organizationIntegrationInstagram.create({
         data: {
             accessToken: payload.accessToken,
@@ -52,7 +62,72 @@ export const getInstagramIntegrationByOrganizationId = async (organizationId: st
     })
 
     if (!integration) {
-        throw IntegrationNotFoundError(organizationId, 'instagram')
+        throw InstagramIntegrationNotFoundForIntegrationIdError(organizationId)
+    }
+
+    return mapPrismaIntegrationToInstagramIntegration(integration)
+}
+
+export const getInstagramIntegrationByInstagramBusinessId = async (instagramBusinessId: string) => {
+    const integration = await prisma.organizationIntegration.findFirst({
+        where: { instagramIntegration: { instagramBusinessId } },
+        include: { instagramIntegration: true },
+    })
+
+    if (!integration) {
+        throw InstagramIntegrationNotFoundForInstagramBusinessIdError(instagramBusinessId)
+    }
+
+    return mapPrismaIntegrationToInstagramIntegration(integration)
+}
+
+export const updateInstagramIntegration = async (integrationId: string, payload: Partial<OrganizationIntegrationInstagramPayload>) => {
+    const integration = await prisma.organizationIntegration.update({
+        where: { id: integrationId },
+        data: {
+            instagramIntegration: {
+                update: {
+                    ...payload,
+                },
+            },
+        },
+        include: {
+            instagramIntegration: true,
+        },
+    })
+
+    if (!integration) {
+        throw InstagramIntegrationNotFoundForIntegrationIdError(integrationId)
+    }
+
+    return mapPrismaIntegrationToInstagramIntegration(integration)
+}
+
+export const updateOrganizationIntegrationInstagramConfiguration = async (
+    integrationId: string,
+    payload: Partial<OrganizationIntegrationInstagramConfiguration>,
+) => {
+    const integration = await prisma.organizationIntegration.update({
+        where: { id: integrationId },
+        data: {
+            instagramIntegration: { update: payload },
+        },
+        include: {
+            instagramIntegration: true,
+        },
+    })
+
+    return mapPrismaIntegrationToInstagramIntegration(integration)
+}
+
+export const getOrganizationIntegrationById = async (organizationId: string, integrationId: string) => {
+    const integration = await prisma.organizationIntegration.findUnique({
+        where: { id: integrationId },
+        include: { instagramIntegration: true },
+    })
+
+    if (!integration) {
+        throw InstagramIntegrationNotFoundForIntegrationIdError(integrationId)
     }
 
     return mapPrismaIntegrationToInstagramIntegration(integration)
@@ -69,6 +144,14 @@ const mapPrismaIntegrationToInstagramIntegration = (integration: PrismaOrganizat
                   tokenType: integration.instagramIntegration.tokenType,
                   expiresIn: integration.instagramIntegration.expiresIn,
                   instagramUserId: integration.instagramIntegration.instagramUserId,
+                  instagramBusinessId: integration.instagramIntegration.instagramBusinessId,
+                  configuration: {
+                      isBotEnabled: integration.instagramIntegration.isBotEnabled,
+                      isVoiceMessageResponseEnabled: integration.instagramIntegration.isVoiceMessageResponseEnabled,
+                      replyDelay: integration.instagramIntegration.replyDelay,
+                      voiceMessageService: integration.instagramIntegration.voiceMessageService,
+                      voiceMessageVoice: integration.instagramIntegration.voiceMessageVoice,
+                  },
               }
             : null,
         createdAt: integration.createdAt,

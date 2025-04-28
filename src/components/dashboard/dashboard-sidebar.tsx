@@ -85,7 +85,7 @@ const data = (organizationId: string) => ({
         },
         {
             title: 'Settings',
-            url: ROUTES.DASHBOARD.SETTINGS(organizationId),
+            url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),
             icon: Settings2,
         },
         {

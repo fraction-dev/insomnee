@@ -34,4 +34,4 @@ interface OrganizationMember {
     role: OrganizationMemberRole
 }
 
-export type OrganizationInput = Pick<Organization, 'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone'>
+export type OrganizationInput = Pick<Organization, 'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone' | 'websiteUrl'>

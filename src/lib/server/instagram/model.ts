@@ -9,6 +9,7 @@ export type InstagramConversation = {
 export interface InstagramUser {
     id: string
     username: string
+    profile_pic?: string
 }
 
 export interface InstagramShortLivedAccessTokenResponse {

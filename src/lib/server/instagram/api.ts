@@ -21,7 +21,8 @@ export const getShortLivedAccessToken = async (code: string) => {
             client_id: env.INSTAGRAM_APP_ID,
             client_secret: env.INSTAGRAM_APP_SECRET,
             grant_type: 'authorization_code',
-            redirect_uri: `${env.BASE_URL}/api/instagram/oauth/callback`,
+            // TODO: Remove this once we have a production URL
+            redirect_uri: `https://caring-kangaroo-composed.ngrok-free.app/api/instagram/oauth/callback`,
             code: code,
         },
         { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -66,4 +67,20 @@ export const sendTextMessage = async (accessToken: string, payload: { recipientI
         recipient: { id: payload.recipientId },
         message: { text: payload.message },
     })
+}
+
+export const getMe = async (accessToken: string, userId: string) => {
+    const fields = ['id', 'username', 'profile_picture_url', 'name', 'biography', 'website']
+    return await fetchInstagram<{
+        id: string
+        username?: string
+        profile_picture_url?: string
+        name?: string
+        biography?: string
+        website?: string
+    }>('GET', `/${userId}?fields=${fields.join(',')}&access_token=${accessToken}`)
+}
+
+export const getUserById = async (accessToken: string, userId: string) => {
+    return await fetchInstagram<InstagramUser>('GET', `/${userId}?access_token=${accessToken}`)
 }

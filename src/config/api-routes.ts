@@ -18,6 +18,11 @@ export const API_ROUTES = {
     },
     ORGANIZATION_INTEGRATIONS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/integrations`,
+        GET: (organizationId: string, integrationId: string) => `/organization/${organizationId}/integrations/${integrationId}`,
+        INSTAGRAM: {
+            UPDATE_CONFIGURATION: (organizationId: string, integrationId: string) =>
+                `/organization/${organizationId}/integrations/${integrationId}/instagram`,
+        },
     },
     FILE_UPLOAD: {
         UPLOAD: (userId: string) => `/user/${userId}/file-upload`,
