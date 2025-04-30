@@ -1,0 +1,44 @@
+name: Dev
+
+on: push
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    tests:
+        name: Run tests
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - uses: pnpm/action-setup@v3
+              with:
+                  version: 9
+
+            - name: Setup NodeJS
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: 'package.json'
+                  cache: 'pnpm'
+
+            - name: Install dependencies
+              run: |
+                  pnpm install
+                  pnpm prisma:generate
+
+            - name: Disable Next.js telemetry
+              run: pnpm next telemetry disable
+
+            - name: Run ESLint
+              env:
+                  NODE_OPTIONS: '--max_old_space_size=4096'
+              run: pnpm lint
+
+            - name: Run TS
+              env:
+                  NODE_OPTIONS: '--max_old_space_size=4096'
+              run: pnpm typecheck
