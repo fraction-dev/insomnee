@@ -345,3 +345,14 @@ model MessagingAgentResponseMessages {
 
   @@map("messaging_agent_response_messages")
 }
+
+model CurrencyRate {
+  id           String   @id @default(cuid())
+  currency     String   @unique
+  symbol       String?
+  combinations Json     @default("{}")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("currency_rate")
+}

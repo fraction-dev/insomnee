@@ -24,10 +24,18 @@ type PrismaOrganizationTransactionWithRelations = PrismaOrganizationTransaction 
     files: FileUpload[]
 }
 
-export const getOrganizationTransactions = async (organizationId: string): Promise<OrganizationTransaction[]> => {
+export const getOrganizationTransactions = async (
+    organizationId: string,
+    startDate?: Date,
+    endDate?: Date,
+): Promise<OrganizationTransaction[]> => {
     const prismaOrganizationTransactions = await prisma.organizationTransaction.findMany({
         where: {
             organizationId,
+            createdAt: {
+                gte: startDate ?? undefined,
+                lte: endDate ?? undefined,
+            },
         },
         include: {
             category: true,

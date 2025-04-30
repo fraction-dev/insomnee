@@ -78,6 +78,14 @@ export const deleteOrganizationProductsAndServices = async (organizationId: stri
     })
 }
 
+export const getOrganizationProductsAndServicesCount = async (organizationId: string) => {
+    const count = await prisma.organizationProductsAndServices.count({
+        where: { organizationId },
+    })
+
+    return count
+}
+
 const mapPrismaOrganizationProductsAndServicesToModel = (
     data: OrganizationProductsAndServicesWithRelations,
 ): OrganizationProductsAndServices => {

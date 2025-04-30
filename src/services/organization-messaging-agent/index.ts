@@ -16,3 +16,11 @@ export const getOrganizationMessagingAgentByIntegrationId = async (integrationId
 export const saveMessagingAgentResponseMessage = async (organizationId: string, messageId: string | number, response: string) => {
     return OrganizationMessagingDB.saveMessagingAgentResponseMessage(organizationId, messageId, response)
 }
+
+export const getOrganizationMessagingAgentResponsesCount = async (organizationId: string, startDate?: Date, endDate?: Date) => {
+    return OrganizationMessagingDB.getOrganizationMessagingAgentResponsesCount(organizationId, startDate, endDate)
+}
+
+export const getOrganizationMessagingAgentResponses = async (organizationId: string, startDate?: Date, endDate?: Date) => {
+    return OrganizationMessagingDB.getOrganizationMessagingAgentResponses(organizationId, startDate, endDate)
+}

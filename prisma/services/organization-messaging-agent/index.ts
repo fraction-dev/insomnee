@@ -100,6 +100,34 @@ export const saveMessagingAgentResponseMessage = async (organizationId: string, 
     })
 }
 
+export const getOrganizationMessagingAgentResponsesCount = async (organizationId: string, startDate?: Date, endDate?: Date) => {
+    const count = await prisma.messagingAgentResponseMessages.count({
+        where: {
+            organizationId,
+            createdAt: {
+                gte: startDate ?? undefined,
+                lte: endDate ?? undefined,
+            },
+        },
+    })
+
+    return count
+}
+
+export const getOrganizationMessagingAgentResponses = async (organizationId: string, startDate?: Date, endDate?: Date) => {
+    const responses = await prisma.messagingAgentResponseMessages.findMany({
+        where: {
+            organizationId,
+            createdAt: {
+                gte: startDate ?? undefined,
+                lte: endDate ?? undefined,
+            },
+        },
+    })
+
+    return responses
+}
+
 const mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent = (
     agent: PrismaOrganizationMessagingAgentWithRelations,
 ): OrganizationMessagingAgent => {

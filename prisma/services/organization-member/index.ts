@@ -22,6 +22,16 @@ export const getOrganizationMembers = async (organizationId: string) => {
     return organizationMembers.map(mapPrismaOrganizationMemberToOrganizationMember)
 }
 
+export const getOrganizationMembersCount = async (organizationId: string) => {
+    const count = await prisma.organizationMember.count({
+        where: {
+            organizationId,
+        },
+    })
+
+    return count
+}
+
 const mapPrismaOrganizationMemberToOrganizationMember = (
     prismaOrganizationMember: PrismaOrganizationMemberWithRelations,
 ): OrganizationMember => {

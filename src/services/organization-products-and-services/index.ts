@@ -16,3 +16,7 @@ export const updateOrganizationProductAndService = async (id: string, data: Orga
 export const deleteOrganizationProductsAndServices = async (organizationId: string, ids: string[]) => {
     return OrganizationProductsAndServicesDB.deleteOrganizationProductsAndServices(organizationId, ids)
 }
+
+export const getOrganizationProductsAndServicesCount = async (organizationId: string) => {
+    return OrganizationProductsAndServicesDB.getOrganizationProductsAndServicesCount(organizationId)
+}

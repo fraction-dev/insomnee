@@ -2,8 +2,8 @@ import * as OrganizationTransactionDB from 'prisma/services/organization-transac
 
 import { OrganizationTransactionCreate, OrganizationTransactionUpdate } from './model'
 
-export const getOrganizationTransactions = async (organizationId: string) => {
-    return OrganizationTransactionDB.getOrganizationTransactions(organizationId)
+export const getOrganizationTransactions = async (organizationId: string, startDate?: Date, endDate?: Date) => {
+    return OrganizationTransactionDB.getOrganizationTransactions(organizationId, startDate, endDate)
 }
 
 export const createOrganizationTransaction = async (organizationId: string, organizationTransaction: OrganizationTransactionCreate) => {

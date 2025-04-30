@@ -4,6 +4,10 @@ export const API_ROUTES = {
         GET: (organizationId: string) => `/organization/${organizationId}`,
         UPDATE_LOGO: (organizationId: string) => `/organization/${organizationId}/logo`,
         UPDATE_NAME: (organizationId: string) => `/organization/${organizationId}/name`,
+        OVERVIEW: {
+            STATISTICS: (organizationId: string) => `/organization/${organizationId}/overview`,
+            CHART: (organizationId: string) => `/organization/${organizationId}/overview/chart`,
+        },
     },
     ORGANIZATION_TRANSACTIONS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/transaction`,

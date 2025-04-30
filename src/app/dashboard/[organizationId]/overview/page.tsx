@@ -1,5 +1,10 @@
-import { WithAuth } from '~/components/app/with-auth'
+import { OverviewView } from '~/components/overview/overview-view'
+import { getOrganizationById } from '~/services/organization'
 
-export default WithAuth(function Page() {
-    return <div>Overview</div>
-})
+export default async function Page({ params }: { params: { organizationId: string } }) {
+    const organizationId = params.organizationId
+
+    const organization = await getOrganizationById(organizationId)
+
+    return <OverviewView organization={organization} />
+}
