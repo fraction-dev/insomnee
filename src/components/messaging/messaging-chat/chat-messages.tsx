@@ -74,7 +74,7 @@ export const ChatMessages = ({
 
     return (
         <Card className="relative">
-            <ScrollArea className="h-[calc(100vh-20rem)] pb-38" ref={scrollContainerRef}>
+            <ScrollArea className="h-[calc(100vh-16rem)] pb-38" ref={scrollContainerRef}>
                 <CardContent className="flex flex-col gap-4">
                     <div className="flex justify-between items-center gap-12 border-b border-border pb-4 sticky top-0 bg-background">
                         <div className="flex items-center gap-2 sticky top-0 bg-background">

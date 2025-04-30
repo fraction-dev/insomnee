@@ -39,7 +39,7 @@ export const OverviewView = ({ organization }: Props) => {
         <div className="flex flex-col gap-4">
             <OverviewHeader currency={currency} date={date} onCurrencyChange={setCurrency} onDateChange={setDate} />
 
-            {data?.data && <OverviewCards statistics={data?.data} currency={currency} />}
+            {data?.data && <OverviewCards statistics={data?.data} currency={currency} startDate={startDate} endDate={endDate} />}
 
             {isChartLoading && <Skeleton className="h-[300px]" />}
             {!isChartLoading && chartData?.data && (

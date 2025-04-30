@@ -6,16 +6,15 @@ import { ChartTooltip } from '~/components/ui/chart'
 import { Separator } from '~/components/ui/separator'
 import { formatCurrency } from '~/lib/formatCurrency'
 import { cn } from '~/lib/utils'
-import { OverviewChartData, OverviewChartType } from '~/services/overview/model'
+import { OverviewChartData } from '~/services/overview/model'
 import { chartConfig } from './overview-chart-wrapper'
 
 interface Props {
     data: OverviewChartData[]
-    selectedChart: OverviewChartType
     currency: string
 }
 
-export const OverviewChartTransactions = ({ data, currency, selectedChart }: Props) => {
+export const OverviewChartTransactions = ({ data, currency }: Props) => {
     const barSize = data.length <= 5 ? 100 : 60
 
     const getTooltipLabel = (): Record<keyof typeof chartConfig, string> => {
@@ -60,7 +59,7 @@ export const OverviewChartTransactions = ({ data, currency, selectedChart }: Pro
                                         </div>
 
                                         <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
-                                            {formatCurrency(value as number, 'MDL')}
+                                            {formatCurrency(value as number, currency)}
                                         </div>
                                     </div>
 

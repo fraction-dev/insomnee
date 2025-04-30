@@ -59,7 +59,7 @@ export const OverviewChartWrapper = ({ startDate, endDate, data, selectedChart, 
             </CardHeader>
             <CardContent>
                 {selectedChart === 'expenses-over-revenue' ? (
-                    <OverviewChartTransactions data={data} currency={currency} selectedChart={selectedChart} />
+                    <OverviewChartTransactions data={data} currency={currency} />
                 ) : (
                     <OverviewChartMessagingAgentAnalytics data={data} />
                 )}

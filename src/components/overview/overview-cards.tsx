@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { ReactNode } from 'react'
 import { formatCurrency } from '~/lib/formatCurrency'
 import { OverviewStatistics } from '~/services/overview/model'
@@ -6,9 +7,11 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/
 interface Props {
     statistics: OverviewStatistics
     currency: string
+    startDate: Date
+    endDate: Date
 }
 
-export const OverviewCards = ({ statistics, currency }: Props) => {
+export const OverviewCards = ({ statistics, currency, startDate, endDate }: Props) => {
     return (
         <div className="grid grid-cols-4 gap-4">
             <OverviewCard
@@ -19,12 +22,12 @@ export const OverviewCards = ({ statistics, currency }: Props) => {
             <OverviewCard
                 title="Total revenue"
                 value={formatCurrency(statistics.transactionsRevenue, currency)}
-                description="Your total revenue in transactions section, starting from the 01.01.2025"
+                description={`Your total revenue in transactions section for the period ${dayjs(startDate).format('DD.MM.YYYY')} - ${dayjs(endDate).format('DD.MM.YYYY')}`}
             />
             <OverviewCard
                 title="Total expenses"
                 value={formatCurrency(statistics.transactionsExpenses, currency)}
-                description="Your total expenses in transactions section, starting from the 01.01.2025"
+                description={`Your total expenses in transactions section for the period ${dayjs(startDate).format('DD.MM.YYYY')} - ${dayjs(endDate).format('DD.MM.YYYY')}`}
             />
             <OverviewCard
                 title="Total products & services"
