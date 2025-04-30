@@ -1,6 +1,6 @@
 'use client'
 
-import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LifeBuoy, LinkIcon, Send, Settings2 } from 'lucide-react'
+import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LifeBuoy, LinkIcon, Send, Settings2, SquareChartGantt } from 'lucide-react'
 import * as React from 'react'
 
 import {
@@ -87,6 +87,11 @@ const data = (organizationId: string) => ({
             title: 'Settings',
             url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),
             icon: Settings2,
+        },
+        {
+            title: 'Products & Services',
+            url: ROUTES.DASHBOARD.PRODUCTS_AND_SERVICES(organizationId),
+            icon: SquareChartGantt,
         },
         {
             title: 'Messaging',

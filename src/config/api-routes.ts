@@ -13,6 +13,11 @@ export const API_ROUTES = {
         REMOVE_FILE: (organizationId: string, transactionId: string, fileId: string) =>
             `/organization/${organizationId}/transaction/${transactionId}/files/${fileId}`,
     },
+    ORGANIZATION_PRODUCTS_AND_SERVICES: {
+        INDEX: (organizationId: string) => `/organization/${organizationId}/products-and-services`,
+        PRODUCT_AND_SERVICE: (organizationId: string, productAndServiceId: string) =>
+            `/organization/${organizationId}/products-and-services/${productAndServiceId}`,
+    },
     ORGANIZATION_MEMBERS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/member`,
     },

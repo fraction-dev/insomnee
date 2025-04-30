@@ -12,3 +12,7 @@ export const updateOrganizationMessagingAgent = async (id: string, data: Partial
 export const getOrganizationMessagingAgentByIntegrationId = async (integrationId: string) => {
     return OrganizationMessagingDB.getOrganizationMessagingAgentByIntegrationId(integrationId)
 }
+
+export const saveMessagingAgentResponseMessage = async (organizationId: string, messageId: string | number, response: string) => {
+    return OrganizationMessagingDB.saveMessagingAgentResponseMessage(organizationId, messageId, response)
+}

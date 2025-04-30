@@ -1,7 +1,6 @@
-import { openai } from '@ai-sdk/openai'
 import { task } from '@trigger.dev/sdk/v3'
-import { generateObject } from 'ai'
 import { z } from 'zod'
+import { generateText } from '~/lib/server/ai'
 import { Dialog } from '~/services/messaging/model'
 import { getOrganizationById } from '~/services/organization'
 import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
@@ -33,65 +32,35 @@ export const setupMessagingAgentTask = task({
         await getOrganizationById(organizationId) // ensure the organization exists
         const agent = await bootstrapOrganizationMessagingAgent(organizationId, integrationId)
 
-        const output = await generateObject({
-            model: openai('gpt-4o'),
-            prompt: `
-            ${MESSAGING_ANALYTICS_PROMPT}
-
-            Social Type: ${socialType}
-            Website URL: ${websiteUrl}
-            Dialogs: ${JSON.stringify(dialogs)}
-            `,
-            schema: messagingAgentOutputSchema,
-            schemaDescription: 'The prompt for the messaging agent',
-            schemaName: 'messagingAgentOutput',
+        const { text: prompt, totalTokens } = await generateText({
+            model: 'gpt-4o',
+            messages: [
+                {
+                    role: 'system',
+                    content: MESSAGING_ANALYTICS_PROMPT,
+                },
+                {
+                    role: 'user',
+                    content: `
+                    Social Type: ${socialType}
+                    Website URL: ${websiteUrl}
+                    Dialogs: ${JSON.stringify(dialogs)}
+                    `,
+                },
+            ],
         })
 
         await logOrganizationAIUsage({
             organizationId,
-            tokens: output.usage.totalTokens,
-            description: `Messaging Agent Setup. Prompt: ${output.object.prompt}`,
+            tokens: totalTokens,
+            description: `Messaging Agent Setup. Prompt: ${prompt}`,
         })
 
         await updateOrganizationMessagingAgent(agent.id, {
             status: OrganizationMessagingAgentStatus.ACTIVE,
-            prompt: output.object.prompt,
+            prompt: prompt ?? '',
         })
 
-        return output.object
+        return { prompt }
     },
 })
-
-export const messagingAgent = async (payload: Payload) => {
-    const { socialType, websiteUrl, dialogs } = payload
-
-    switch (socialType) {
-        case 'INSTAGRAM':
-            const output = await generateObject({
-                model: openai('gpt-4o'),
-                prompt: MESSAGING_ANALYTICS_PROMPT,
-                schema: messagingAgentOutputSchema,
-                schemaDescription: 'The prompt for the messaging agent',
-                schemaName: 'messagingAgentOutput',
-                messages: [
-                    {
-                        role: 'user',
-                        content: MESSAGING_ANALYTICS_PROMPT,
-                    },
-                    {
-                        role: 'user',
-                        content: `
-                        Social Type: ${socialType}
-                        Website URL: ${websiteUrl}
-                        Dialogs: ${JSON.stringify(dialogs)}
-                        `,
-                    },
-                ],
-            })
-
-            return output.object
-
-        default:
-            throw new Error(`Social type ${socialType} is not supported in the messaging agent`)
-    }
-}

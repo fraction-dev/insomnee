@@ -19,6 +19,7 @@ export const ROUTES = {
             NOTIFICATIONS: (organizationId: string) => `/dashboard/${organizationId}/settings/notifications`,
             AGENTS: (organizationId: string) => `/dashboard/${organizationId}/settings/agents`,
         },
+        PRODUCTS_AND_SERVICES: (organizationId: string) => `/dashboard/${organizationId}/products-and-services`,
 
         MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
     },

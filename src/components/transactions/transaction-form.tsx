@@ -121,11 +121,11 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
         )
     }
 
-    const handleUploadFile = (file: FileUpload) => {
+    const handleUploadFile = (files: FileUpload[]) => {
         if (transaction?.id) {
-            addFileToTransaction(file.id)
+            addFileToTransaction(files[0].id)
         } else {
-            setTransactionFiles([...transactionFiles, file])
+            setTransactionFiles([...transactionFiles, ...files])
         }
     }
 

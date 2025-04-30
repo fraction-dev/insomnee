@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronsUpDown, LogOut } from 'lucide-react'
+import { ChevronsUpDown, LogOutIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
@@ -48,7 +48,7 @@ export function SidebarNavUser({ user }: { user: User }) {
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                        className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-xs"
                         side={isMobile ? 'bottom' : 'right'}
                         align="end"
                         sideOffset={4}
@@ -66,8 +66,8 @@ export function SidebarNavUser({ user }: { user: User }) {
                             </div>
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={handleLogout}>
-                            <LogOut />
+                        <DropdownMenuItem className="text-xs" onClick={handleLogout}>
+                            <LogOutIcon className="size-3" />
                             Log out
                         </DropdownMenuItem>
                     </DropdownMenuContent>

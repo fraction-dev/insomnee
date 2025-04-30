@@ -132,7 +132,17 @@ const mapPrismaOrganizationTransactionToOrganizationTransaction = (
             type: prismaOrganizationTransaction.category.type as ORGANIZATION_BASE_TRANSACTION_CATEGORY,
             color: prismaOrganizationTransaction.category.color ?? '#000000',
         },
-        assignedTo: prismaOrganizationTransaction.assignedToUser ?? null,
+        assignedTo: prismaOrganizationTransaction.assignedToUser
+            ? {
+                  id: prismaOrganizationTransaction.assignedToUser.id,
+                  image: prismaOrganizationTransaction.assignedToUser.image,
+                  name: prismaOrganizationTransaction.assignedToUser.name || prismaOrganizationTransaction.assignedToUser.email,
+                  email: prismaOrganizationTransaction.assignedToUser.email,
+                  emailVerified: prismaOrganizationTransaction.assignedToUser.emailVerified,
+                  createdAt: prismaOrganizationTransaction.assignedToUser.createdAt,
+                  updatedAt: prismaOrganizationTransaction.assignedToUser.updatedAt,
+              }
+            : null,
         attachmentUrl: prismaOrganizationTransaction.attachmentUrl,
         notes: prismaOrganizationTransaction.notes,
         createdAt: prismaOrganizationTransaction.createdAt,

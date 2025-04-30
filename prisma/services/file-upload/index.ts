@@ -8,7 +8,9 @@ type FileUploadWithRelations = PrismaFileUpload & {
     createdByUser: User
 }
 
-export const createFileUpload = async (fileUpload: Omit<PrismaFileUpload, 'organizationTransactionId'>): Promise<FileUpload> => {
+export const createFileUpload = async (
+    fileUpload: Omit<PrismaFileUpload, 'organizationTransactionId' | 'organizationProductsAndServicesId'>,
+): Promise<FileUpload> => {
     const record = await prisma.fileUpload.create({
         data: {
             ...fileUpload,

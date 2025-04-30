@@ -1,6 +1,5 @@
 import * as OrganizationDB from 'prisma/services/organization'
 
-import { createOrganizationDummyTransactions } from '../organization-transaction'
 import { bootstrapOrganizationTransactionCategories } from '../organization-transaction-category'
 import { Organization, OrganizationInput } from './model'
 
@@ -37,10 +36,4 @@ const bootstrapOrganization = async (organization: Organization) => {
      * 1. Create transaction categories
      */
     await bootstrapOrganizationTransactionCategories(organization.id)
-
-    /**
-     * ! TEST PURPOSES ONLY !
-     * Create dummy transactions
-     */
-    await createOrganizationDummyTransactions(organization.id)
 }

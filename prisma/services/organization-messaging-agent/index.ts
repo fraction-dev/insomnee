@@ -90,6 +90,16 @@ export const getOrganizationMessagingAgentByIntegrationId = async (integrationId
     return mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent(agent)
 }
 
+export const saveMessagingAgentResponseMessage = async (organizationId: string, messageId: string | number, response: string) => {
+    await prisma.messagingAgentResponseMessages.create({
+        data: {
+            organizationId,
+            messageId: String(messageId),
+            response,
+        },
+    })
+}
+
 const mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent = (
     agent: PrismaOrganizationMessagingAgentWithRelations,
 ): OrganizationMessagingAgent => {

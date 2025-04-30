@@ -21,7 +21,7 @@ export const DeleteDialog = ({ title = 'Are you absolutely sure?', description, 
                     <Button variant="outline" onClick={() => onOpenChange(false)}>
                         Cancel
                     </Button>
-                    <Button isLoading={isLoading} onClick={onDelete}>
+                    <Button variant="destructive" isLoading={isLoading} onClick={onDelete}>
                         Confirm
                     </Button>
                 </div>
