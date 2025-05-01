@@ -20,7 +20,7 @@
         "dead-code": "knip",
         "typecheck": "tsc --noEmit --skipLibCheck",
         "auth:generate": "pnpx @better-auth/cli generate --config src/config/auth.ts",
-        "deploy:trigger-prod": "npx trigger.dev@latest deploy --env prod"
+        "deploy:trigger": "npx trigger.dev@latest deploy --env prod"
     },
     "dependencies": {
         "@ai-sdk/deepseek": "^0.2.13",
