@@ -3,7 +3,7 @@ name: Deploy to Trigger.dev (prod)
 on: push
 
 jobs:
-    deploy:
+    deploy-trigger-prod:
         runs-on: ubuntu-latest
 
         steps:
