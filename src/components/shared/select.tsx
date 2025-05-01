@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FocusEvent, KeyboardEvent, ReactNode, useEffect, useRef, useState } from 'react'
 
+import { Input } from '~/components/ui/input'
+import { Select as ShadcnSelect,SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { cn } from '~/lib/utils'
-
-import { Input } from '../ui/input'
-import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select as ShadcnSelect } from '../ui/select'
 
 interface Props {
     id?: string
     disabled?: boolean
     withSearch?: boolean
-    options: { label: string | React.ReactNode; value: string }[]
+    options: { label: string | ReactNode; value: string }[]
     value: string | undefined
     placeholder?: string
     searchInputPlaceholder?: string
@@ -35,13 +34,13 @@ export const Select = ({
         setSearch('')
     }, [value])
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         e.stopPropagation()
         setSearch(e.target.value)
     }
 
-    const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         e.stopPropagation()
         if (e.key === 'Escape') {
             e.preventDefault()
@@ -49,7 +48,7 @@ export const Select = ({
         }
     }
 
-    const handleInputFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+    const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {
         e.stopPropagation()
     }
 

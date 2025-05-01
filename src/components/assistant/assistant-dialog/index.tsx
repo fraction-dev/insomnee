@@ -3,10 +3,12 @@ import { useQueryClient } from '@tanstack/react-query'
 import { generateId } from 'ai'
 import { User } from 'better-auth'
 import { useState } from 'react'
+
 import { Dialog, DialogContent } from '~/components/ui/dialog'
 import { Separator } from '~/components/ui/separator'
 import { API_ROUTES } from '~/config/api-routes'
 import { useUserChats } from '~/hooks/user-chat/useUserChats'
+
 import { AssistantDialogContent } from './assistant-dialog-content'
 import { AssistantDialogFooter } from './assistant-dialog-footer'
 import { AssistantDialogHeader } from './assistant-dialog-header'
@@ -21,8 +23,8 @@ interface Props {
 export const AssistantDialog = ({ user, isOpen, organizationId, onClose }: Props) => {
     const queryClient = useQueryClient()
 
-    const { data: userChats } = useUserChats(organizationId, user.id)
-    const [chatId, setChatId] = useState<string>(generateId())
+    useUserChats(organizationId, user.id)
+    const [chatId] = useState<string>(generateId())
 
     const { input, messages, status, handleInputChange, handleSubmit } = useChat({
         key: chatId,
@@ -37,11 +39,6 @@ export const AssistantDialog = ({ user, isOpen, organizationId, onClose }: Props
     })
 
     const isLoading = status === 'submitted' || status === 'streaming'
-
-    const handleChatClick = (chatId: string) => {
-        setChatId(chatId)
-        queryClient.invalidateQueries({ queryKey: ['user-chats', organizationId, user.id] })
-    }
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>

@@ -1,4 +1,5 @@
 import _ from 'lodash'
+
 import { Dialog } from '~/services/messaging/model'
 
 export const extractBusinessIdFromConversations = (username: string, conversations: Dialog[]): string | null => {

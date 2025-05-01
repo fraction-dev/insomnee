@@ -13,33 +13,9 @@ import {
     VideoIcon,
     XIcon,
 } from 'lucide-react'
+
 import { Button } from '~/components/ui/button'
 import { FileMetadata, formatBytes, useFileUpload } from '~/hooks/use-file-upload'
-
-// Create some dummy initial files
-const initialFiles = [
-    {
-        name: 'document.pdf',
-        size: 528737,
-        type: 'application/pdf',
-        url: 'https://example.com/document.pdf',
-        id: 'document.pdf-1744638436563-8u5xuls',
-    },
-    {
-        name: 'intro.zip',
-        size: 252873,
-        type: 'application/zip',
-        url: 'https://example.com/intro.zip',
-        id: 'intro.zip-1744638436563-8u5xuls',
-    },
-    {
-        name: 'conclusion.xlsx',
-        size: 352873,
-        type: 'application/xlsx',
-        url: 'https://example.com/conclusion.xlsx',
-        id: 'conclusion.xlsx-1744638436563-8u5xuls',
-    },
-]
 
 const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
     const fileType = file.file instanceof File ? file.file.type : file.file.type
@@ -80,9 +56,6 @@ export default function MultipleFilesInput({
     maxSize = 100 * 1024 * 1024, // 100MB default
     maxFiles = 10, // 10 files default
     initialFiles = [], // No initial files by default
-    onFilesChange, // Callback for when files change
-    onFilesAdded, // Callback for when files are added
-    onFilesRemoved, // Callback for when files are removed
 }: Props) {
     const [
         { files, isDragging, errors },
@@ -98,13 +71,13 @@ export default function MultipleFilesInput({
         <div className="flex flex-col gap-2">
             <div
                 role="button"
+                data-dragging={isDragging || undefined}
+                className="border-input hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 flex min-h-40 flex-col items-center justify-center rounded-xs border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px] cursor-default"
                 onClick={openFileDialog}
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                data-dragging={isDragging || undefined}
-                className="border-input hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 flex min-h-40 flex-col items-center justify-center rounded-xs border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px] cursor-default"
             >
                 <input {...getInputProps()} className="sr-only" aria-label="Upload files" />
 
@@ -154,8 +127,8 @@ export default function MultipleFilesInput({
                                 size="icon"
                                 variant="ghost"
                                 className="text-muted-foreground/80 hover:text-foreground -me-2 size-8 hover:bg-transparent"
-                                onClick={() => removeFile(file.id)}
                                 aria-label="Remove file"
+                                onClick={() => removeFile(file.id)}
                             >
                                 <XIcon className="size-4" aria-hidden="true" />
                             </Button>

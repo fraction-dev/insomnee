@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
+
 import { API_ROUTES } from '~/config/api-routes'
 import { fetch } from '~/lib/fetch'
 import { Organization } from '~/services/organization/model'

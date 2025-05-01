@@ -24,7 +24,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
     ...compat.config({
-        // extends: ['eslint:recommended', 'next'],
+        extends: ['eslint:recommended', 'next/core-web-vitals'],
     }),
     eslintConfigPrettier,
 
@@ -126,6 +126,16 @@ const eslintConfig = [
             '@typescript-eslint/no-unsafe-call': 'off',
             '@typescript-eslint/no-unsafe-argument': 'off',
             '@typescript-eslint/consistent-type-definitions': 'off',
+
+            'no-unused-vars': 'off',
+            '@typescript-eslint/no-unused-vars': [
+                'warn',
+                {
+                    argsIgnorePattern: '^_',
+                    varsIgnorePattern: '^_',
+                    caughtErrorsIgnorePattern: '^_',
+                },
+            ],
 
             // General rules
             'no-console': 'error',

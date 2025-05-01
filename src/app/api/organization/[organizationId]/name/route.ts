@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
+
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { updateOrganizationName } from '~/services/organization'
+
 import { baseOrganizationIdSchema } from '../schemas'
 
 const bodySchema = z.object({

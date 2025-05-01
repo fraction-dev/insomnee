@@ -1,4 +1,5 @@
 import * as OrganizationMessagingDB from 'prisma/services/organization-messaging-agent'
+
 import { OrganizationMessagingAgent } from './model'
 
 export const bootstrapOrganizationMessagingAgent = async (organizationId: string, integrationId: string) => {

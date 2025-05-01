@@ -1,12 +1,12 @@
 'use client'
 
 import { AnimatePresence, motion, MotionProps, useInView, UseInViewOptions, Variants } from 'motion/react'
-import { useRef } from 'react'
+import { ReactNode, useRef } from 'react'
 
 type MarginType = UseInViewOptions['margin']
 
 interface BlurFadeProps extends MotionProps {
-    children: React.ReactNode
+    children: ReactNode
     className?: string
     variant?: {
         hidden: { y: number }

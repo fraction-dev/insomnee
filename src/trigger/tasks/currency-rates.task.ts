@@ -1,7 +1,9 @@
 import { schedules } from '@trigger.dev/sdk/v3'
 import { getCurrencyRates, upsertCurrencyRate } from 'prisma/services/currency-rates'
+
 import { CURRENCIES } from '~/lib/consts/currencies'
 import { fetchCurrencyRate } from '~/lib/server/currency/fetchCurrencyRate'
+
 import { TriggerTasks } from '../types/tasks'
 
 export const fetchCurrencyRatesTask = schedules.task({
@@ -18,8 +20,6 @@ export const fetchCurrencyRatesTask = schedules.task({
                 .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
                 .map((result) => result.value)
 
-            console.log({ rates })
-
             await Promise.all(rates.map(async (rate) => upsertCurrencyRate(rate)))
             return
         }
@@ -30,8 +30,6 @@ export const fetchCurrencyRatesTask = schedules.task({
         const rates = results
             .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
             .map((result) => result.value)
-
-        console.log({ rates })
 
         await Promise.all(rates.map(async (rate) => upsertCurrencyRate(rate)))
     },

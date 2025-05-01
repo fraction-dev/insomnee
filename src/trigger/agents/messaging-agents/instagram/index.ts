@@ -1,4 +1,5 @@
 import { logger, task } from '@trigger.dev/sdk/v3'
+
 import { generateText } from '~/lib/server/ai'
 import { sendTextMessage } from '~/lib/server/instagram/api'
 import { getInstagramConversations } from '~/services/instagram'
@@ -8,6 +9,7 @@ import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
 import { getOrganizationMessagingAgentByIntegrationId, saveMessagingAgentResponseMessage } from '~/services/organization-messaging-agent'
 import { OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
+
 import { INSTAGRAM_MESSAGE_PROMPT } from './prompts'
 
 interface Payload {

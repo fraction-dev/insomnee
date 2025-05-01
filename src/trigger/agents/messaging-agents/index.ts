@@ -1,5 +1,5 @@
 import { task } from '@trigger.dev/sdk/v3'
-import { z } from 'zod'
+
 import { generateText } from '~/lib/server/ai'
 import { Dialog } from '~/services/messaging/model'
 import { getOrganizationById } from '~/services/organization'
@@ -7,6 +7,7 @@ import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
 import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '~/services/organization-messaging-agent'
 import { OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
+
 import { MESSAGING_ANALYTICS_PROMPT } from './prompts'
 
 type SocialType = 'INSTAGRAM' | 'FACEBOOK' | 'WHATSAPP' | 'TWITTER' | 'TELEGRAM' | 'SIMPALS'
@@ -18,10 +19,6 @@ interface Payload {
     websiteUrl: string
     dialogs: Dialog[]
 }
-
-const messagingAgentOutputSchema = z.object({
-    prompt: z.string(),
-})
 
 export const setupMessagingAgentTask = task({
     id: TriggerTasks.SETUP_MESSAGING_AGENT,

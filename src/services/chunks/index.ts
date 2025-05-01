@@ -1,4 +1,5 @@
 import * as ChunksDB from 'prisma/services/chunks'
+
 import { Chunk } from './model'
 
 export const getChunksByKnowledgeBaseItemId = (knowledgeBaseItemId: string) => {

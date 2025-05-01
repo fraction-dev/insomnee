@@ -1,5 +1,6 @@
 import { tasks } from '@trigger.dev/sdk/v3'
 import { NextRequest, NextResponse } from 'next/server'
+
 import { getInstagramIntegrationByInstagramBusinessId } from '~/services/integration'
 import { triggerInstagramMessageAgentFromWebhookTask } from '~/trigger/agents/messaging-agents/instagram'
 import { TriggerTasks } from '~/trigger/types/tasks'

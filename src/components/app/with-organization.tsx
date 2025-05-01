@@ -1,11 +1,11 @@
 import { redirect } from 'next/navigation'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
 import { ROUTES } from '~/config/routes'
 import { withAuth } from '~/lib/with-auth'
 import { getUserOrganizations } from '~/services/organization'
 
-export function WithOrganization(PageComponent: (props: PropsWithChildren) => React.ReactNode) {
+export function WithOrganization(PageComponent: (props: PropsWithChildren) => ReactNode) {
     return async function OrganizationPageWrapper({ children }: PropsWithChildren) {
         const { user } = await withAuth()
 

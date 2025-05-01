@@ -1,8 +1,7 @@
 import { truncate } from 'lodash'
-import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import { CardContent } from '~/components/ui/card'
 
-import { Card } from '~/components/ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import { Card,CardContent  } from '~/components/ui/card'
 import { cn } from '~/lib/utils'
 import { DialogMessage } from '~/services/messaging/model'
 

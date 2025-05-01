@@ -1,14 +1,7 @@
-import { useState } from 'react'
 import { Badge } from '~/components/ui/badge'
 import { DialogHeader } from '~/components/ui/dialog'
 
 export const AssistantDialogHeader = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-    const handleToggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
-
     return (
         <>
             <DialogHeader className="px-5">

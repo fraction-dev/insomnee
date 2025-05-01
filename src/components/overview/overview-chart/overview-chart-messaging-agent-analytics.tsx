@@ -1,12 +1,12 @@
-import { ChartContainer, ChartTooltipContent } from '~/components/ui/chart'
-
 import dayjs from 'dayjs'
 import { CartesianGrid, LabelList, Line, LineChart, XAxis, YAxis } from 'recharts'
-import { ChartTooltip } from '~/components/ui/chart'
+
+import { ChartContainer, ChartTooltip,ChartTooltipContent  } from '~/components/ui/chart'
 import { Separator } from '~/components/ui/separator'
 import { formatDateToReadableString } from '~/lib/date'
 import { cn } from '~/lib/utils'
 import { OverviewChartData } from '~/services/overview/model'
+
 import { chartConfig } from './overview-chart-wrapper'
 
 interface Props {

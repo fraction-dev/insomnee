@@ -1,4 +1,5 @@
 import axios, { Method } from 'axios'
+
 import logger from '~/core/logger'
 import { InternalError } from '~/lib/operational-errors'
 
@@ -14,19 +15,6 @@ interface InstagramErrorResponse {
                 error_user_msg?: string
             }
         }
-    }
-}
-
-class InstagramError extends Error {
-    constructor(
-        message: string,
-        public error: InstagramErrorResponse,
-    ) {
-        super(message)
-    }
-
-    getError() {
-        return this.error
     }
 }
 

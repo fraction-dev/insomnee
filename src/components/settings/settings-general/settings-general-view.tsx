@@ -3,6 +3,7 @@
 import { upperCase } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
+
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
@@ -12,6 +13,7 @@ import { useOrganization } from '~/hooks/organization/useOrganization'
 import { useUpdateOrganizationLogo } from '~/hooks/organization/useUpdateOrganizationLogo'
 import { useUpdateOrganizationName } from '~/hooks/organization/useUpdateOrganizationName'
 import { useSession } from '~/lib/auth-client'
+
 import { SettingsCard } from '../settings-card'
 
 interface Props {
@@ -86,7 +88,7 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
                             <AvatarFallback>{upperCase(data?.data.name.slice(0, 2))}</AvatarFallback>
                         </Avatar>
 
-                        <input type="file" className="hidden" ref={ref} onChange={(e) => handleFileUpload(e.target.files?.[0] ?? null)} />
+                        <input ref={ref} type="file" className="hidden" onChange={(e) => handleFileUpload(e.target.files?.[0] ?? null)} />
                     </>
                 }
                 footer={<p className="text-xs text-muted-foreground">An avatar is optional but strongly recommended.</p>}
@@ -101,8 +103,8 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
                         <Button
                             disabled={organizationName === data?.data.name || organizationName.length === 0}
                             size="sm"
-                            onClick={handleOrganizationNameUpdate}
                             isLoading={isUpdatingOrganizationName}
+                            onClick={handleOrganizationNameUpdate}
                         >
                             Save
                         </Button>
@@ -112,8 +114,8 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
                 <Input
                     placeholder="Enter organization name"
                     value={organizationName}
-                    onChange={(e) => setOrganizationName(e.target.value)}
                     maxLength={32}
+                    onChange={(e) => setOrganizationName(e.target.value)}
                 />
             </SettingsCard>
         </div>

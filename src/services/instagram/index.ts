@@ -1,4 +1,5 @@
 import { flatten, union } from 'lodash'
+
 import {
     getConversationMessage,
     getConversationMessages,
@@ -7,6 +8,7 @@ import {
     getUserById,
 } from '~/lib/server/instagram/api'
 import { InstagramConversationMessageEntity, InstagramUser } from '~/lib/server/instagram/model'
+
 import { getInstagramIntegrationByOrganizationId } from '../integration'
 import { Dialog, DialogMessage, DialogUser } from '../messaging/model'
 import { InstagramAccessTokenNotFoundError } from './errors'

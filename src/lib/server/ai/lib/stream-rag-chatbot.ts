@@ -1,6 +1,8 @@
 import { streamText } from 'ai'
 import { first, truncate } from 'lodash'
+
 import { createUserChat } from '~/services/user-chat'
+
 import { gpt4oRAGModel } from '../index'
 
 const SYSTEM_PROMPT = `

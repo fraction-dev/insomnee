@@ -1,6 +1,8 @@
 'use client'
 
+import { upperCase } from 'lodash'
 import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LifeBuoy, LinkIcon, Send, Settings2, SquareChartGantt } from 'lucide-react'
+import Link from 'next/link'
 import * as React from 'react'
 
 import {
@@ -13,11 +15,9 @@ import {
     SidebarMenuItem,
 } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
+import { useOrganization } from '~/hooks/organization/useOrganization'
 import { User } from '~/services/user/model'
 
-import { upperCase } from 'lodash'
-import Link from 'next/link'
-import { useOrganization } from '~/hooks/organization/useOrganization'
 import { SidebarNavMain } from '../sidebar/sidebar-nav-main'
 import { SidebarNavSecondary } from '../sidebar/sidebar-nav-secondary'
 import { SidebarNavUser } from '../sidebar/sidebar-nav-user'

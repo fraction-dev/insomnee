@@ -3,6 +3,7 @@ import { User } from 'better-auth'
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 import { FaSpinner } from 'react-icons/fa'
+
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { ScrollArea } from '~/components/ui/scroll-area'
 import { cn } from '~/lib/utils'

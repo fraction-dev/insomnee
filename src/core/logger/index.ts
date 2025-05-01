@@ -46,8 +46,6 @@ const extractErrorData = (metadata?: LogMetadata & { error?: LogError }) => {
         },
     }
 
-    // Remove the original error to avoid duplication
-     
     const { error: _, ...restMetadata } = metadata
 
     return { errorData, cleanMetadata: restMetadata }

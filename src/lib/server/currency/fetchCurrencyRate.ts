@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import logger from '~/core/logger'
 import { InternalError } from '~/lib/operational-errors'
 import { CurrencyRate } from '~/services/currency-rate/model'

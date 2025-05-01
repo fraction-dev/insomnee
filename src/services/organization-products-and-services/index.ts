@@ -1,4 +1,5 @@
 import * as OrganizationProductsAndServicesDB from 'prisma/services/organization-products-and-services'
+
 import { OrganizationProductsAndServicesCreate, OrganizationProductsAndServicesUpdate } from './model'
 
 export const createOrganizationProductsAndServices = async (organizationId: string, data: OrganizationProductsAndServicesCreate) => {

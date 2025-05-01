@@ -1,18 +1,18 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import { z, ZodError } from 'zod'
 
+import { ROUTES } from '~/config/routes'
 import logger from '~/core/logger'
 import { authClient } from '~/lib/auth-client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
-import { ROUTES } from '~/config/routes'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '../ui/input-otp'
@@ -109,7 +109,7 @@ export const AuthEmailLoginView = ({ onSuccess }: Props) => {
     return (
         <div className="flex flex-col gap-4">
             {!isSent ? (
-                <form onSubmit={form.handleSubmit(handleSendVerificationOTP)} className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={form.handleSubmit(handleSendVerificationOTP)}>
                     <Input placeholder={t('common:input.placeholder.email')} {...form.register('email')} />
                     <Button isLoading={isLoading} type="submit">
                         {t('common:continue')}

@@ -1,6 +1,8 @@
 import { lowerCase, upperFirst } from 'lodash'
+
 import { Select } from '~/components/shared/select'
 import { OrganizationIntegration } from '~/services/integration/model'
+
 import { InstagramBot } from './instagram-bot'
 
 interface Props {

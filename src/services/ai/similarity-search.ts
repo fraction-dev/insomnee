@@ -1,5 +1,6 @@
 import { openai } from '@ai-sdk/openai'
 import { generateObject } from 'ai'
+
 import { getOrganizationIntegrations } from '../integration'
 import { getOrganizationById } from '../organization'
 import { getOrganizationMessagingAgentResponses } from '../organization-messaging-agent'

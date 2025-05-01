@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import { useCreateQueryString } from '~/hooks/useCreateQueryString'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+
 import { productsAndServicesTableColumns } from './products-and-services-table-columns'
 
 interface Props {
@@ -30,7 +31,7 @@ export const ProductsAndServicesTable = ({ productsAndServices, selectedProducts
 
     useEffect(() => {
         setSelectedProductsAndServices(selectedTableRows)
-    }, [selectedTableRows.length])
+    }, [selectedTableRows.length, setSelectedProductsAndServices, selectedTableRows])
 
     useEffect(() => {
         if (selectedProductsAndServices.length === 0) {

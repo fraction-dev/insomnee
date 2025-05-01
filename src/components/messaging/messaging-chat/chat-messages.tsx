@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import { LinkIcon, Sparkle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+
 import { Hint } from '~/components/shared/hint'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Button } from '~/components/ui/button'
@@ -74,7 +75,7 @@ export const ChatMessages = ({
 
     return (
         <Card className="relative">
-            <ScrollArea className="h-[calc(100vh-16rem)] pb-38" ref={scrollContainerRef}>
+            <ScrollArea ref={scrollContainerRef} className="h-[calc(100vh-16rem)] pb-38">
                 <CardContent className="flex flex-col gap-4">
                     <div className="flex justify-between items-center gap-12 border-b border-border pb-4 sticky top-0 bg-background">
                         <div className="flex items-center gap-2 sticky top-0 bg-background">
@@ -153,9 +154,9 @@ export const ChatMessages = ({
                     <>
                         <Textarea
                             value={message}
-                            onChange={(e) => setMessage(e.target.value)}
                             placeholder="Message"
                             className="h-24 bg-white"
+                            onChange={(e) => setMessage(e.target.value)}
                         />
 
                         <div className="flex justify-end gap-2">

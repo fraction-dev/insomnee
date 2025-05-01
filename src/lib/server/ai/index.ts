@@ -3,7 +3,9 @@ import { wrapLanguageModel } from 'ai'
 import { ElevenLabsClient } from 'elevenlabs'
 import OpenAI from 'openai'
 import { Tool } from 'openai/resources/responses/responses.mjs'
+
 import { env } from '~/config/env'
+
 import { ragMiddleware } from './lib/rag-middleware'
 
 interface Message {

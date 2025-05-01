@@ -1,4 +1,5 @@
 import * as UserChatDB from 'prisma/services/user-chat'
+
 import { UserChatCreatePayload } from './model'
 
 export const createUserChat = async (payload: UserChatCreatePayload) => {

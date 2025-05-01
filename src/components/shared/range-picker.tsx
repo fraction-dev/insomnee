@@ -2,7 +2,9 @@ import dayjs from 'dayjs'
 import { CalendarIcon } from 'lucide-react'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
+
 import { cn } from '~/lib/utils'
+
 import { Button } from '../ui/button'
 import { Calendar } from '../ui/calendar'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
@@ -51,22 +53,19 @@ export const RangePicker = ({ date, className, onSelect, maxDays = 30 }: Props) 
                 <PopoverContent className="w-auto p-0 " align="start">
                     <div className="flex flex-col gap-2 pb-4">
                         <Calendar
+                            initialFocus
                             disabled={(day) => {
                                 if (dayjs(day).isAfter(dayjs())) {
                                     return true
                                 }
                                 return false
                             }}
-                            initialFocus
                             mode="range"
                             defaultMonth={range?.from}
                             selected={range}
                             numberOfMonths={2}
                             max={maxDays}
-                            onSelect={(range) => {
-                                console.log({ range })
-                                setRange(range)
-                            }}
+                            onSelect={(range) => setRange(range)}
                         />
 
                         <div className="flex flex-col gap-4 px-4">

@@ -1,6 +1,7 @@
 import { Activity, Ellipsis } from 'lucide-react'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+
 import { Hint } from '~/components/shared/hint'
 import { Select } from '~/components/shared/select'
 import { Button } from '~/components/ui/button'
@@ -78,8 +79,8 @@ export const InstagramBot = ({ integration, organizationId }: Props) => {
                                 <Switch
                                     id="enabled"
                                     checked={isBotEnabled}
-                                    onCheckedChange={handleToggleBot}
                                     isLoading={isPending && executingEntity === 'bot'}
+                                    onCheckedChange={handleToggleBot}
                                 />
                             </div>
                             <div className="grid grid-cols-2 items-center gap-4">
@@ -87,8 +88,8 @@ export const InstagramBot = ({ integration, organizationId }: Props) => {
                                 <Switch
                                     id="voiceMessage"
                                     checked={isVoiceMessageResponseEnabled}
-                                    onCheckedChange={handleToggleVoiceMessage}
                                     isLoading={isPending && executingEntity === 'voiceMessage'}
+                                    onCheckedChange={handleToggleVoiceMessage}
                                 />
                             </div>
                         </div>

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import { ROUTES } from '~/config/routes'
 import { cn } from '~/lib/utils'
 
@@ -35,6 +36,7 @@ export const SettingsTabs = ({ organizationId }: { organizationId: string }) => 
         <div className="flex w-full items-center gap-6">
             {SECTIONS(organizationId).map((section) => (
                 <Link
+                    key={section.href}
                     href={section.href}
                     className={cn('text-muted-foreground text-sm font-normal', {
                         'text-black': pathname === section.href,

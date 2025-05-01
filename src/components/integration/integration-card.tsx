@@ -3,6 +3,7 @@ import { createElement } from 'react'
 import { IconType } from 'react-icons/lib'
 
 import { OrganizationIntegrationType } from '~/services/integration/model'
+
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
 import { Card, CardContent, CardFooter } from '../ui/card'

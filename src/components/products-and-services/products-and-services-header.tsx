@@ -2,10 +2,12 @@ import { FilePlusIcon, FolderInputIcon, PlusIcon, TrashIcon } from 'lucide-react
 import Link from 'next/link'
 import { useState } from 'react'
 import { toast } from 'sonner'
+
 import { ROUTES } from '~/config/routes'
 import { useDeleteOrganizationProductsAndServices } from '~/hooks/organization-products-and-services/useDeleteOrganizationProductsAndServices'
 import { useCreateQueryString } from '~/hooks/useCreateQueryString'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+
 import { DeleteDialog } from '../shared/delete-dialog'
 import { Button } from '../ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '../ui/dropdown-menu'
@@ -87,11 +89,11 @@ export const ProductsAndServicesHeader = ({ organizationId, selectedProductsAndS
             <ProductsAndServicesImportModal isOpen={isImportModalOpen} onOpenChange={setIsImportModalOpen} />
             <DeleteDialog
                 isOpen={isDeleteDialogOpen}
-                onOpenChange={setIsDeleteDialogOpen}
-                onDelete={handleDeleteProductsAndServices}
                 isLoading={isDeleting}
                 description="This action cannot be undone and the products and services will be permanently deleted."
                 title="Are you sure you want to delete these products and services?"
+                onOpenChange={setIsDeleteDialogOpen}
+                onDelete={handleDeleteProductsAndServices}
             />
         </>
     )

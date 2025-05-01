@@ -1,10 +1,10 @@
-import { ScrollBar } from '~/components/ui/scroll-area'
-
 import Image from 'next/image'
+import { ChangeEvent, KeyboardEvent } from 'react'
+
 import { BlurFade } from '~/components/ui/blur-fade'
 import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
-import { ScrollArea } from '~/components/ui/scroll-area'
+import { ScrollArea, ScrollBar } from '~/components/ui/scroll-area'
 import { Separator } from '~/components/ui/separator'
 import { cn } from '~/lib/utils'
 
@@ -24,19 +24,19 @@ const DEFAULT_SUGGESTIONS = [
 
 interface Props {
     inputValue: string
-    onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onInputChange: (e: ChangeEvent<HTMLInputElement>) => void
     onSubmit: () => void
 }
 
 export const AssistantDialogFooter = ({ inputValue, onInputChange, onSubmit }: Props) => {
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             onSubmit()
         }
     }
 
     const handleSuggestionClick = async (suggestion: string) => {
-        onInputChange({ target: { value: suggestion } } as React.ChangeEvent<HTMLInputElement>)
+        onInputChange({ target: { value: suggestion } } as ChangeEvent<HTMLInputElement>)
     }
 
     return (

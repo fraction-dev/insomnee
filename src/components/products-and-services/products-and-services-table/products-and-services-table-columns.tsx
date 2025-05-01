@@ -1,6 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { truncate } from 'lodash'
 import { FileIcon } from 'lucide-react'
+
 import { Checkbox } from '~/components/ui/checkbox'
 import { formatDateToReadableString } from '~/lib/date'
 import { formatCurrency } from '~/lib/formatCurrency'
@@ -57,7 +58,7 @@ export const productsAndServicesTableColumns: ColumnDef<OrganizationProductsAndS
             row.original.files.length > 0 ? (
                 <div className="flex items-center justify-between gap-12">
                     {row.original.files.slice(0, MAX_FILES_TO_SHOW).map((file) => (
-                        <div className="flex items-center gap-1">
+                        <div key={file.id} className="flex items-center gap-1">
                             <FileIcon className="size-3" />
                             <p className="text-xs">{truncate(file.name, { length: 35 })}</p>
                             {row.original.files.length > MAX_FILES_TO_SHOW && (

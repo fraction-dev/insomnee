@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import { ROUTES } from '~/config/routes'
 import { OrganizationTransaction } from '~/services/organization-transaction/model'
+
 import { TransactionsTableActions } from './transactions-table-actions'
 import { transactionsTableColumns } from './transactions-table-columns'
 
@@ -33,13 +34,13 @@ export const TransactionsTable = ({ organizationId, transactions, selectedTransa
 
     useEffect(() => {
         setSelectedTransactions(selectedTableRows)
-    }, [selectedTableRows.length])
+    }, [selectedTableRows.length, setSelectedTransactions, selectedTableRows])
 
     useEffect(() => {
         if (selectedTransactions.length === 0) {
             setRowSelection({})
         }
-    }, [selectedTransactions.length])
+    }, [selectedTransactions.length, setRowSelection])
 
     const handleRowClick = (transactionId: string) => {
         router.push(`${ROUTES.DASHBOARD.TRANSACTIONS(organizationId)}?transactionId=${transactionId}`)

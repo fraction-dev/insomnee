@@ -2,7 +2,9 @@
 
 import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+
 import { useSession } from '~/lib/auth-client'
+
 import { AssistantDialog } from '../assistant/assistant-dialog'
 
 interface Props {
@@ -38,8 +40,8 @@ export const DashboardNavbar = ({ organizationId }: Props) => {
             <AssistantDialog
                 user={session.user}
                 isOpen={isAssistantOpen}
-                onClose={() => setIsAssistantOpen(false)}
                 organizationId={organizationId}
+                onClose={() => setIsAssistantOpen(false)}
             />
         </>
     )

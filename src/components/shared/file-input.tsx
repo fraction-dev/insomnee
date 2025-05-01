@@ -10,12 +10,13 @@ import {
     VideoIcon,
     XIcon,
 } from 'lucide-react'
+import { useState } from 'react'
 
+import logger from '~/core/logger'
 import { useUploadFile } from '~/hooks/file-upload/useUploadFile'
+import { formatBytes, useFileUpload } from '~/hooks/use-file-upload'
 import { FileUpload } from '~/services/file-upload/model'
 
-import { useState } from 'react'
-import { formatBytes, useFileUpload } from '~/hooks/use-file-upload'
 import { Button } from '../ui/button'
 import { Skeleton } from '../ui/skeleton'
 
@@ -116,7 +117,9 @@ export const FileInput = ({
                                 uploadedFiles.push(result.data)
                             }
                         } catch (error) {
-                            console.error('Error uploading file:', error)
+                            logger.error('Error uploading file:', {
+                                error,
+                            })
                         }
                     }
                 }
@@ -140,13 +143,13 @@ export const FileInput = ({
         <div className="flex flex-col gap-2">
             <div
                 role="button"
+                data-dragging={isDragging || undefined}
+                className="border-input hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 flex min-h-40 flex-col items-center justify-center rounded-xs border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px]"
                 onClick={openFileDialog}
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
-                data-dragging={isDragging || undefined}
-                className="border-input hover:bg-accent/50 data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 flex min-h-40 flex-col items-center justify-center rounded-xs border border-dashed p-4 transition-colors has-disabled:pointer-events-none has-disabled:opacity-50 has-[input:focus]:ring-[3px]"
             >
                 <input {...getInputProps()} className="sr-only" aria-label="Upload files" />
 
@@ -190,8 +193,8 @@ export const FileInput = ({
                                 size="icon"
                                 variant="ghost"
                                 className="text-muted-foreground/80 hover:text-foreground -me-2 size-8 hover:bg-transparent"
-                                onClick={() => handleRemoveFile(file.id)}
                                 aria-label="Remove file"
+                                onClick={() => handleRemoveFile(file.id)}
                             >
                                 <XIcon className="size-4" aria-hidden="true" />
                             </Button>
