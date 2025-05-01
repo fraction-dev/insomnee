@@ -34,13 +34,14 @@ export const TransactionsTable = ({ organizationId, transactions, selectedTransa
 
     useEffect(() => {
         setSelectedTransactions(selectedTableRows)
-    }, [selectedTableRows.length, setSelectedTransactions, selectedTableRows])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedTableRows.length])
 
     useEffect(() => {
         if (selectedTransactions.length === 0) {
             setRowSelection({})
         }
-    }, [selectedTransactions.length, setRowSelection])
+    }, [selectedTransactions.length])
 
     const handleRowClick = (transactionId: string) => {
         router.push(`${ROUTES.DASHBOARD.TRANSACTIONS(organizationId)}?transactionId=${transactionId}`)
