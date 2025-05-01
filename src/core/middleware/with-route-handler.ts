@@ -49,22 +49,6 @@ function getHeaders(req: NextRequest) {
     return Object.fromEntries(headers.entries())
 }
 
-async function readRequestBody(req: NextRequest) {
-    if (!req.body) return null
-
-    const reader = req.body.getReader()
-    const chunks = []
-
-    while (true) {
-        const { done, value } = await reader.read()
-        if (done) break
-        chunks.push(value)
-    }
-
-    const body = Buffer.concat(chunks).toString('utf-8')
-    return body ? JSON.parse(body) : null
-}
-
 export function createRouteHandler<T>() {
     return function handler<
         Injection extends Record<string, unknown> = Record<string, unknown>,
@@ -79,7 +63,9 @@ export function createRouteHandler<T>() {
             paramsSchema?: ParamsSchema
             querySchema?: QuerySchema
         } & Config,
-        handlerFn: (context: RouteHandlerContext<BodySchema, ParamsSchema, QuerySchema>) => Promise<NextResponse<BaseResponse<T>>>,
+        handlerFn: (
+            context: RouteHandlerContext<BodySchema, ParamsSchema, QuerySchema>,
+        ) => Promise<NextResponse<BaseResponse<T>>> | Promise<Response>,
     ) {
         return async (
             req: NextRequest,

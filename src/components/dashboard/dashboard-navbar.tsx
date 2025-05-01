@@ -2,15 +2,24 @@
 
 import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
+import { useSession } from '~/lib/auth-client'
+import { AssistantDialog } from '../assistant/assistant-dialog'
 
-import { AssistantModal } from '../assistant/assistant-modal'
+interface Props {
+    organizationId: string
+}
 
-export const DashboardNavbar = () => {
+export const DashboardNavbar = ({ organizationId }: Props) => {
+    const { data: session } = useSession()
     const [isAssistantOpen, setIsAssistantOpen] = useState(false)
 
     useHotkeys('command+k', () => {
         setIsAssistantOpen(true)
     })
+
+    if (!session?.user) {
+        return null
+    }
 
     return (
         <>
@@ -26,7 +35,12 @@ export const DashboardNavbar = () => {
                 </div>
             </div>
 
-            <AssistantModal isOpen={isAssistantOpen} onClose={() => setIsAssistantOpen(false)} />
+            <AssistantDialog
+                user={session.user}
+                isOpen={isAssistantOpen}
+                onClose={() => setIsAssistantOpen(false)}
+                organizationId={organizationId}
+            />
         </>
     )
 }

@@ -1,20 +1,27 @@
-import { createDeepSeek } from '@ai-sdk/deepseek'
-import { createPerplexity } from '@ai-sdk/perplexity'
+import { openai as vercelOpenAI } from '@ai-sdk/openai'
+import { wrapLanguageModel } from 'ai'
 import { ElevenLabsClient } from 'elevenlabs'
 import OpenAI from 'openai'
+import { Tool } from 'openai/resources/responses/responses.mjs'
 import { env } from '~/config/env'
-import { GenerateTextPayload } from './lib/generateText'
+import { ragMiddleware } from './lib/rag-middleware'
 
-export const deepseek = createDeepSeek({
-    apiKey: env.DEEPSEEK_API_KEY,
-})
+interface Message {
+    role: 'user' | 'assistant' | 'system'
+    content: string
+}
+
+interface GenerateTextPayload {
+    model: string
+    messages: Message[]
+    responseFormat?: { type: 'json_object' }
+    maxTokens?: number
+    temperature?: number
+    tools?: Tool[]
+}
 
 export const elevenLabs = new ElevenLabsClient({
     apiKey: env.ELEVENLABS_API_KEY,
-})
-
-export const perplexity = createPerplexity({
-    apiKey: env.PERPLEXITY_API_KEY,
 })
 
 export const openai = new OpenAI({
@@ -37,3 +44,8 @@ export const generateText = async (payload: GenerateTextPayload): Promise<{ text
         totalTokens: output.usage?.total_tokens ?? 0,
     }
 }
+
+export const gpt4oRAGModel = wrapLanguageModel({
+    model: vercelOpenAI('gpt-4o'),
+    middleware: ragMiddleware,
+})
