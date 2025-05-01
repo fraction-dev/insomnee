@@ -31,7 +31,8 @@ export const ProductsAndServicesTable = ({ productsAndServices, selectedProducts
 
     useEffect(() => {
         setSelectedProductsAndServices(selectedTableRows)
-    }, [selectedTableRows.length, setSelectedProductsAndServices, selectedTableRows])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedTableRows.length])
 
     useEffect(() => {
         if (selectedProductsAndServices.length === 0) {

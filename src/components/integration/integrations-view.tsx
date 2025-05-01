@@ -8,7 +8,6 @@ import { IntegrationCard, IntegrationCardItem } from './integration-card'
 
 interface Props {
     integrations: OrganizationIntegration[]
-
     instagramAppId: string
     organizationId: string
 }
