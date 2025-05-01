@@ -22,6 +22,7 @@ model User {
   OrganizationMember      OrganizationMember[]
   OrganizationTransaction OrganizationTransaction[]
   FileUpload              FileUpload[]
+  UserChat                UserChat[]
 
   @@map("user")
 }
@@ -243,6 +244,7 @@ enum FileUploadType {
   VIDEO
   AUDIO
   DOCUMENT
+  KNOWLEDGE_BASE
   OTHER
 
   @@map("file_upload_type")
@@ -355,4 +357,16 @@ model CurrencyRate {
   updatedAt    DateTime @updatedAt
 
   @@map("currency_rate")
+}
+
+model UserChat {
+  id        String   @id @default(cuid())
+  title     String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  messages  Json
+  createdAt DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
+
+  @@map("user_chats")
 }

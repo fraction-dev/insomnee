@@ -8,6 +8,9 @@ export const API_ROUTES = {
             STATISTICS: (organizationId: string) => `/organization/${organizationId}/overview`,
             CHART: (organizationId: string) => `/organization/${organizationId}/overview/chart`,
         },
+        USER: {
+            CHAT_ASSISTANT: (organizationId: string, userId: string) => `/organization/${organizationId}/user/${userId}/chat-assistant`,
+        },
     },
     ORGANIZATION_TRANSACTIONS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/transaction`,

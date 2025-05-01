@@ -9,7 +9,7 @@ concurrency:
 jobs:
     tests:
         name: Run tests
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
 
         steps:
             - name: Checkout code
@@ -24,6 +24,12 @@ jobs:
               with:
                   node-version-file: 'package.json'
                   cache: 'pnpm'
+
+            # Required for AI RAG implementation
+            - name: Install pgvector
+              run: |
+                  sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
+                  sudo apt-get install postgresql-16-pgvector
 
             - name: Install dependencies
               run: |
