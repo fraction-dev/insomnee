@@ -1,4 +1,4 @@
-export type FileUploadType = 'IMAGE' | 'VIDEO' | 'AUDIO' | 'DOCUMENT' | 'OTHER'
+export type FileUploadType = 'IMAGE' | 'VIDEO' | 'AUDIO' | 'DOCUMENT' | 'OTHER' | 'KNOWLEDGE_BASE'
 export type FileUploadAccessType = 'PUBLIC' | 'PRIVATE'
 
 export interface FileUpload {
