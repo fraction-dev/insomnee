@@ -7,5 +7,5 @@ interface Payload {
 }
 
 export const logOrganizationAIUsage = async ({ organizationId, tokens, description }: Payload) => {
-    await OrganizationAIUsageDB.logOrganizationAIUsage(organizationId, tokens, description)
+    await OrganizationAIUsageDB.logOrganizationAIUsage({ organizationId, tokens, description })
 }
