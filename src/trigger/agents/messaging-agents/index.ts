@@ -1,10 +1,10 @@
 import { task } from '@trigger.dev/sdk/v3'
+import { getOrganizationById } from 'prisma/services/organization'
+import { logOrganizationAIUsage } from 'prisma/services/organization-ai-usage'
+import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent } from 'prisma/services/organization-messaging-agent'
 
 import { generateText } from '~/lib/server/ai'
 import { Dialog } from '~/services/messaging/model'
-import { getOrganizationById } from '~/services/organization'
-import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
-import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '~/services/organization-messaging-agent'
 import { OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
 

@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
             },
         ],
     },
+    optimizePackageImports: ['@prisma/client'],
 }
 
 export default nextConfig
