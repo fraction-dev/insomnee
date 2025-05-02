@@ -6,8 +6,8 @@ import { Checkbox } from '~/components/ui/checkbox'
 import { formatCurrency } from '~/lib/currency/format-currency'
 import { formatDateToReadableString } from '~/lib/date/date'
 import { cn } from '~/lib/utils'
-import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
 import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
 
 export const transactionsTableColumns: ColumnDef<OrganizationTransaction>[] = [
     {

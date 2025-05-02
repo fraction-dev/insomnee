@@ -53,7 +53,7 @@ export const setupMessagingAgentTask = task({
             description: `Messaging Agent Setup. Prompt: ${prompt}`,
         })
 
-        await updateOrganizationMessagingAgent(agent.id, {
+        await updateOrganizationMessagingAgent(agent.id, organizationId, {
             status: OrganizationMessagingAgentStatus.ACTIVE,
             prompt: prompt ?? '',
         })

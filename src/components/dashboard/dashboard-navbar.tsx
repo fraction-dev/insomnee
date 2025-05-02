@@ -26,7 +26,7 @@ export const DashboardNavbar = ({ organizationId }: Props) => {
     return (
         <>
             <div className="w-full border-b border-border pb-4">
-                <div className="max-w-5xl w-full flex items-center gap-4 cursor-pointer group" onClick={() => setIsAssistantOpen(true)}>
+                <div className="max-w-5xl w-fit flex items-center gap-4 cursor-pointer group" onClick={() => setIsAssistantOpen(true)}>
                     <p className="text-[14px] text-neutral-400 font-light group-hover:text-neutral-500 transition-colors">
                         Ask Insomnee a question...
                     </p>

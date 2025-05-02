@@ -285,15 +285,16 @@ enum OrganizationAgentStatus {
 }
 
 model OrganizationMessagingAgent {
-  id             String                   @id @default(cuid())
-  organizationId String
-  organization   Organization             @relation(fields: [organizationId], references: [id])
-  status         OrganizationAgentStatus  @default(PENDING)
-  prompt         String?
-  integrationId  String?
-  integration    OrganizationIntegration? @relation(fields: [integrationId], references: [id])
-  createdAt      DateTime                 @default(now())
-  updatedAt      DateTime                 @updatedAt
+  id                             String                   @id @default(cuid())
+  organizationId                 String
+  organization                   Organization             @relation(fields: [organizationId], references: [id])
+  status                         OrganizationAgentStatus  @default(PENDING)
+  prompt                         String?
+  integrationId                  String?
+  integration                    OrganizationIntegration? @relation(fields: [integrationId], references: [id])
+  hasAccessToProductsAndServices Boolean                  @default(false)
+  createdAt                      DateTime                 @default(now())
+  updatedAt                      DateTime                 @updatedAt
 
   @@map("organization_messaging_agent")
 }

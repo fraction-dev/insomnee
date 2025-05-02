@@ -5,8 +5,13 @@ import {
     OrganizationMessagingAgent as PrismaOrganizationMessagingAgent,
 } from '@prisma/client'
 import { prisma } from 'prisma/db'
+
 import { OrganizationMessagingAgentNotFoundError } from '~/services/organization-messaging-agent/errors'
-import { OrganizationMessagingAgent, OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
+import {
+    OrganizationMessagingAgent,
+    OrganizationMessagingAgentStatus,
+    UpdateOrganizationMessagingAgentPayload,
+} from '~/services/organization-messaging-agent/model'
 
 type PrismaOrganizationMessagingAgentWithRelations = PrismaOrganizationMessagingAgent & {
     integration: {
@@ -45,7 +50,7 @@ export const bootstrapOrganizationMessagingAgent = async (organizationId: string
     })
 
     if (existing) {
-        return await updateOrganizationMessagingAgent(existing.id, {
+        return await updateOrganizationMessagingAgent(existing.id, organizationId, {
             status: OrganizationMessagingAgentStatus.PENDING,
         })
     }
@@ -62,12 +67,17 @@ export const bootstrapOrganizationMessagingAgent = async (organizationId: string
     return mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent(agent)
 }
 
-export const updateOrganizationMessagingAgent = async (id: string, data: Partial<OrganizationMessagingAgent>) => {
+export const updateOrganizationMessagingAgent = async (
+    id: string,
+    organizationId: string,
+    data: UpdateOrganizationMessagingAgentPayload,
+) => {
     const updated = await prisma.organizationMessagingAgent.update({
-        where: { id },
+        where: { id, organizationId },
         data: {
             status: data.status as OrganizationAgentStatus,
             prompt: data.prompt,
+            hasAccessToProductsAndServices: data.hasAccessToProductsAndServices,
         },
         include: INCLUDE_CLAUSE,
     })
@@ -128,6 +138,21 @@ export const getOrganizationMessagingAgentResponses = async (organizationId: str
     return responses
 }
 
+export const getOrganizationMessagingAgent = async (organizationId: string) => {
+    const agent = await prisma.organizationMessagingAgent.findFirst({
+        where: {
+            organizationId,
+        },
+        include: INCLUDE_CLAUSE,
+    })
+
+    if (!agent) {
+        throw OrganizationMessagingAgentNotFoundError(organizationId)
+    }
+
+    return mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent(agent)
+}
+
 const mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent = (
     agent: PrismaOrganizationMessagingAgentWithRelations,
 ): OrganizationMessagingAgent => {
@@ -138,6 +163,7 @@ const mapPrismaOrganizationMessagingAgentToOrganizationMessagingAgent = (
         prompt: agent.prompt ?? '',
         createdAt: agent.createdAt,
         updatedAt: agent.updatedAt,
+        hasAccessToProductsAndServices: agent.hasAccessToProductsAndServices,
         integration: agent.integration
             ? {
                   id: agent.integration.id,

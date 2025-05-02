@@ -1,10 +1,10 @@
 import { OrganizationIntegrationInstagram, OrganizationIntegration as PrismaIntegration } from '@prisma/client'
 import { prisma } from 'prisma/db'
+
 import {
     InstagramIntegrationNotFoundForInstagramBusinessIdError,
     InstagramIntegrationNotFoundForIntegrationIdError,
 } from '~/services/integration/errors'
-
 import {
     OrganizationIntegration,
     OrganizationIntegrationInstagramConfiguration,
@@ -122,7 +122,7 @@ export const updateOrganizationIntegrationInstagramConfiguration = async (
 
 export const getOrganizationIntegrationById = async (organizationId: string, integrationId: string) => {
     const integration = await prisma.organizationIntegration.findUnique({
-        where: { id: integrationId },
+        where: { id: integrationId, organizationId },
         include: { instagramIntegration: true },
     })
 

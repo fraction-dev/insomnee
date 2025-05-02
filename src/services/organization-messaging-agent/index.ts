@@ -6,8 +6,8 @@ export const bootstrapOrganizationMessagingAgent = async (organizationId: string
     return OrganizationMessagingDB.bootstrapOrganizationMessagingAgent(organizationId, integrationId)
 }
 
-export const updateOrganizationMessagingAgent = async (id: string, data: Partial<OrganizationMessagingAgent>) => {
-    return OrganizationMessagingDB.updateOrganizationMessagingAgent(id, data)
+export const updateOrganizationMessagingAgent = async (organizationId: string, id: string, data: Partial<OrganizationMessagingAgent>) => {
+    return OrganizationMessagingDB.updateOrganizationMessagingAgent(id, organizationId, data)
 }
 
 export const getOrganizationMessagingAgentByIntegrationId = async (integrationId: string) => {
@@ -24,4 +24,8 @@ export const getOrganizationMessagingAgentResponsesCount = async (organizationId
 
 export const getOrganizationMessagingAgentResponses = async (organizationId: string, startDate?: Date, endDate?: Date) => {
     return OrganizationMessagingDB.getOrganizationMessagingAgentResponses(organizationId, startDate, endDate)
+}
+
+export const getOrganizationMessagingAgent = async (organizationId: string) => {
+    return OrganizationMessagingDB.getOrganizationMessagingAgent(organizationId)
 }

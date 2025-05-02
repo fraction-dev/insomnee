@@ -12,6 +12,13 @@ export interface OrganizationMessagingAgent {
     status: OrganizationMessagingAgentStatus
     prompt: string
     integration: OrganizationIntegration | null
+    hasAccessToProductsAndServices: boolean
     createdAt: Date
     updatedAt: Date
+}
+
+export type UpdateOrganizationMessagingAgentPayload = {
+    status?: OrganizationMessagingAgentStatus
+    prompt?: string
+    hasAccessToProductsAndServices?: boolean
 }

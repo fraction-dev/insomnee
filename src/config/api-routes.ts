@@ -11,6 +11,12 @@ export const API_ROUTES = {
         USER: {
             CHAT_ASSISTANT: (organizationId: string, userId: string) => `/organization/${organizationId}/user/${userId}/chat-assistant`,
         },
+        SETTINGS: {
+            AGENTS: (organizationId: string) => `/organization/${organizationId}/settings/agents`,
+            MESSAGING_AGENT: {
+                UPDATE: (organizationId: string, agentId: string) => `/organization/${organizationId}/settings/agents/messaging/${agentId}`,
+            },
+        },
     },
     ORGANIZATION_TRANSACTIONS: {
         INDEX: (organizationId: string) => `/organization/${organizationId}/transaction`,

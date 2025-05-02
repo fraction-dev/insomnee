@@ -12,7 +12,7 @@ const Switch = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> & { isLoading?: boolean }
 >(({ className, isLoading, ...props }, ref) =>
     isLoading ? (
-        <Skeleton className="w-9 h-5" />
+        <Skeleton className="w-9 h-5 rounded-full" />
     ) : (
         <SwitchPrimitives.Root
             className={cn(

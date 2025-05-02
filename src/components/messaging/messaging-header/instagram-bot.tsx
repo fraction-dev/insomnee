@@ -1,5 +1,6 @@
-import { Activity, Ellipsis } from 'lucide-react'
+import { Activity, BotMessageSquare, Ellipsis } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { Hint } from '~/components/shared/hint'
@@ -9,6 +10,7 @@ import { Label } from '~/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover'
 import { Separator } from '~/components/ui/separator'
 import { Switch } from '~/components/ui/switch'
+import { ROUTES } from '~/config/routes'
 import { useUpdateOrganizationIntegrationInstagram } from '~/hooks/organization-integration/useUpdateOrganizationIntegrationInstagram'
 import { OrganizationIntegration } from '~/services/integration/model'
 
@@ -126,6 +128,14 @@ export const InstagramBot = ({ integration, organizationId }: Props) => {
                     </div>
                 </PopoverContent>
             </Popover>
+
+            <Hint content="Agent settings">
+                <Link href={ROUTES.DASHBOARD.SETTINGS.AGENTS(organizationId)}>
+                    <Button size="icon">
+                        <BotMessageSquare className="size-4" />
+                    </Button>
+                </Link>
+            </Hint>
         </div>
     )
 }
