@@ -5,7 +5,7 @@ import { ZodError, ZodSchema } from 'zod'
 import { fromError } from 'zod-validation-error'
 
 import { auth } from '~/config/auth'
-import { getURLSearchParams } from '~/lib/url'
+import { getURLSearchParams } from '~/lib/url/url'
 import { BaseResponse } from '~/types/response'
 
 import logger from '../logger'

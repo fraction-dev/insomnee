@@ -13,6 +13,9 @@ const inter = Inter({ subsets: ['latin'], weight: ['100', '200', '300', '400', '
 export const metadata: Metadata = {
     title: 'Insomnee - Manage your business life 24/7',
     description: 'Insomnee is a platform that helps you manage your business life 24/7',
+    icons: {
+        icon: '../favicon.ico',
+    },
 }
 
 export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

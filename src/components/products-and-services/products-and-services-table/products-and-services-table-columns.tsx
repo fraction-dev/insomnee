@@ -3,8 +3,8 @@ import { truncate } from 'lodash'
 import { FileIcon } from 'lucide-react'
 
 import { Checkbox } from '~/components/ui/checkbox'
-import { formatDateToReadableString } from '~/lib/date'
-import { formatCurrency } from '~/lib/formatCurrency'
+import { formatCurrency } from '~/lib/currency/format-currency'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
 
 const MAX_FILES_TO_SHOW = 1

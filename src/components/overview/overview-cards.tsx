@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { ReactNode } from 'react'
 
-import { formatCurrency } from '~/lib/formatCurrency'
+import { formatCurrency } from '~/lib/currency/format-currency'
 import { OverviewStatistics } from '~/services/overview/model'
 
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'

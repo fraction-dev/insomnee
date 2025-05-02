@@ -3,11 +3,11 @@ import { truncate } from 'lodash'
 
 import { UserCard } from '~/components/shared/user-card'
 import { Checkbox } from '~/components/ui/checkbox'
-import { formatDateToReadableString } from '~/lib/date'
-import { formatCurrency } from '~/lib/formatCurrency'
+import { formatCurrency } from '~/lib/currency/format-currency'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { cn } from '~/lib/utils'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
+import { OrganizationTransaction } from '~/services/organization-transaction/model'
 
 export const transactionsTableColumns: ColumnDef<OrganizationTransaction>[] = [
     {

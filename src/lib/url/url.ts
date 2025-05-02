@@ -94,8 +94,3 @@ export function getURLSearchParams(urlString: string) {
     const url = new URL(urlString)
     return qs.parse(url.searchParams.toString(), qsParseSettings)
 }
-
-export function getParsedSearchParams(searchParams: string | URLSearchParams) {
-    const stringParams = typeof searchParams === 'string' ? searchParams : searchParams.toString()
-    return qs.parse(stringParams, qsParseSettings)
-}

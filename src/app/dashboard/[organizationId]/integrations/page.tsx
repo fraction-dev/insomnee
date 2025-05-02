@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { IntegrationsView } from '~/components/integration/integrations-view'
@@ -8,6 +9,11 @@ import { getOrganizationIntegrations } from '~/services/integration'
 
 const ENV_CREDENTIALS = {
     INSTAGRAM_APP_ID: env.INSTAGRAM_APP_ID,
+}
+
+export const metadata: Metadata = {
+    title: 'Integrations | Insomnee',
+    description: 'Manage your integrations with Insomnee',
 }
 
 export default async function Page({ params }: { params: Promise<{ organizationId: string }> }) {

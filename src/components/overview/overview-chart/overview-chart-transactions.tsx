@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 
-import { ChartContainer, ChartTooltip,ChartTooltipContent  } from '~/components/ui/chart'
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '~/components/ui/chart'
 import { Separator } from '~/components/ui/separator'
-import { formatCurrency } from '~/lib/formatCurrency'
+import { formatCurrency } from '~/lib/currency/format-currency'
 import { cn } from '~/lib/utils'
 import { OverviewChartData } from '~/services/overview/model'
 

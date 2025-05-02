@@ -1,4 +1,4 @@
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
 
 import { Sheet, SheetContent, SheetTitle } from '../ui/sheet'

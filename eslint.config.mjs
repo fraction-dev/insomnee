@@ -4,6 +4,7 @@ import pluginNext from '@next/eslint-plugin-next'
 import typescriptEslint from '@typescript-eslint/eslint-plugin'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import importPlugin from 'eslint-plugin-import'
+import jestPlugin from 'eslint-plugin-jest'
 import onlyWarn from 'eslint-plugin-only-warn'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
@@ -38,6 +39,7 @@ const eslintConfig = [
             ...pluginReact.configs.flat.recommended.languageOptions,
             globals: {
                 ...globals.serviceworker,
+                ...globals.jest,
             },
         },
 
@@ -49,6 +51,7 @@ const eslintConfig = [
             '@typescript-eslint': typescriptEslint,
             'simple-import-sort': simpleImportSort,
             import: importPlugin,
+            jest: jestPlugin,
         },
 
         // Settings
