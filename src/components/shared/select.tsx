@@ -1,7 +1,7 @@
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 
-import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select as ShadcnSelect } from '~/components/ui/select'
+import { Select as ShadcnSelect,SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { cn } from '~/lib/utils'
 
 import { Button } from '../ui/button'

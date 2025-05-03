@@ -1,3 +1,4 @@
+import { withBetterStack } from '@logtail/next'
 import type { NextConfig } from 'next'
 import { i18n } from './next-i18next.config'
 
@@ -14,4 +15,4 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ['@prisma/client'],
 }
 
-export default nextConfig
+export default withBetterStack(nextConfig)
