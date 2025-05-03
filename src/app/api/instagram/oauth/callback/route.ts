@@ -17,9 +17,14 @@ export const GET = createRouteHandler()({ auth: false }, async ({ req: request }
     const code = searchParams.get('code')
     const state = searchParams.get('state')
 
+    logger.info(`Got state and code`, { state, code })
+
     if (state && code && 'organizationId' in JSON.parse(state)) {
         const organizationId = JSON.parse(state).organizationId
+        logger.info(`Got organization id`, { organizationId })
+
         const organization = await getOrganizationById(organizationId)
+        logger.info(`Got organization`, { organizationId, organization })
 
         const shortLivedAccessToken = await getShortLivedAccessToken(code)
         logger.info(`Got short lived access token`, { organizationId, shortLivedAccessToken })
