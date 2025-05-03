@@ -11,6 +11,7 @@ interface Props {
 export const MessagingAgentView = ({ organizationId, agent }: Props) => {
     return (
         <SettingsCard
+            isLoading={agent.status === 'PENDING'}
             title="Messaging Agent configuration"
             description="Customize the rules for your messaging agent, to make it more powerful in responses, reactions, emojis and listenings. Customize it based on your needs."
         >

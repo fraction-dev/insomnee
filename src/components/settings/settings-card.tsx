@@ -2,15 +2,21 @@ import { PropsWithChildren, ReactNode } from 'react'
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { Separator } from '../ui/separator'
+import { Skeleton } from '../ui/skeleton'
 
 interface Props {
+    isLoading?: boolean
     title: string
-    description?: string
+    description?: string | ReactNode
     rightHeaderContent?: ReactNode
     footer?: ReactNode
 }
 
-export const SettingsCard = ({ title, description, rightHeaderContent, footer, children }: PropsWithChildren<Props>) => {
+export const SettingsCard = ({ title, description, rightHeaderContent, footer, children, isLoading }: PropsWithChildren<Props>) => {
+    if (isLoading) {
+        return <Skeleton className="h-96 w-full" />
+    }
+
     return (
         <Card>
             <CardHeader className="flex items-center justify-between gap-12">

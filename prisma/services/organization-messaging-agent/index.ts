@@ -51,14 +51,14 @@ export const bootstrapOrganizationMessagingAgent = async (organizationId: string
 
     if (existing) {
         return await updateOrganizationMessagingAgent(existing.id, organizationId, {
-            status: OrganizationMessagingAgentStatus.PENDING,
+            status: 'PENDING',
         })
     }
 
     const agent = await prisma.organizationMessagingAgent.create({
         data: {
             organizationId,
-            status: OrganizationMessagingAgentStatus.PENDING,
+            status: 'PENDING',
             integrationId,
         },
         include: INCLUDE_CLAUSE,

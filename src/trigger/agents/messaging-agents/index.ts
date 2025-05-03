@@ -5,7 +5,6 @@ import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent }
 
 import { generateText } from '~/lib/server/ai'
 import { Dialog } from '~/services/messaging/model'
-import { OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
 import { MESSAGING_ANALYTICS_PROMPT } from './prompts'
@@ -54,7 +53,7 @@ export const setupMessagingAgentTask = task({
         })
 
         await updateOrganizationMessagingAgent(agent.id, organizationId, {
-            status: OrganizationMessagingAgentStatus.ACTIVE,
+            status: 'ACTIVE',
             prompt: prompt ?? '',
         })
 

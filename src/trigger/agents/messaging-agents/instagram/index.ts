@@ -7,7 +7,6 @@ import { OrganizationIntegration } from '~/services/integration/model'
 import { getOrganizationById } from '~/services/organization'
 import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
 import { getOrganizationMessagingAgentByIntegrationId, saveMessagingAgentResponseMessage } from '~/services/organization-messaging-agent'
-import { OrganizationMessagingAgentStatus } from '~/services/organization-messaging-agent/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
 import { INSTAGRAM_MESSAGE_PROMPT } from './prompts'
@@ -51,7 +50,7 @@ export const triggerInstagramMessageAgentFromWebhookTask = task({
 
         const isPromptSet = agent.prompt.trim() !== ''
         const isBotEnabled = integration.instagramIntegration?.configuration?.isBotEnabled ?? false
-        const isAgentReady = agent.status === OrganizationMessagingAgentStatus.ACTIVE
+        const isAgentReady = agent.status === 'ACTIVE'
         const accessToken = integration.instagramIntegration?.accessToken
 
         if (isAgentReady && isBotEnabled && isPromptSet && accessToken) {
