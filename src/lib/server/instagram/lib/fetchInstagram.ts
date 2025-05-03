@@ -31,17 +31,15 @@ export const fetchInstagram = async <T>(method: Method, url: string, data?: any,
 
         return response.data
     } catch (error) {
-        const instagramError = error as InstagramErrorResponse
-        const baseError = error as Error
+        const err = error as InstagramErrorResponse
 
-        const errorMessage = instagramError.response?.data?.error?.message ?? baseError?.message ?? 'Error fetching Instagram API'
+        const errorMessage = err.response?.data?.error?.message ?? 'Error fetching Instagram API'
 
         logger.error(`[fetchInstagram] Instagram error`, {
             url,
             method,
-            error: {
-                message: errorMessage,
-            },
+            error,
+            errorMessage,
         })
 
         throw new InternalError(errorMessage)
