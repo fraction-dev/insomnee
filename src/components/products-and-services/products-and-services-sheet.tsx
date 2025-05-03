@@ -27,7 +27,9 @@ export const ProductsAndServicesSheet = ({
 
     return (
         <Sheet open={isOpen} onOpenChange={onOpenChange}>
-            <SheetContent className={`max-h-[${SHEET_MAX_HEIGHT}] mt-3 mb-3 mr-3 rounded-xs p-4 gap-6 flex flex-col min-w-md pt-12`}>
+            <SheetContent
+                className={`max-h-[${SHEET_MAX_HEIGHT}] md:mt-3 md:mb-3 md:mr-3 rounded-xs p-4 gap-6 flex flex-col min-w-md pt-12`}
+            >
                 {productAndService && (
                     <div className="flex flex-col gap-4">
                         <p className="text-xs font-light font-mono text-muted-foreground">

@@ -1,8 +1,12 @@
-import { ChangeEvent, FocusEvent, KeyboardEvent, ReactNode, useEffect, useRef, useState } from 'react'
+import { Check, ChevronsUpDown } from 'lucide-react'
+import { ReactNode, useState } from 'react'
 
-import { Input } from '~/components/ui/input'
-import { Select as ShadcnSelect,SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
+import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select as ShadcnSelect } from '~/components/ui/select'
 import { cn } from '~/lib/utils'
+
+import { Button } from '../ui/button'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
 interface Props {
     id?: string
@@ -11,96 +15,59 @@ interface Props {
     options: { label: string | ReactNode; value: string }[]
     value: string | undefined
     placeholder?: string
-    searchInputPlaceholder?: string
     className?: string
     onChange: (value: string) => void
 }
 
-export const Select = ({
-    id,
-    disabled,
-    options,
-    value,
-    onChange,
-    placeholder,
-    withSearch = false,
-    searchInputPlaceholder = 'Search',
-    className,
-}: Props) => {
-    const [search, setSearch] = useState('')
-    const inputRef = useRef<HTMLInputElement>(null)
+export const Select = ({ id, disabled, options, value, onChange, placeholder, withSearch = false, className }: Props) => {
+    const [open, setOpen] = useState(false)
 
-    useEffect(() => {
-        setSearch('')
-    }, [value])
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault()
-        e.stopPropagation()
-        setSearch(e.target.value)
+    if (withSearch) {
+        return (
+            <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                    <Button variant="outline" role="combobox" aria-expanded={open} className="justify-between">
+                        {value ? options.find((option) => option.value === value)?.label : 'Select framework...'}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent className={cn('p-3', className)}>
+                    <Command>
+                        <CommandInput placeholder={placeholder} className="rounded-xs" />
+                        <CommandList>
+                            <CommandEmpty>No results found.</CommandEmpty>
+                            <CommandGroup>
+                                {options.map((option) => (
+                                    <CommandItem
+                                        key={option.value}
+                                        value={option.value}
+                                        onSelect={(currentValue) => {
+                                            onChange(currentValue === value ? '' : currentValue)
+                                        }}
+                                    >
+                                        {option.label}
+                                        <Check className={cn('ml-auto size-4', value === option.value ? 'opacity-100' : 'opacity-0')} />
+                                    </CommandItem>
+                                ))}
+                            </CommandGroup>
+                        </CommandList>
+                    </Command>
+                </PopoverContent>
+            </Popover>
+        )
     }
-
-    const handleInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        e.stopPropagation()
-        if (e.key === 'Escape') {
-            e.preventDefault()
-            inputRef.current?.blur()
-        }
-    }
-
-    const handleInputFocus = (e: FocusEvent<HTMLInputElement>) => {
-        e.stopPropagation()
-    }
-
-    const filteredSearchOptions = options.filter((option) => {
-        if (typeof option.label === 'string') {
-            return option.label.toLowerCase().includes(search.toLowerCase())
-        }
-
-        if (typeof option.label === 'object') {
-            return option.value.toString().toLowerCase().includes(search.toLowerCase())
-        }
-
-        return false
-    })
 
     return (
-        <ShadcnSelect disabled={disabled} value={value} onValueChange={onChange} onOpenChange={() => setSearch('')}>
+        <ShadcnSelect disabled={disabled} value={value} onValueChange={onChange}>
             <SelectTrigger className={cn('w-full', className)}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
             <SelectContent id={id}>
-                {withSearch && (
-                    <div className="fixed top-0 z-10 bg-white p-1 w-full">
-                        <Input
-                            ref={inputRef}
-                            autoFocus
-                            className="w-full shadow-none placeholder:text-sm placeholder:font-light placeholder:text-gray-500 border-b border-border border-l-0 border-r-0 border-t-0"
-                            placeholder={searchInputPlaceholder}
-                            value={search}
-                            onChange={handleInputChange}
-                            onKeyDown={handleInputKeyDown}
-                            onClick={(e) => e.stopPropagation()}
-                            onFocus={handleInputFocus}
-                        />
-                    </div>
-                )}
-                <div
-                    className={cn({
-                        'mt-10': withSearch,
-                        'mt-12 text-center pb-2': withSearch && filteredSearchOptions.length === 0,
-                    })}
-                >
-                    {filteredSearchOptions.length ? (
-                        filteredSearchOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                                {option.label}
-                            </SelectItem>
-                        ))
-                    ) : (
-                        <p className="text-sm text-gray-500">No results found</p>
-                    )}
-                </div>
+                {options.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                    </SelectItem>
+                ))}
             </SelectContent>
         </ShadcnSelect>
     )

@@ -34,7 +34,7 @@ export const RangePicker = ({ date, className, onSelect, maxDays = 30 }: Props) 
                     <Button
                         id="date"
                         variant={'outline'}
-                        className={cn('w-[300px] justify-start text-left font-normal relative', !date && 'text-muted-foreground')}
+                        className={cn('md:w-[300px] justify-start text-left font-normal relative', !date && 'text-muted-foreground')}
                     >
                         <CalendarIcon />
                         {date?.from ? (

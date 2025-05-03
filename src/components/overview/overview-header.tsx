@@ -14,10 +14,11 @@ interface Props {
 
 export const OverviewHeader = ({ currency, date, onCurrencyChange, onDateChange }: Props) => {
     return (
-        <div className="flex items-center justify-end">
-            <div className="flex items-center gap-3">
-                <RangePicker date={date} maxDays={30} onSelect={onDateChange} />
+        <div className="md:flex md:items-center md:justify-end">
+            <div className="flex items-center flex-row gap-3">
+                <RangePicker className="w-full md:w-auto" date={date} maxDays={30} onSelect={onDateChange} />
                 <Select
+                    withSearch
                     options={CURRENCIES.map((currency) => ({
                         label: currency.code,
                         value: currency.code,
