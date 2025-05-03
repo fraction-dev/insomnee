@@ -2,6 +2,7 @@ import { tasks } from '@trigger.dev/sdk/v3'
 import { NextResponse } from 'next/server'
 
 import { env } from '~/config/env'
+import logger from '~/core/logger'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { getLongLivedAccessToken, getMe, getShortLivedAccessToken } from '~/lib/server/instagram/api'
 import { extractBusinessIdFromConversations } from '~/lib/server/instagram/lib/extractBusinessIdFromConversations'
@@ -21,8 +22,13 @@ export const GET = createRouteHandler()({ auth: false }, async ({ req: request }
         const organization = await getOrganizationById(organizationId)
 
         const shortLivedAccessToken = await getShortLivedAccessToken(code)
+        logger.info(`Got short lived access token`, { organizationId, shortLivedAccessToken })
+
         const longLivedAccessToken = await getLongLivedAccessToken(shortLivedAccessToken.access_token, env.INSTAGRAM_APP_SECRET)
+        logger.info(`Got long lived access token`, { organizationId, longLivedAccessToken })
+
         const me = await getMe(longLivedAccessToken.access_token, shortLivedAccessToken.user_id)
+        logger.info(`Got me`, { organizationId, me })
 
         const integration = await addInstagramIntegration(organizationId, {
             accessToken: longLivedAccessToken.access_token,
