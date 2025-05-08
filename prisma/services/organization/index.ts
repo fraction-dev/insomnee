@@ -81,6 +81,7 @@ const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizati
             userId: member.userId,
             role: member.role,
         })),
+        websiteUrl: organization.websiteUrl ?? '',
         isActive: organization.isActive ?? true,
         isVerified: organization.isVerified ?? false,
         verificationStatus: organization.verificationStatus ?? null,

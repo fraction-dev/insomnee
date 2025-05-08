@@ -1,5 +1,8 @@
+'use client'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -34,11 +37,18 @@ export const OrganizationsCreateForm = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: '',
-            defaultLanguage: 'ru',
-            defaultCurrency: 'MDL',
+            defaultLanguage: 'en',
+            defaultCurrency: 'USD',
             phone: '',
         },
     })
+
+    useEffect(() => {
+        const browserLanguage = navigator.language
+        const matchedLanguage = SUPPORTED_LANGUAGES.find((language) => language.code === browserLanguage)?.code ?? 'en'
+        form.setValue('defaultLanguage', matchedLanguage)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const onSubmit = async (data: FormSchema) => {
         try {

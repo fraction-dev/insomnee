@@ -6,7 +6,7 @@ export const bootstrapOrganizationMessagingAgent = async (organizationId: string
     return OrganizationMessagingDB.bootstrapOrganizationMessagingAgent(organizationId, integrationId)
 }
 
-export const updateOrganizationMessagingAgent = async (organizationId: string, id: string, data: Partial<OrganizationMessagingAgent>) => {
+export const updateOrganizationMessagingAgent = async (id: string, organizationId: string, data: Partial<OrganizationMessagingAgent>) => {
     return OrganizationMessagingDB.updateOrganizationMessagingAgent(id, organizationId, data)
 }
 

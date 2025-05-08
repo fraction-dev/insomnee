@@ -10,7 +10,7 @@ export const formatCurrency = (amount: number, currency: string) => {
     }
 
     if (!currency) {
-        currency = 'MDL'
+        currency = 'USD'
     }
 
     return new Intl.NumberFormat('en-US', {

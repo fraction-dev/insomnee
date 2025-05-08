@@ -9,12 +9,8 @@ interface Props {
 
 export const IntegrationInstagramButton = ({ appId, organizationId }: Props) => {
     const getRedirectURI = () => {
-        if (process.env.NODE_ENV === 'development') {
-            // return `https://caring-kangaroo-composed.ngrok-free.app/api/instagram/oauth/callback`
-            return `https://app.insomnee.com/api/instagram/oauth/callback`
-        }
-
-        return window.location.origin + '/api/instagram/oauth/callback'
+        const originUrl = process.env.NODE_ENV === 'development' ? process.env.NEXT_PUBLIC_NGROK_URL : window.location.origin
+        return originUrl + '/api/instagram/oauth/callback'
     }
 
     const redirectToInstagramAuth = () => {

@@ -42,7 +42,7 @@ export const transactionsTableColumns: ColumnDef<OrganizationTransaction>[] = [
         id: 'description',
         accessorKey: 'description',
         header: 'Description',
-        cell: ({ row }) => truncate(row.original.description, { length: 20 }),
+        cell: ({ row }) => truncate(row.original.description, { length: 35 }),
     },
     {
         id: 'amount',

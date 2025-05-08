@@ -1,6 +1,6 @@
 import { env } from '~/config/env'
 
-import { fetchInstagram } from './lib/fetchInstagram'
+import { fetchInstagram } from './lib/fetch-instagram'
 import {
     InstagramConversation,
     InstagramConversationMessage,
@@ -22,7 +22,7 @@ export const getShortLivedAccessToken = async (code: string) => {
             client_id: env.INSTAGRAM_APP_ID,
             client_secret: env.INSTAGRAM_APP_SECRET,
             grant_type: 'authorization_code',
-            redirect_uri: `${env.BASE_URL}/api/instagram/oauth/callback`,
+            redirect_uri: `${env.NODE_ENV === 'development' ? env.NGROK_URL : env.BASE_URL}/api/instagram/oauth/callback`,
             code: code,
         },
         { 'Content-Type': 'application/x-www-form-urlencoded' },

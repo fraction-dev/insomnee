@@ -2,7 +2,7 @@ import { tasks } from '@trigger.dev/sdk/v3'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { getInstagramIntegrationByInstagramBusinessId } from '~/services/integration'
-import { triggerInstagramMessageAgentFromWebhookTask } from '~/trigger/agents/messaging-agents/instagram'
+import { executeInstagramMessageTask } from '~/trigger/tasks/execute-instagram-message'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
 export async function POST(request: NextRequest) {
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
         return
     }
 
-    await tasks.trigger<typeof triggerInstagramMessageAgentFromWebhookTask>(TriggerTasks.TRIGGER_INSTAGRAM_MESSAGE_AGENT_FROM_WEBHOOK, {
+    await tasks.trigger<typeof executeInstagramMessageTask>(TriggerTasks.EXECUTE_INSTAGRAM_MESSAGE, {
         integration,
         message,
         senderId,

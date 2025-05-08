@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-import logger from '~/core/logger'
 import { InternalError } from '~/lib/operational-errors'
 import { CurrencyRate } from '~/services/currency-rate/model'
 
 const BASE_URL_PATTERN = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{{currency}}.json'
 
 export const fetchCurrencyRate = async (currency: string): Promise<Omit<CurrencyRate, 'id' | 'createdAt' | 'updatedAt'>> => {
-    const url = BASE_URL_PATTERN.replace('{{currency}}', currency)
+    const url = BASE_URL_PATTERN.replace('{{currency}}', currency.toLowerCase())
 
     try {
         /**
@@ -22,10 +21,9 @@ export const fetchCurrencyRate = async (currency: string): Promise<Omit<Currency
         return {
             currency,
             symbol: symbol ?? '',
-            combinations: response.data[currency],
+            combinations: response.data[currency] ?? {},
         }
-    } catch (error) {
-        logger.error(`Failed to fetch currency rate for ${currency}`, { error })
+    } catch (_error) {
         throw new InternalError(`Failed to fetch currency rate for ${currency}`)
     }
 }

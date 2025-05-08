@@ -5,6 +5,7 @@ import { PlusIcon } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '~/components/ui/button'
+import { Skeleton } from '~/components/ui/skeleton'
 import { ROUTES } from '~/config/routes'
 import { useSettingsAgents } from '~/hooks/settings/useSettingsAgents'
 import { SettingsAgentsOutput } from '~/services/settings/model'
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export const SettingsAgentsView = ({ organizationId }: Props) => {
-    const { data } = useSettingsAgents(organizationId)
+    const { data, isLoading } = useSettingsAgents(organizationId)
 
     const isAgentInData = (agent: keyof SettingsAgentsOutput) => {
         if (!data?.data || isNil(data.data[agent])) return false
@@ -30,7 +31,9 @@ export const SettingsAgentsView = ({ organizationId }: Props) => {
 
     return (
         <div className="flex flex-col gap-6">
-            {isDataEmpty && (
+            {isLoading && <Skeleton className="h-96 w-full" />}
+
+            {isDataEmpty && !isLoading && (
                 <SettingsCard
                     title="No agents found"
                     description="You need at least one integration to start using agents"
@@ -44,7 +47,8 @@ export const SettingsAgentsView = ({ organizationId }: Props) => {
                     }
                 />
             )}
-            {messagingAgent && <MessagingAgentView organizationId={organizationId} agent={messagingAgent} />}
+
+            {!isLoading && messagingAgent && <MessagingAgentView organizationId={organizationId} agent={messagingAgent} />}
         </div>
     )
 }

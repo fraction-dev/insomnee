@@ -73,34 +73,42 @@ export const MessagingView = ({ organizationId }: Props) => {
                 </div>
             ) : (
                 <div className="grid grid-cols-3 gap-4">
-                    <div className="flex flex-col gap-2">
-                        <Input placeholder="Search" />
+                    {dialogsBasedOnSelectedIntegration.length === 0 ? (
+                        <div className="col-span-3">
+                            <p className="text-sm text-muted-foreground">No dialogs found</p>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="flex flex-col gap-2">
+                                <Input placeholder="Search" />
 
-                        {dialogsBasedOnSelectedIntegration.map((dialog) => (
-                            <ChatDialog
-                                key={dialog.id}
-                                username={dialog.targetUser.username}
-                                avatar={dialog.targetUser.avatar}
-                                lastMessage={last(dialog.messages ?? [])}
-                                isSelected={selectedDialog?.id === dialog.id}
-                                onSelect={() => setSelectedDialog(dialog)}
-                            />
-                        ))}
-                    </div>
+                                {dialogsBasedOnSelectedIntegration.map((dialog) => (
+                                    <ChatDialog
+                                        key={dialog.id}
+                                        username={dialog.targetUser.username}
+                                        avatar={dialog.targetUser.avatar}
+                                        lastMessage={last(dialog.messages ?? [])}
+                                        isSelected={selectedDialog?.id === dialog.id}
+                                        onSelect={() => setSelectedDialog(dialog)}
+                                    />
+                                ))}
+                            </div>
 
-                    <div className="col-span-2">
-                        {selectedDialog && (
-                            <ChatMessages
-                                type={selectedIntegration.type}
-                                targetUser={selectedDialog.targetUser}
-                                messages={selectedDialog.messages ?? []}
-                                organizationId={organizationId}
-                                isSubmitting={isLoadingInstagramDialogs}
-                                isBotEnabled={selectedIntegration.instagramIntegration?.configuration?.isBotEnabled ?? false}
-                                selectedIntegration={selectedIntegration}
-                            />
-                        )}
-                    </div>
+                            <div className="col-span-2">
+                                {selectedDialog && (
+                                    <ChatMessages
+                                        type={selectedIntegration.type}
+                                        targetUser={selectedDialog.targetUser}
+                                        messages={selectedDialog.messages ?? []}
+                                        organizationId={organizationId}
+                                        isSubmitting={isLoadingInstagramDialogs}
+                                        isBotEnabled={selectedIntegration.instagramIntegration?.configuration?.isBotEnabled ?? false}
+                                        selectedIntegration={selectedIntegration}
+                                    />
+                                )}
+                            </div>
+                        </>
+                    )}
                 </div>
             )}
         </div>

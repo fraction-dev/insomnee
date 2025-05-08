@@ -1,25 +1,16 @@
 'use client'
 
-import { ChevronDown } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ROUTES } from '~/config/routes'
 import { signIn } from '~/lib/auth-client'
-import { cn } from '~/lib/utils'
 
 import { Button } from '../ui/button'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible'
-import { Separator } from '../ui/separator'
-import { AuthEmailLoginView } from './auth-email-login-view'
 
 export const AuthLoginView = () => {
     const { t } = useTranslation(['auth'])
-
-    const [isExpanded, setIsExpanded] = useState(false)
-    const [isShowMoreOptionsVisible, setIsShowMoreOptionsVisible] = useState(true)
 
     const handleGoogleLogin = () => {
         signIn.social({
@@ -40,7 +31,7 @@ export const AuthLoginView = () => {
                 </Button>
             </div>
 
-            <Separator />
+            {/* <Separator />
 
             <Collapsible>
                 <div className="flex flex-col gap-4">
@@ -62,7 +53,7 @@ export const AuthLoginView = () => {
                         <AuthEmailLoginView onSuccess={() => setIsShowMoreOptionsVisible(false)} />
                     </CollapsibleContent>
                 </div>
-            </Collapsible>
+            </Collapsible> */}
 
             <p className="text-muted-foreground text-xs leading-relaxed">
                 <Trans

@@ -4,11 +4,11 @@ import { NextResponse } from 'next/server'
 import { env } from '~/config/env'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { getLongLivedAccessToken, getMe, getShortLivedAccessToken } from '~/lib/server/instagram/api'
-import { extractBusinessIdFromConversations } from '~/lib/server/instagram/lib/extractBusinessIdFromConversations'
+import { extractBusinessIdFromConversations } from '~/lib/server/instagram/lib/extract-business-id-from-conversation'
 import { getInstagramConversations } from '~/services/instagram'
 import { addInstagramIntegration, updateInstagramIntegration } from '~/services/integration'
 import { getOrganizationById } from '~/services/organization'
-import { setupMessagingAgentTask } from '~/trigger/agents/messaging-agents'
+import { setupInstagramMessagingTaskAgent } from '~/trigger/tasks/setup-instagram-messaging-agent'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
 export const GET = createRouteHandler()({ auth: false }, async ({ req: request }) => {
@@ -44,12 +44,9 @@ export const GET = createRouteHandler()({ auth: false }, async ({ req: request }
             instagramBusinessId: businessId,
         })
 
-        await tasks.trigger<typeof setupMessagingAgentTask>(TriggerTasks.SETUP_MESSAGING_AGENT, {
-            organizationId,
-            integrationId: integration.id,
-            socialType: 'INSTAGRAM',
-            websiteUrl: organization.websiteUrl ?? '',
-            dialogs: conversations,
+        await tasks.trigger<typeof setupInstagramMessagingTaskAgent>(TriggerTasks.SETUP_INSTAGRAM_MESSAGING_TASK_AGENT, {
+            organization,
+            integration,
         })
     }
 

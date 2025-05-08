@@ -7,7 +7,7 @@ export interface Organization {
     name: string
     defaultLanguage: OrganizationLanguage
     defaultCurrency: OrganizationCurrency
-    websiteUrl: string | null
+    websiteUrl: string
     logoUrl: string | null
     address: string | null
     phone: string | null

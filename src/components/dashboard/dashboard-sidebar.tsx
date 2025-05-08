@@ -84,11 +84,6 @@ const data = (organizationId: string) => ({
             ],
         },
         {
-            title: 'Settings',
-            url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),
-            icon: Settings2,
-        },
-        {
             title: 'Products & Services',
             url: ROUTES.DASHBOARD.PRODUCTS_AND_SERVICES(organizationId),
             icon: SquareChartGantt,
@@ -107,6 +102,11 @@ const data = (organizationId: string) => ({
             title: 'Integrations',
             url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
             icon: LinkIcon,
+        },
+        {
+            title: 'Settings',
+            url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),
+            icon: Settings2,
         },
     ],
     navSecondary: [

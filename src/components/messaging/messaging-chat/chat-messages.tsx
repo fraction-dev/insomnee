@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { LinkIcon, Sparkle } from 'lucide-react'
+import { ExternalLinkIcon, Sparkle } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { Hint } from '~/components/shared/hint'
@@ -90,7 +90,7 @@ export const ChatMessages = ({
                         {type === 'INSTAGRAM' && (
                             <Hint content="Open in Instagram">
                                 <Button variant="outline" size="icon" onClick={() => handleOpenInInstagram(targetUser.username ?? '')}>
-                                    <LinkIcon className="size-4" />
+                                    <ExternalLinkIcon className="size-4" />
                                 </Button>
                             </Hint>
                         )}
