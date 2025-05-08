@@ -7,6 +7,8 @@ export const metadata: Metadata = {
     description: 'Create, manage and track your products and services',
 }
 
-export default function Page({ params }: { params: { organizationId: string } }) {
-    return <ProductsAndServicesView organizationId={params.organizationId} />
+export default async function Page({ params }: { params: Promise<{ organizationId: string }> }) {
+    const { organizationId } = await params
+
+    return <ProductsAndServicesView organizationId={organizationId} />
 }
