@@ -12,10 +12,10 @@ describe('formatToShortDate', () => {
 
 describe('formatDateToReadableString', () => {
     it('Works with basic date', () => {
-        expect(formatDateToReadableString(new Date('2025-05-02'))).toEqual('Friday, 02 May 2025')
+        expect(formatDateToReadableString(new Date('2025-05-02'))).toEqual('02 May, 2025')
     })
 
     it('Works with date with hours', () => {
-        expect(formatDateToReadableString(new Date('2025-05-02 12:00:00'), { withHours: true })).toEqual('Friday, 02 May 2025 12:00')
+        expect(formatDateToReadableString(new Date('2025-05-02 12:00:00'), { withHours: true })).toEqual('02 May 2025, 12:00')
     })
 })

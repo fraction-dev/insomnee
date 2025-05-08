@@ -8,6 +8,6 @@ type FormatDateToReadableStringOptions = {
     withHours?: boolean
 }
 
-export const formatDateToReadableString = (date: Date, { withHours = false }: FormatDateToReadableStringOptions = {}) => {
-    return dayjs(date).format(withHours ? 'dddd, DD MMMM YYYY HH:mm' : 'dddd, DD MMMM YYYY')
+export const formatDateToReadableString = (date: Date | string, { withHours = false }: FormatDateToReadableStringOptions = {}) => {
+    return dayjs(date).format(withHours ? 'DD MMMM YYYY, HH:mm' : 'DD MMMM, YYYY')
 }
