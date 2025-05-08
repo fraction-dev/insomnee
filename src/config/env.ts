@@ -17,13 +17,20 @@ const getAppUrl = () => {
     return process.env.BASE_URL
 }
 
-const prepareToValidate = (variableName: string) => {
+const prepareToValidate = (variableName: string, options?: { isOptional?: boolean }) => {
+    const { isOptional = false } = options ?? {}
+
     return z
-        .string({
-            required_error: `Required: Set ${variableName} environment variable`,
-            invalid_type_error: `${variableName} must be a string`,
-        })
+        .string(
+            isOptional
+                ? { invalid_type_error: `${variableName} must be a string` }
+                : {
+                      required_error: `Required: Set ${variableName} environment variable`,
+                      invalid_type_error: `${variableName} must be a string`,
+                  },
+        )
         .min(1, { message: `${variableName} environment variable is required` })
+        .optional()
 }
 
 /**
@@ -54,7 +61,7 @@ const envSchema = z.object({
     ELEVENLABS_API_KEY: prepareToValidate('ELEVENLABS_API_KEY'),
     PERPLEXITY_API_KEY: prepareToValidate('PERPLEXITY_API_KEY'),
 
-    NGROK_URL: prepareToValidate('NGROK_URL'),
+    NGROK_URL: prepareToValidate('NGROK_URL', { isOptional: true }),
 })
 
 const getEnv = () => {
