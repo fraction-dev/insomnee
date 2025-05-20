@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { API_ROUTES } from '~/config/api-routes'
 import { fetch } from '~/lib/fetch'
 import { OrganizationIntegrationInstagramConfiguration } from '~/services/integration/model'
 
@@ -14,7 +13,7 @@ export const useUpdateOrganizationIntegrationInstagram = (organizationId: string
 
     return useMutation({
         mutationFn: async ({ integrationId, payload }: Payload) => {
-            return fetch('PUT', API_ROUTES.ORGANIZATION_INTEGRATIONS.INSTAGRAM.UPDATE_CONFIGURATION(organizationId, integrationId), payload)
+            return fetch('PUT', `/organization/${organizationId}/integrations/${integrationId}/instagram`, payload)
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['organization-integrations', organizationId] })

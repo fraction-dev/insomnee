@@ -54,7 +54,7 @@ const calculateTransactionsExpenses = (transactions: OrganizationTransaction[]) 
 }
 
 const getTransactionsValueBasedOnCurrency = (transaction: OrganizationTransaction, currency: string, currencyRates: CurrencyRate[]) => {
-    const currencyRate = currencyRates.find((rate) => rate.currency === currency.toLowerCase())
+    const currencyRate = currencyRates.find((rate) => rate.currency.toLowerCase() === currency.toLowerCase())
     if (!currencyRate) {
         return 0
     }

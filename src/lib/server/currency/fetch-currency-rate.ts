@@ -21,7 +21,7 @@ export const fetchCurrencyRate = async (currency: string): Promise<Omit<Currency
         return {
             currency,
             symbol: symbol ?? '',
-            combinations: response.data[currency] ?? {},
+            combinations: response.data[currency.toLowerCase()] ?? {},
         }
     } catch (_error) {
         throw new InternalError(`Failed to fetch currency rate for ${currency}`)

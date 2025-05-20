@@ -44,36 +44,38 @@ export const OverviewChartTransactions = ({ data, currency }: Props) => {
                         <ChartTooltipContent
                             hideLabel
                             className="w-[250px] rounded-xs p-4"
-                            formatter={(value, name, payload, index) => (
-                                <div className="flex flex-col gap-2 w-full">
-                                    <div className="flex items-center justify-between gap-12">
-                                        <div className="flex items-center gap-2">
-                                            <div
-                                                className={cn('size-2 rounded-xs', {
-                                                    'bg-black': name === 'y',
-                                                    'bg-neutral-400': name === 'x',
-                                                })}
-                                            />
+                            formatter={(value, name, payload) => {
+                                return (
+                                    <div className="flex flex-col gap-2 w-full">
+                                        <div className="flex items-center justify-between gap-12">
+                                            <div className="flex items-center gap-2">
+                                                <div
+                                                    className={cn('size-2 rounded-xs', {
+                                                        'bg-black': name === 'y',
+                                                        'bg-neutral-400': name === 'x',
+                                                    })}
+                                                />
 
-                                            {getTooltipLabel()[name as keyof typeof chartConfig]}
+                                                {getTooltipLabel()[name as keyof typeof chartConfig]}
+                                            </div>
+
+                                            <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
+                                                {formatCurrency(value as number, currency)}
+                                            </div>
                                         </div>
 
-                                        <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
-                                            {formatCurrency(value as number, currency)}
-                                        </div>
+                                        {name === 'y' && (
+                                            <>
+                                                <Separator />
+
+                                                <p className="text-muted-foreground text-xs leading-normal">
+                                                    {dayjs(`${payload.payload.year}-${payload.payload.month}`).format('MMMM YYYY')}
+                                                </p>
+                                            </>
+                                        )}
                                     </div>
-
-                                    {index === data.length - 1 && (
-                                        <>
-                                            <Separator />
-
-                                            <p className="text-muted-foreground text-xs leading-normal">
-                                                {dayjs(`${payload.payload.year}-${payload.payload.month}`).format('MMMM YYYY')}
-                                            </p>
-                                        </>
-                                    )}
-                                </div>
-                            )}
+                                )
+                            }}
                         />
                     }
                 />

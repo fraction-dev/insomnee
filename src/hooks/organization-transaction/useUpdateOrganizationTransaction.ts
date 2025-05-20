@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { API_ROUTES } from '~/config/api-routes'
 import { fetch } from '~/lib/fetch'
 import { OrganizationTransactionUpdate } from '~/services/organization-transaction/model'
 
@@ -10,7 +9,7 @@ export const useUpdateOrganizationTransaction = (organizationId: string) => {
 
     return useMutation({
         mutationFn: ({ transactionId, body }: { transactionId: string; body: OrganizationTransactionUpdate }) =>
-            fetch('PATCH', API_ROUTES.ORGANIZATION_TRANSACTIONS.TRANSACTION(organizationId, transactionId), body),
+            fetch('PATCH', `/organization/${organizationId}/transaction/${transactionId}`, body),
         onSuccess: () => {
             queryClient.invalidateQueries({
                 queryKey: ['organization-transactions', organizationId],
