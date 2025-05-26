@@ -3,7 +3,7 @@ import { CalendarIcon } from 'lucide-react'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
 
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
 
 import { Button } from '../ui/button'
 import { Calendar } from '../ui/calendar'

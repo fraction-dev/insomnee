@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 
 export const useDeleteOrganizationTransactions = (organizationId: string) => {
     const queryClient = useQueryClient()

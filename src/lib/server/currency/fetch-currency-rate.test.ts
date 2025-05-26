@@ -1,4 +1,4 @@
-import { InternalError } from '~/lib/operational-errors'
+import { InternalError } from '~/lib/shared/operational-errors'
 
 import { fetchCurrencyRate } from './fetch-currency-rate'
 

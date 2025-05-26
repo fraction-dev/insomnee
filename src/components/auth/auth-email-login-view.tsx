@@ -11,7 +11,7 @@ import { z, ZodError } from 'zod'
 
 import { ROUTES } from '~/config/routes'
 import logger from '~/core/logger'
-import { authClient } from '~/lib/auth-client'
+import { authClient } from '~/lib/shared/auth-client'
 
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'

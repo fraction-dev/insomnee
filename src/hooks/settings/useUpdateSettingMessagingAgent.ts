@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { UpdateOrganizationMessagingAgentPayload } from '~/services/organization-messaging-agent/model'
 
 export const useUpdateMessagingAgent = (organizationId: string) => {

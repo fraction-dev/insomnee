@@ -22,7 +22,7 @@ export const getShortLivedAccessToken = async (code: string) => {
             client_id: env.INSTAGRAM_APP_ID,
             client_secret: env.INSTAGRAM_APP_SECRET,
             grant_type: 'authorization_code',
-            redirect_uri: `${env.NODE_ENV === 'development' ? env.NGROK_URL : env.BASE_URL}/api/instagram/oauth/callback`,
+            redirect_uri: env.INSTAGRAM_CALLBACK_URL,
             code: code,
         },
         { 'Content-Type': 'application/x-www-form-urlencoded' },

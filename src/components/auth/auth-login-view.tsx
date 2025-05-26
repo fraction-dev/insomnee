@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { ROUTES } from '~/config/routes'
-import { signIn } from '~/lib/auth-client'
+import { signIn } from '~/lib/shared/auth-client'
 
 import { Button } from '../ui/button'
 

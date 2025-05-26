@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { FileUpload } from '~/services/file-upload/model'
 import { BaseResponse } from '~/types/response'
 

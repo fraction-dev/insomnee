@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { OrganizationIntegrationInstagramConfiguration } from '~/services/integration/model'
 
 type Payload = {

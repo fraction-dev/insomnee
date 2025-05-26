@@ -161,5 +161,9 @@
         "typescript": "^5.8.2",
         "typescript-eslint": "^8.26.0"
     },
+    "overrides": {
+        "@radix-ui/react-dismissable-layer": "^1.0.5",
+        "@radix-ui/react-focus-scope": "^1.0.4"
+    },
     "packageManager": "pnpm@9.14.2"
 }

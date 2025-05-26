@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { OrganizationProductsAndServicesUpdate } from '~/services/organization-products-and-services/model'
 
 export const useUpdateOrganizationProductAndService = (organizationId: string) => {

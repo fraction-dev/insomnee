@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
-import { OrganizationMember } from '~/services/organization-member/model'
+import { fetch } from '~/lib/shared/fetch'
+import { OrganizationMember } from '~/services/organization/model'
 import { BaseResponse } from '~/types/response'
 
 export const useOrganizationMembers = (organizationId: string) => {

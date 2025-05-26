@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { PropsWithChildren, ReactNode } from 'react'
 
 import { ROUTES } from '~/config/routes'
-import { withAuth } from '~/lib/with-auth'
+import { withAuth } from '~/lib/shared/with-auth'
 import { getUserOrganizations } from '~/services/organization'
 
 export function WithOrganization(PageComponent: (props: PropsWithChildren) => ReactNode) {
@@ -10,7 +10,7 @@ export function WithOrganization(PageComponent: (props: PropsWithChildren) => Re
         const { user } = await withAuth()
 
         if (!user) {
-            redirect(ROUTES.AUTH.INDEX)
+            redirect(ROUTES.AUTH)
         }
 
         const organizations = await getUserOrganizations(user.id)

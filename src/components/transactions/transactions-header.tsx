@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { ROUTES } from '~/config/routes'
 import { useDeleteOrganizationTransactions } from '~/hooks/organization-transaction/useDeleteOrganizationTransactions'
-import { useCreateQueryString } from '~/hooks/useCreateQueryString'
+import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
 import { OrganizationTransaction } from '~/services/organization-transaction/model'
 
 import { DeleteDialog } from '../shared/delete-dialog'

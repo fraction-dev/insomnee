@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { DateRange } from 'react-day-picker'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { OverviewChartData, OverviewChartType } from '~/services/overview/model'
 import { BaseResponse } from '~/types/response'
 

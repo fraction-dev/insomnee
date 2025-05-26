@@ -1,12 +1,16 @@
 import { createId } from '@paralleldrive/cuid2'
-import { OrganizationMember, Organization as PrismaOrganization } from '@prisma/client'
+import { Organization as PrismaOrganization, OrganizationMember as PrismaOrganizationMember, User } from '@prisma/client'
 import { prisma } from 'prisma/db'
 
 import { OrganizationNotFoundError } from '~/services/organization/errors'
-import { Organization, OrganizationInput, OrganizationLanguage } from '~/services/organization/model'
+import { Organization, OrganizationInput, OrganizationLanguage, OrganizationMember } from '~/services/organization/model'
 
 interface PrismaOrganizationWithRelations extends PrismaOrganization {
-    members: OrganizationMember[]
+    members: PrismaOrganizationMemberWithRelations[]
+}
+
+interface PrismaOrganizationMemberWithRelations extends PrismaOrganizationMember {
+    user: User
 }
 
 export const createOrganization = async (userId: string, organization: OrganizationInput): Promise<Organization> => {
@@ -23,7 +27,11 @@ export const createOrganization = async (userId: string, organization: Organizat
             },
         },
         include: {
-            members: true,
+            members: {
+                include: {
+                    user: true,
+                },
+            },
         },
     })
 
@@ -36,7 +44,11 @@ export const getUserOrganizations = async (userId: string): Promise<Organization
             members: { some: { userId } },
         },
         include: {
-            members: true,
+            members: {
+                include: {
+                    user: true,
+                },
+            },
         },
     })
 
@@ -47,7 +59,11 @@ export const getOrganizationById = async (organizationId: string): Promise<Organ
     const organization = await prisma.organization.findUnique({
         where: { id: organizationId },
         include: {
-            members: true,
+            members: {
+                include: {
+                    user: true,
+                },
+            },
         },
     })
 
@@ -75,12 +91,7 @@ export const updateOrganizationName = async (organizationId: string, name: strin
 const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizationWithRelations): Organization => {
     return {
         ...organization,
-        members: organization.members.map((member) => ({
-            id: member.id,
-            organizationId: member.organizationId,
-            userId: member.userId,
-            role: member.role,
-        })),
+        members: organization.members.map(mapPrismaOrganizationMemberToOrganizationMemberModel),
         websiteUrl: organization.websiteUrl ?? '',
         isActive: organization.isActive ?? true,
         isVerified: organization.isVerified ?? false,
@@ -89,6 +100,17 @@ const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizati
         updatedAt: organization.updatedAt ?? new Date(),
         deletedAt: organization.deletedAt ?? null,
     }
+}
+
+export const getOrganizationMembers = async (organizationId: string): Promise<OrganizationMember[]> => {
+    const members = await prisma.organizationMember.findMany({
+        where: { organizationId },
+        include: {
+            user: true,
+        },
+    })
+
+    return members.map(mapPrismaOrganizationMemberToOrganizationMemberModel)
 }
 
 const mapOrganizationLanguageToPrismaLanguage = (language: string): OrganizationLanguage => {
@@ -103,5 +125,14 @@ const mapOrganizationLanguageToPrismaLanguage = (language: string): Organization
             return 'UA'
         default:
             return language as OrganizationLanguage
+    }
+}
+
+export const mapPrismaOrganizationMemberToOrganizationMemberModel = (member: PrismaOrganizationMemberWithRelations): OrganizationMember => {
+    return {
+        id: member.id,
+        role: member.role,
+        organizationId: member.organizationId,
+        user: member.user,
     }
 }

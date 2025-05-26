@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { IntegrationsView } from '~/components/integration/integrations-view'
 import { env } from '~/config/env'
 import { ROUTES } from '~/config/routes'
-import { withAuth } from '~/lib/with-auth'
+import { withAuth } from '~/lib/shared/with-auth'
 import { getOrganizationIntegrations } from '~/services/integration'
 
 const ENV_CREDENTIALS = {
@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: Promise<{ organizationI
     const integrations = await getOrganizationIntegrations(organizationId)
 
     if (!user) {
-        redirect(ROUTES.AUTH.INDEX)
+        redirect(ROUTES.AUTH)
     }
 
     return (

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { ROUTES } from '~/config/routes'
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
 
 import { ScrollArea, ScrollBar } from '../ui/scroll-area'
 

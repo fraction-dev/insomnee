@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { OrganizationProductsAndServices, OrganizationProductsAndServicesCreate } from '~/services/organization-products-and-services/model'
 import { BaseResponse } from '~/types/response'
 

@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 
-import { signOut } from '~/lib/auth-client'
+import { signOut } from '~/lib/shared/auth-client'
 import { User } from '~/services/user/model'
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'

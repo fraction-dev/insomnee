@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { BaseResponse } from '~/types/response'
 

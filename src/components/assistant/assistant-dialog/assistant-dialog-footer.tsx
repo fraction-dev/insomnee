@@ -6,7 +6,7 @@ import { Button } from '~/components/ui/button'
 import { Input } from '~/components/ui/input'
 import { ScrollArea, ScrollBar } from '~/components/ui/scroll-area'
 import { Separator } from '~/components/ui/separator'
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
 
 const DEFAULT_SUGGESTIONS = [
     'What is my spending on Software?',

@@ -2,7 +2,7 @@ import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-tabl
 import { useEffect, useState } from 'react'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
-import { useCreateQueryString } from '~/hooks/useCreateQueryString'
+import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
 
 import { productsAndServicesTableColumns } from './products-and-services-table-columns'

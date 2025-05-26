@@ -6,7 +6,8 @@ import { FaSpinner } from 'react-icons/fa'
 
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { ScrollArea } from '~/components/ui/scroll-area'
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
+import { getInitials } from '~/lib/strings/get-string-initials'
 
 interface Props {
     user: User
@@ -66,9 +67,9 @@ export const AssistantDialogContent = ({ user, messages, isLoading }: Props) => 
 const MessageItem = ({ content, role, user }: { content: string; role: Message['role']; user: User }) => {
     return (
         <div className="flex gap-2">
-            <Avatar className={`${role === 'user' ? 'rounded-full' : 'rounded-xs'} size-6`}>
-                <AvatarImage src={role === 'user' ? (user.image ?? '') : '/images/logo.svg'} />
-                {role === 'user' && <AvatarFallback>{user.name?.charAt(0) || user.email?.charAt(0)}</AvatarFallback>}
+            <Avatar className="rounded-xs size-6">
+                <AvatarImage src={role === 'user' ? (user.image ?? '') : '/images/logo.svg'} className="rounded-xs" />
+                {role === 'user' && <AvatarFallback className="text-xs">{getInitials(user.name || user.email || '')}</AvatarFallback>}
             </Avatar>
 
             <p className="text-neutral-800 leading-normal font-normal text-xs font-mono">{content}</p>

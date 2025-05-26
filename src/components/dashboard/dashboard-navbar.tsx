@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
-import { useIsMobile } from '~/hooks/useIsMobile'
-import { useSession } from '~/lib/auth-client'
+import { useIsMobile } from '~/hooks/shared/useIsMobile'
+import { useSession } from '~/lib/shared/auth-client'
 
 import { AssistantDialog } from '../assistant/assistant-dialog'
 import { SidebarTrigger } from '../ui/sidebar'

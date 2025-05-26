@@ -1,7 +1,7 @@
 import axios, { Method } from 'axios'
 
 import logger from '~/core/logger'
-import { InternalError } from '~/lib/operational-errors'
+import { InternalError } from '~/lib/shared/operational-errors'
 
 interface InstagramErrorResponse {
     response: {
@@ -35,7 +35,7 @@ export const fetchInstagram = async <T>(method: Method, url: string, data?: any,
 
         const errorMessage = err.response?.data?.error?.message ?? 'Error fetching Instagram API'
 
-        logger.error(`[fetchInstagram] Instagram error`, {
+        logger.error(`Failed to fetch Instagram API`, {
             url,
             method,
             error,
