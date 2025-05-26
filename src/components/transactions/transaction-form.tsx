@@ -65,7 +65,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
             currency: transaction?.currency ?? 'MDL',
             notes: transaction?.notes ?? '',
             categoryId: transaction?.category.id ?? '',
-            assignedTo: transaction?.assignedTo?.id ?? organizationMembers[0].user.id,
+            assignedTo: transaction?.assignedTo?.id ?? organizationMembers?.[0]?.user?.id,
         },
     })
 
