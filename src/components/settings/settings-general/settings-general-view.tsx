@@ -12,7 +12,7 @@ import { useUploadFile } from '~/hooks/file-upload/useUploadFile'
 import { useOrganization } from '~/hooks/organization/useOrganization'
 import { useUpdateOrganizationLogo } from '~/hooks/organization/useUpdateOrganizationLogo'
 import { useUpdateOrganizationName } from '~/hooks/organization/useUpdateOrganizationName'
-import { useSession } from '~/lib/auth-client'
+import { useSession } from '~/lib/shared/auth-client'
 
 import { SettingsCard } from '../settings-card'
 

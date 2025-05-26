@@ -8,7 +8,7 @@
     },
     "scripts": {
         "trigger:dev": "npx trigger.dev@latest dev",
-        "dev": "npx concurrently --kill-others --names \"next,trigger\" --prefix-colors \"yellow,blue\" \"next dev\" \"npm run trigger:dev\"",
+        "dev": "npx concurrently --kill-others --names \"next,trigger\" --prefix-colors \"yellow,blue\" \"next dev --turbo\" \"npm run trigger:dev\"",
         "build": "prisma migrate deploy && prisma generate && next build",
         "start": "next start",
         "lint": "next lint --fix",
@@ -160,6 +160,10 @@
         "ts-node": "^10.9.2",
         "typescript": "^5.8.2",
         "typescript-eslint": "^8.26.0"
+    },
+    "overrides": {
+        "@radix-ui/react-dismissable-layer": "^1.0.5",
+        "@radix-ui/react-focus-scope": "^1.0.4"
     },
     "packageManager": "pnpm@9.14.2"
 }

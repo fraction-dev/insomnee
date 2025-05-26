@@ -23,6 +23,7 @@ model User {
   OrganizationTransaction OrganizationTransaction[]
   FileUpload              FileUpload[]
   UserChat                UserChat[]
+  Customers               Customer[]
 
   @@map("user")
 }
@@ -127,6 +128,7 @@ model Organization {
   OrganizationAIUsage             OrganizationAIUsage[]
   OrganizationProductsAndServices OrganizationProductsAndServices[]
   MessagingAgentResponseMessages  MessagingAgentResponseMessages[]
+  Customers                       Customer[]
 
   @@map("organization")
 }
@@ -370,4 +372,38 @@ model UserChat {
   updatedAt DateTime @default(now()) @updatedAt @db.Timestamptz(6)
 
   @@map("user_chats")
+}
+
+enum CustomerStatus {
+  ACTIVE
+  ARCHIVED
+
+  @@map("customer_status")
+}
+
+model Customer {
+  id             String         @id @default(cuid())
+  name           String
+  email          String?
+  websiteUrl     String?
+  contactPerson  String?
+  phoneNumber    String?
+  avatarUrl      String?
+  country        String?
+  city           String?
+  addressLine1   String?
+  addressLine2   String?
+  zipCode        String?
+  state          String?
+  vatNumber      String?
+  notes          String?
+  status         CustomerStatus @default(ACTIVE)
+  organizationId String
+  organization   Organization   @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime       @default(now()) @db.Timestamptz(6)
+  createdBy      String
+  createdByUser  User           @relation(fields: [createdBy], references: [id])
+  updatedAt      DateTime       @default(now()) @updatedAt @db.Timestamptz(6)
+
+  @@map("customer")
 }

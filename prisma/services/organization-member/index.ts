@@ -1,6 +1,7 @@
 import { OrganizationMember as PrismaOrganizationMember } from '@prisma/client'
 import { prisma } from 'prisma/db'
-import { OrganizationMember } from '~/services/organization-member/model'
+
+import { OrganizationMember } from '~/services/organization/model'
 import { User } from '~/services/user/model'
 
 type PrismaOrganizationMemberWithRelations = PrismaOrganizationMember & {
@@ -16,8 +17,6 @@ export const getOrganizationMembers = async (organizationId: string) => {
             user: true,
         },
     })
-
-    console.log({ organizationMembers: JSON.stringify(organizationMembers, null, 2) })
 
     return organizationMembers.map(mapPrismaOrganizationMemberToOrganizationMember)
 }
@@ -37,9 +36,8 @@ const mapPrismaOrganizationMemberToOrganizationMember = (
 ): OrganizationMember => {
     return {
         id: prismaOrganizationMember.id,
-        userId: prismaOrganizationMember.user.id,
-        email: prismaOrganizationMember.user.email,
-        fullName: prismaOrganizationMember.user.name || prismaOrganizationMember.user.email,
-        image: prismaOrganizationMember.user.image,
+        role: prismaOrganizationMember.role,
+        organizationId: prismaOrganizationMember.organizationId,
+        user: prismaOrganizationMember.user,
     }
 }

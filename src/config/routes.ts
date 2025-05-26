@@ -1,8 +1,6 @@
 export const ROUTES = {
     HOME: '/',
-    AUTH: {
-        INDEX: '/auth',
-    },
+    AUTH: '/auth',
     TERMS: '/terms',
     PRIVACY: '/privacy',
     DASHBOARD: {
@@ -20,8 +18,8 @@ export const ROUTES = {
             AGENTS: (organizationId: string) => `/dashboard/${organizationId}/settings/agents`,
         },
         PRODUCTS_AND_SERVICES: (organizationId: string) => `/dashboard/${organizationId}/products-and-services`,
-
         MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
+        CUSTOMERS: (organizationId: string) => `/dashboard/${organizationId}/customers`,
     },
     ORGANIZATION: {
         CREATE: '/organization/create',

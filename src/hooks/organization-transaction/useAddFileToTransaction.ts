@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { API_ROUTES } from '~/config/api-routes'
-import { fetch } from '~/lib/fetch'
+import { fetch } from '~/lib/shared/fetch'
 
 export const useAddFileToTransaction = (organizationId: string, transactionId: string | undefined) => {
     const queryClient = useQueryClient()
@@ -9,7 +8,7 @@ export const useAddFileToTransaction = (organizationId: string, transactionId: s
     return useMutation({
         mutationFn: (fileId: string) =>
             transactionId
-                ? fetch('POST', API_ROUTES.ORGANIZATION_TRANSACTIONS.ADD_FILE(organizationId, transactionId), {
+                ? fetch('POST', `/organization/${organizationId}/transaction/${transactionId}/files`, {
                       fileId,
                   })
                 : Promise.resolve(null),

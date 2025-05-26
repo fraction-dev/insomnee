@@ -7,14 +7,14 @@ import { useAddFileToTransaction } from '~/hooks/organization-transaction/useAdd
 import { useCreateOrganizationTransaction } from '~/hooks/organization-transaction/useCreateOrganizationTransaction'
 import { useRemoveFileFromTransaction } from '~/hooks/organization-transaction/useRemoveFileFromTransaction'
 import { useUpdateOrganizationTransaction } from '~/hooks/organization-transaction/useUpdateOrganizationTransaction'
-import { useSession } from '~/lib/auth-client'
 import { CURRENCIES } from '~/lib/consts/currencies'
-import { cn } from '~/lib/utils'
+import { useSession } from '~/lib/shared/auth-client'
+import { cn } from '~/lib/shared/utils'
 import { FileUpload } from '~/services/file-upload/model'
-import { OrganizationMember } from '~/services/organization-member/model'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
 import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
+import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { OrganizationMember } from '~/services/organization/model'
 
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
@@ -65,7 +65,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
             currency: transaction?.currency ?? 'MDL',
             notes: transaction?.notes ?? '',
             categoryId: transaction?.category.id ?? '',
-            assignedTo: transaction?.assignedTo?.id ?? organizationMembers[0].userId,
+            assignedTo: transaction?.assignedTo?.id ?? organizationMembers[0].user.id,
         },
     })
 
@@ -219,8 +219,8 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                                 <Select
                                     placeholder="Select member"
                                     options={organizationMembers.map((member) => ({
-                                        label: <UserCard image={member.image} name={member.fullName} />,
-                                        value: member.userId,
+                                        label: <UserCard image={member.user.image} name={member.user.name ?? member.user.email} />,
+                                        value: member.user.id,
                                     }))}
                                     value={typeof field.value === 'string' ? field.value : field.value?.toString()}
                                     onChange={field.onChange}

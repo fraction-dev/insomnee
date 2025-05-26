@@ -1,8 +1,8 @@
 import { truncate } from 'lodash'
 
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import { Card,CardContent  } from '~/components/ui/card'
-import { cn } from '~/lib/utils'
+import { Card, CardContent } from '~/components/ui/card'
+import { cn } from '~/lib/shared/utils'
 import { DialogMessage } from '~/services/messaging/model'
 
 export const ChatDialog = ({

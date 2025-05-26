@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-form'
 
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
 
-import { FormControl, FormField as ShadcnFormField,FormItem, FormLabel, FormMessage } from '../ui/form'
+import { FormControl, FormItem, FormLabel, FormMessage, FormField as ShadcnFormField } from '../ui/form'
 
 interface Props<T extends FieldValues> {
     isRequired?: boolean
@@ -23,7 +23,7 @@ export const FormField = <T extends FieldValues>({ label, control, name, render,
                 <FormItem>
                     {label && (
                         <FormLabel
-                            className={cn('text-sm font-normal', {
+                            className={cn('text-xs font-light text-muted-foreground', {
                                 'flex items-center gap-1': isRequired,
                             })}
                         >

@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
-import { BadRequestError } from '~/lib/operational-errors'
+import { BadRequestError } from '~/lib/shared/operational-errors'
 import {
     createOrganizationProductsAndServices,
     deleteOrganizationProductsAndServices,

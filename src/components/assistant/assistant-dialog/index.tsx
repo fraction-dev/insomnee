@@ -6,7 +6,6 @@ import { useState } from 'react'
 
 import { Dialog, DialogContent } from '~/components/ui/dialog'
 import { Separator } from '~/components/ui/separator'
-import { API_ROUTES } from '~/config/api-routes'
 import { useUserChats } from '~/hooks/user-chat/useUserChats'
 
 import { AssistantDialogContent } from './assistant-dialog-content'
@@ -28,7 +27,7 @@ export const AssistantDialog = ({ user, isOpen, organizationId, onClose }: Props
 
     const { input, messages, status, handleInputChange, handleSubmit } = useChat({
         key: chatId,
-        api: '/api' + API_ROUTES.ORGANIZATION.USER.CHAT_ASSISTANT(organizationId, user.id),
+        api: '/api' + `/organization/${organizationId}/user/${user.id}/chat-assistant`,
         initialMessages: [],
         body: {
             chatId,

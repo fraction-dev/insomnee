@@ -1,5 +1,5 @@
 import { formatDateToReadableString } from '~/lib/date/date'
-import { cn } from '~/lib/utils'
+import { cn } from '~/lib/shared/utils'
 import { DialogMessage, DialogUser } from '~/services/messaging/model'
 
 interface Props {

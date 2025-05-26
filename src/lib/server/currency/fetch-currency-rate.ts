@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { InternalError } from '~/lib/operational-errors'
+import { InternalError } from '~/lib/shared/operational-errors'
 import { CurrencyRate } from '~/services/currency-rate/model'
 
 const BASE_URL_PATTERN = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{{currency}}.json'
@@ -21,7 +21,7 @@ export const fetchCurrencyRate = async (currency: string): Promise<Omit<Currency
         return {
             currency,
             symbol: symbol ?? '',
-            combinations: response.data[currency] ?? {},
+            combinations: response.data[currency.toLowerCase()] ?? {},
         }
     } catch (_error) {
         throw new InternalError(`Failed to fetch currency rate for ${currency}`)

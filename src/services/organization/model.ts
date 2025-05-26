@@ -1,3 +1,5 @@
+import { User } from '../user/model'
+
 export type OrganizationLanguage = 'RU' | 'EN' | 'RO' | 'UA'
 export type OrganizationCurrency = 'MDL' | 'USD' | 'EUR' | 'RON' | 'UAH'
 type OrganizationVerificationStatus = 'PENDING' | 'VERIFIED' | 'REJECTED'
@@ -25,13 +27,13 @@ export interface Organization {
     members: OrganizationMember[]
 }
 
-type OrganizationMemberRole = 'ADMIN' | 'MEMBER' | 'GUEST'
+export type OrganizationMemberRole = 'ADMIN' | 'MEMBER' | 'GUEST'
 
-interface OrganizationMember {
+export interface OrganizationMember {
     id: string
     organizationId: string
-    userId: string
     role: OrganizationMemberRole
+    user: User
 }
 
 export type OrganizationInput = Pick<Organization, 'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone' | 'websiteUrl'>

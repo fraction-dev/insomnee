@@ -14,7 +14,7 @@ import {
 } from '~/components/ui/dropdown-menu'
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
-import { signOut } from '~/lib/auth-client'
+import { signOut } from '~/lib/shared/auth-client'
 import { getInitials } from '~/lib/strings/get-string-initials'
 import { User } from '~/services/user/model'
 
@@ -24,7 +24,7 @@ export function SidebarNavUser({ user }: { user: User }) {
 
     const handleLogout = async () => {
         await signOut()
-        router.push(ROUTES.AUTH.INDEX)
+        router.push(ROUTES.AUTH)
     }
 
     return (

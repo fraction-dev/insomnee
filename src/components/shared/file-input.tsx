@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 import logger from '~/core/logger'
 import { useUploadFile } from '~/hooks/file-upload/useUploadFile'
-import { formatBytes, useFileUpload } from '~/hooks/use-file-upload'
+import { formatBytes, useFileUpload } from '~/hooks/shared/use-file-upload'
 import { FileUpload } from '~/services/file-upload/model'
 
 import { Button } from '../ui/button'

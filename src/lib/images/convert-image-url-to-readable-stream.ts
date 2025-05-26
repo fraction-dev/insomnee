@@ -1,6 +1,6 @@
 import { ReadableStream } from 'stream/web'
 
-import { InternalError } from '../operational-errors'
+import { InternalError } from '../shared/operational-errors'
 
 /**
  * @param imageUrl - The URL of the image to convert.

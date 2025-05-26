@@ -1,7 +1,7 @@
 'use client'
 
 import { upperCase } from 'lodash'
-import { Bot, ChartNoAxesColumn, Command, CreditCard, Currency, LifeBuoy, LinkIcon, Send, Settings2, SquareChartGantt } from 'lucide-react'
+import { ChartNoAxesColumn, Command, CreditCard, LifeBuoy, Send, Settings2, SquareChartGantt, Users2Icon } from 'lucide-react'
 import Link from 'next/link'
 import * as React from 'react'
 
@@ -33,76 +33,81 @@ const data = (organizationId: string) => ({
             icon: ChartNoAxesColumn,
             isActive: true,
         },
+        // {
+        //     title: 'Agents',
+        //     url: '#',
+        //     icon: Bot,
+        //     items: [
+        //         {
+        //             title: 'Always On Time',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Cost Reduction',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Clients Parser',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Competitors Parser',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Lead Generation',
+        //             url: '#',
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: 'Digital Marketing',
+        //     url: '#',
+        //     icon: Currency,
+        //     items: [
+        //         {
+        //             title: 'Story Generation',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Posts Generation',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Account Analysis',
+        //             url: '#',
+        //         },
+        //         {
+        //             title: 'Content Analysis',
+        //             url: '#',
+        //         },
+        //     ],
+        // },
         {
-            title: 'Agents',
-            url: '#',
-            icon: Bot,
-            items: [
-                {
-                    title: 'Always On Time',
-                    url: '#',
-                },
-                {
-                    title: 'Cost Reduction',
-                    url: '#',
-                },
-                {
-                    title: 'Clients Parser',
-                    url: '#',
-                },
-                {
-                    title: 'Competitors Parser',
-                    url: '#',
-                },
-                {
-                    title: 'Lead Generation',
-                    url: '#',
-                },
-            ],
-        },
-        {
-            title: 'Digital Marketing',
-            url: '#',
-            icon: Currency,
-            items: [
-                {
-                    title: 'Story Generation',
-                    url: '#',
-                },
-                {
-                    title: 'Posts Generation',
-                    url: '#',
-                },
-                {
-                    title: 'Account Analysis',
-                    url: '#',
-                },
-                {
-                    title: 'Content Analysis',
-                    url: '#',
-                },
-            ],
+            title: 'Customers',
+            url: ROUTES.DASHBOARD.CUSTOMERS(organizationId),
+            icon: Users2Icon,
         },
         {
             title: 'Products & Services',
             url: ROUTES.DASHBOARD.PRODUCTS_AND_SERVICES(organizationId),
             icon: SquareChartGantt,
         },
-        {
-            title: 'Messaging',
-            url: ROUTES.DASHBOARD.MESSAGING(organizationId),
-            icon: Send,
-        },
+        // {
+        //     title: 'Messaging',
+        //     url: ROUTES.DASHBOARD.MESSAGING(organizationId),
+        //     icon: Send,
+        // },
         {
             title: 'Transactions',
             url: ROUTES.DASHBOARD.TRANSACTIONS(organizationId),
             icon: CreditCard,
         },
-        {
-            title: 'Integrations',
-            url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
-            icon: LinkIcon,
-        },
+        // {
+        //     title: 'Integrations',
+        //     url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
+        //     icon: LinkIcon,
+        // },
         {
             title: 'Settings',
             url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),

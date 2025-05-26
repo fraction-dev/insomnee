@@ -3,13 +3,13 @@ import { ReactNode } from 'react'
 
 import { OnboardingNavbar } from '~/components/navbar/onboarding-navbar'
 import { ROUTES } from '~/config/routes'
-import { withAuth } from '~/lib/with-auth'
+import { withAuth } from '~/lib/shared/with-auth'
 
 export default async function OrganizationCreateLayout({ children }: { children: ReactNode }) {
     const { user } = await withAuth()
 
     if (!user) {
-        redirect(ROUTES.AUTH.INDEX)
+        redirect(ROUTES.AUTH)
     }
 
     return (

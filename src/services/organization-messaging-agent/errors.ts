@@ -1,4 +1,4 @@
-import { ConflictError, NotFoundError } from '~/lib/operational-errors'
+import { ConflictError, NotFoundError } from '~/lib/shared/operational-errors'
 
 export const OrganizationMessagingAgentAlreadyExistsError = (agentId: string) =>
     new ConflictError(`Organization messaging agent already exists, id: ${agentId}`)

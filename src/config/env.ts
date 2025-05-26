@@ -32,7 +32,6 @@ const prepareToValidate = (variableName: string) => {
 const envSchema = z.object({
     NODE_ENV: z.enum(['development', 'production']).default('development') as z.ZodDefault<z.ZodEnum<['development', 'production']>>,
     BASE_URL: z.string().url().default(getAppUrl()),
-
     DATABASE_URL: prepareToValidate('DATABASE_URL'),
 
     BETTER_AUTH_SECRET: prepareToValidate('BETTER_AUTH_SECRET'),
@@ -42,6 +41,8 @@ const envSchema = z.object({
     INSTAGRAM_APP_ID: prepareToValidate('INSTAGRAM_APP_ID'),
     INSTAGRAM_APP_SECRET: prepareToValidate('INSTAGRAM_APP_SECRET'),
     INSTAGRAM_TESTER_ACCESS_TOKEN: prepareToValidate('INSTAGRAM_TESTER_ACCESS_TOKEN'),
+    INSTAGRAM_WEBHOOK_SECRET: prepareToValidate('INSTAGRAM_WEBHOOK_SECRET'),
+    INSTAGRAM_CALLBACK_URL: prepareToValidate('INSTAGRAM_CALLBACK_URL'),
 
     BUNNY_API_KEY: prepareToValidate('BUNNY_API_KEY'),
     BUNNY_STORAGE_ZONE: prepareToValidate('BUNNY_STORAGE_ZONE'),
@@ -53,8 +54,6 @@ const envSchema = z.object({
     OPENAI_API_KEY: prepareToValidate('OPENAI_API_KEY'),
     ELEVENLABS_API_KEY: prepareToValidate('ELEVENLABS_API_KEY'),
     PERPLEXITY_API_KEY: prepareToValidate('PERPLEXITY_API_KEY'),
-
-    NGROK_URL: prepareToValidate('NGROK_URL'),
 })
 
 const getEnv = () => {

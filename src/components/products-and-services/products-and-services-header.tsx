@@ -5,7 +5,7 @@ import { toast } from 'sonner'
 
 import { ROUTES } from '~/config/routes'
 import { useDeleteOrganizationProductsAndServices } from '~/hooks/organization-products-and-services/useDeleteOrganizationProductsAndServices'
-import { useCreateQueryString } from '~/hooks/useCreateQueryString'
+import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
 
 import { DeleteDialog } from '../shared/delete-dialog'

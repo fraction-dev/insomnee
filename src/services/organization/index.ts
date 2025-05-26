@@ -1,7 +1,7 @@
 import * as OrganizationDB from 'prisma/services/organization'
 
 import { bootstrapOrganizationTransactionCategories } from '../organization-transaction-category'
-import { Organization, OrganizationInput } from './model'
+import { Organization, OrganizationInput, OrganizationMember } from './model'
 
 export const createOrganization = async (userId: string, organization: OrganizationInput): Promise<Organization> => {
     const createdOrganization = await OrganizationDB.createOrganization(userId, organization)
@@ -29,6 +29,10 @@ export const updateOrganizationLogo = async (organizationId: string, logo: strin
 
 export const updateOrganizationName = async (organizationId: string, name: string) => {
     await OrganizationDB.updateOrganizationName(organizationId, name)
+}
+
+export const getOrganizationMembers = async (organizationId: string): Promise<OrganizationMember[]> => {
+    return await OrganizationDB.getOrganizationMembers(organizationId)
 }
 
 const bootstrapOrganization = async (organization: Organization) => {

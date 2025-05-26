@@ -2,7 +2,6 @@ import dayjs from 'dayjs'
 
 import { getCurrencyRates } from '../currency-rate'
 import { CurrencyRate } from '../currency-rate/model'
-import { getOrganizationMembersCount } from '../organization-member'
 import { getOrganizationMessagingAgentResponses, getOrganizationMessagingAgentResponsesCount } from '../organization-messaging-agent'
 import { getOrganizationProductsAndServicesCount } from '../organization-products-and-services'
 import { getOrganizationTransactions } from '../organization-transaction'
@@ -16,7 +15,6 @@ export const getOrganizationOverviewStatistics = async (organizationId: string, 
     const currencyRates = await getCurrencyRates()
     const transactions = await getOrganizationTransactions(organizationId, startDate, endDate)
     const messagingAgentResponsesCount = await getOrganizationMessagingAgentResponsesCount(organizationId, startDate, endDate)
-    const membersCount = await getOrganizationMembersCount(organizationId)
     const productsAndServicesCount = await getOrganizationProductsAndServicesCount(organizationId)
 
     const transactionsWithCurrency = transactions.map((transaction) => ({
@@ -28,7 +26,7 @@ export const getOrganizationOverviewStatistics = async (organizationId: string, 
         transactionsRevenue: calculateTransactionsRevenue(transactionsWithCurrency),
         transactionsExpenses: calculateTransactionsExpenses(transactionsWithCurrency),
         messagingAgentResponsesCount,
-        membersCount,
+        membersCount: 0,
         productsAndServicesCount,
     }
 }
@@ -54,7 +52,7 @@ const calculateTransactionsExpenses = (transactions: OrganizationTransaction[]) 
 }
 
 const getTransactionsValueBasedOnCurrency = (transaction: OrganizationTransaction, currency: string, currencyRates: CurrencyRate[]) => {
-    const currencyRate = currencyRates.find((rate) => rate.currency === currency.toLowerCase())
+    const currencyRate = currencyRates.find((rate) => rate.currency.toLowerCase() === currency.toLowerCase())
     if (!currencyRate) {
         return 0
     }

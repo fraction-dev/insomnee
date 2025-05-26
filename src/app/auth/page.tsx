@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 
 import { AuthLoginView } from '~/components/auth/auth-login-view'
 import { ROUTES } from '~/config/routes'
-import { withAuth } from '~/lib/with-auth'
+import { withAuth } from '~/lib/shared/with-auth'
 import { getUserOrganizations } from '~/services/organization'
 
 export const metadata: Metadata = {

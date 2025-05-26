@@ -3,7 +3,7 @@
 import { GlobeIcon } from 'lucide-react'
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
-import { useChangeLanguage } from '~/hooks/useChangeLanguage'
+import { useChangeLanguage } from '~/hooks/shared/useChangeLanguage'
 
 import { Button } from '../ui/button'
 

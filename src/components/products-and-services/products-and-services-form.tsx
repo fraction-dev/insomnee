@@ -5,8 +5,8 @@ import { z } from 'zod'
 
 import { useCreateOrganizationProductAndService } from '~/hooks/organization-products-and-services/useCreateOrganizationProductAndService'
 import { useUpdateOrganizationProductAndService } from '~/hooks/organization-products-and-services/useUpdateOrganizationProductAndService'
-import { useSession } from '~/lib/auth-client'
 import { CURRENCIES } from '~/lib/consts/currencies'
+import { useSession } from '~/lib/shared/auth-client'
 import { FileUpload } from '~/services/file-upload/model'
 import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
 

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 import { Button } from '~/components/ui/button'
-import { FileMetadata, formatBytes, useFileUpload } from '~/hooks/use-file-upload'
+import { FileMetadata, formatBytes, useFileUpload } from '~/hooks/shared/use-file-upload'
 
 const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
     const fileType = file.file instanceof File ? file.file.type : file.file.type
