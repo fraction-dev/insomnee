@@ -1,5 +1,5 @@
-import { getOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '../organization-messaging-agent'
-import { UpdateOrganizationMessagingAgentPayload } from '../organization-messaging-agent/model'
+import { getOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '../messaging-agent'
+import { UpdateMessagingAgentPayload } from '../messaging-agent/model'
 import { SettingsAgentsOutput } from './model'
 
 export const getOrganizationSettingsAgents = async (organizationId: string): Promise<SettingsAgentsOutput> => {
@@ -13,7 +13,7 @@ export const getOrganizationSettingsAgents = async (organizationId: string): Pro
 export const updateOrganizationSettingsMessagingAgent = async (
     organizationId: string,
     agentId: string,
-    settings: UpdateOrganizationMessagingAgentPayload,
+    settings: UpdateMessagingAgentPayload,
 ) => {
     return updateOrganizationMessagingAgent(organizationId, agentId, settings)
 }

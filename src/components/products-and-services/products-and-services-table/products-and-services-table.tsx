@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 import { productsAndServicesTableColumns } from './products-and-services-table-columns'
 
 interface Props {
-    productsAndServices: OrganizationProductsAndServices[]
-    selectedProductsAndServices: OrganizationProductsAndServices[]
-    setSelectedProductsAndServices: (productsAndServices: OrganizationProductsAndServices[]) => void
+    productsAndServices: ProductAndService[]
+    selectedProductsAndServices: ProductAndService[]
+    setSelectedProductsAndServices: (productsAndServices: ProductAndService[]) => void
 }
 
 export const ProductsAndServicesTable = ({ productsAndServices, selectedProductsAndServices, setSelectedProductsAndServices }: Props) => {

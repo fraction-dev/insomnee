@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
-import { updateOrganizationProductAndService } from '~/services/organization-products-and-services'
+import { updateOrganizationProductAndService } from '~/services/product-and-service'
 
 const paramsSchema = baseOrganizationIdSchema.merge(
     z.object({

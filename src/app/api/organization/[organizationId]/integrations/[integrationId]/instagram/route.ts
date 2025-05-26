@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { updateInstagramIntegrationConfiguration } from '~/services/integration'
-import { OrganizationIntegrationVoiceMessageService, OrganizationIntegrationVoiceMessageVoice } from '~/services/integration/model'
+import { IntegrationVoiceMessageService, IntegrationVoiceMessageVoice } from '~/services/integration/model'
 
 const paramsSchema = baseOrganizationIdSchema.merge(
     z.object({
@@ -31,8 +31,8 @@ export const PUT = createRouteHandler()({ auth: true, paramsSchema, bodySchema }
         isBotEnabled,
         isVoiceMessageResponseEnabled,
         replyDelay,
-        voiceMessageService: voiceMessageService as OrganizationIntegrationVoiceMessageService,
-        voiceMessageVoice: voiceMessageVoice as OrganizationIntegrationVoiceMessageVoice,
+        voiceMessageService: voiceMessageService as IntegrationVoiceMessageService,
+        voiceMessageVoice: voiceMessageVoice as IntegrationVoiceMessageVoice,
     })
 
     return NextResponse.json({ data: integration })

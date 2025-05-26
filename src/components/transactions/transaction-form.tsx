@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useAddFileToTransaction } from '~/hooks/organization-transaction/useAddFileToTransaction'
-import { useCreateOrganizationTransaction } from '~/hooks/organization-transaction/useCreateOrganizationTransaction'
-import { useRemoveFileFromTransaction } from '~/hooks/organization-transaction/useRemoveFileFromTransaction'
-import { useUpdateOrganizationTransaction } from '~/hooks/organization-transaction/useUpdateOrganizationTransaction'
+import { useAddFileToTransaction } from '~/hooks/transaction/useAddFileToTransaction'
+import { useCreateTransaction } from '~/hooks/transaction/useCreateTransaction'
+import { useRemoveFileFromTransaction } from '~/hooks/transaction/useRemoveFileFromTransaction'
+import { useUpdateTransaction } from '~/hooks/transaction/useUpdateTransaction'
 import { CURRENCIES } from '~/lib/consts/currencies'
 import { useSession } from '~/lib/shared/auth-client'
 import { cn } from '~/lib/shared/utils'
 import { FileUpload } from '~/services/file-upload/model'
-import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
-import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { OrganizationMember } from '~/services/organization/model'
+import { formatOrganizationTransactionCategoryType } from '~/services/transaction-category/lib/formatOrganizationTransactionCategoryType'
+import { TransactionCategory } from '~/services/transaction-category/model'
+import { Transaction } from '~/services/transaction/model'
 
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
@@ -38,9 +38,9 @@ const transactionSchema = z.object({
 
 interface Props {
     organizationId: string
-    transaction?: OrganizationTransaction
-    transactionCategories: OrganizationTransactionCategory[]
-    transactions: OrganizationTransaction[]
+    transaction?: Transaction
+    transactionCategories: TransactionCategory[]
+    transactions: Transaction[]
     organizationMembers: OrganizationMember[]
     onSubmit: () => void
 }
@@ -50,8 +50,8 @@ type TransactionForm = z.infer<typeof transactionSchema>
 export const TransactionForm = ({ organizationId, transaction, transactionCategories, organizationMembers, onSubmit }: Props) => {
     const { data: session } = useSession()
 
-    const { mutate: createTransaction, isPending: isCreating } = useCreateOrganizationTransaction(organizationId)
-    const { mutate: updateTransaction, isPending: isUpdating } = useUpdateOrganizationTransaction(organizationId)
+    const { mutate: createTransaction, isPending: isCreating } = useCreateTransaction(organizationId)
+    const { mutate: updateTransaction, isPending: isUpdating } = useUpdateTransaction(organizationId)
     const { mutate: addFileToTransaction } = useAddFileToTransaction(organizationId, transaction?.id)
     const { mutate: removeFileFromTransaction } = useRemoveFileFromTransaction(organizationId, transaction?.id)
 

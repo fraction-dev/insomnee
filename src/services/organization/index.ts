@@ -1,6 +1,6 @@
 import * as OrganizationDB from 'prisma/services/organization'
 
-import { bootstrapOrganizationTransactionCategories } from '../organization-transaction-category'
+import { bootstrapOrganizationTransactionCategories } from '../transaction-category'
 import { Organization, OrganizationInput, OrganizationMember } from './model'
 
 export const createOrganization = async (userId: string, organization: OrganizationInput): Promise<Organization> => {

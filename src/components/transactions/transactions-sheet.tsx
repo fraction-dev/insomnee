@@ -1,8 +1,8 @@
 import { formatCurrency } from '~/lib/currency/format-currency'
 import { formatDateToReadableString } from '~/lib/date/date'
-import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
 import { OrganizationMember } from '~/services/organization/model'
+import { TransactionCategory } from '~/services/transaction-category/model'
+import { Transaction } from '~/services/transaction/model'
 
 import { Sheet, SheetContent, SheetTitle } from '../ui/sheet'
 import { TransactionForm } from './transaction-form'
@@ -10,9 +10,9 @@ import { TransactionForm } from './transaction-form'
 interface Props {
     isOpen: boolean
     organizationId: string
-    transaction?: OrganizationTransaction
-    transactionCategories: OrganizationTransactionCategory[]
-    transactions: OrganizationTransaction[]
+    transaction?: Transaction
+    transactionCategories: TransactionCategory[]
+    transactions: Transaction[]
     organizationMembers: OrganizationMember[]
     onClose: () => void
 }

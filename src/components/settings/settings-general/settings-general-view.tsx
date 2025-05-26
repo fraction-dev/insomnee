@@ -79,8 +79,8 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
     return (
         <div className="flex flex-col gap-8">
             <SettingsCard
-                title="Organization avatar"
-                description="This is your team's avatar. Click on the avatar to upload a custom one from your files."
+                title="Organization image"
+                description="This is your team's image. Click on the image to upload a custom one from your files."
                 rightHeaderContent={
                     <>
                         <Avatar className="size-16 cursor-pointer" onClick={handleAvatarClick}>

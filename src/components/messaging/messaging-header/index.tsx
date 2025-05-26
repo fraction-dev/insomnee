@@ -1,15 +1,15 @@
 import { lowerCase, upperFirst } from 'lodash'
 
 import { Select } from '~/components/shared/select'
-import { OrganizationIntegration } from '~/services/integration/model'
+import { Integration } from '~/services/integration/model'
 
 import { InstagramBot } from './instagram-bot'
 
 interface Props {
     organizationId: string
-    integrations: OrganizationIntegration[]
-    selectedIntegration: OrganizationIntegration | null
-    onSelectIntegration: (integration: OrganizationIntegration) => void
+    integrations: Integration[]
+    selectedIntegration: Integration | null
+    onSelectIntegration: (integration: Integration) => void
 }
 
 export const MessagingHeader = ({ organizationId, integrations, selectedIntegration, onSelectIntegration }: Props) => {

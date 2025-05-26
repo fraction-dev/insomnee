@@ -1,5 +1,5 @@
 import { formatDateToReadableString } from '~/lib/date/date'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 import { Sheet, SheetContent, SheetTitle } from '../ui/sheet'
 import { ProductsAndServicesForm } from './products-and-services-form'
@@ -8,7 +8,7 @@ interface Props {
     isOpen: boolean
     organizationId: string
     productAndServiceId?: string
-    productsAndServices?: OrganizationProductsAndServices[]
+    productsAndServices?: ProductAndService[]
     onOpenChange: (isOpen: boolean) => void
     onFormSubmit: () => void
 }

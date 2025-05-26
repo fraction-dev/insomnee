@@ -10,7 +10,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
-import { useArchiveCustomers } from '~/hooks/customers/useArchiveCustomers'
+import { useArchiveCustomers } from '~/hooks/customer/useArchiveCustomers'
 import { Customer } from '~/services/customer/model'
 
 import { CustomersSheet } from '../customers-sheet'

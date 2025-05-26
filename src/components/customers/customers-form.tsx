@@ -2,8 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useCreateCustomer } from '~/hooks/customers/useCreateCustomer'
-import { useUpdateCustomer } from '~/hooks/customers/useUpdateCustomer'
+import { useCreateCustomer } from '~/hooks/customer/useCreateCustomer'
+import { useUpdateCustomer } from '~/hooks/customer/useUpdateCustomer'
 import { Customer, customerCreateSchema } from '~/services/customer/model'
 
 import { FormField } from '../shared/form-field'

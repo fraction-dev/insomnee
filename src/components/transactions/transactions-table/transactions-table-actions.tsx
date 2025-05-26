@@ -11,19 +11,13 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '~/components/ui/dropdown-menu'
-import { useDeleteOrganizationTransactions } from '~/hooks/organization-transaction/useDeleteOrganizationTransactions'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { useDeleteTransactions } from '~/hooks/transaction/useDeleteTransactions'
+import { Transaction } from '~/services/transaction/model'
 
-export const TransactionsTableActions = ({
-    transaction,
-    organizationId,
-}: {
-    transaction: OrganizationTransaction
-    organizationId: string
-}) => {
+export const TransactionsTableActions = ({ transaction, organizationId }: { transaction: Transaction; organizationId: string }) => {
     const [activeDeleteTransactionId, setActiveDeleteTransactionId] = useState<string | null>(null)
     const [activeShareTransactionId, setActiveShareTransactionId] = useState<string | null>(null)
-    const { mutate: deleteTransactions, isPending: isDeleting } = useDeleteOrganizationTransactions(organizationId)
+    const { mutate: deleteTransactions, isPending: isDeleting } = useDeleteTransactions(organizationId)
 
     const handleDeleteTransaction = () => {
         if (activeDeleteTransactionId) {

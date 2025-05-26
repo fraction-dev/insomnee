@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 import { TransactionsView } from '~/components/transactions/transactions-view'
-import { getOrganizationTransactionCategories } from '~/services/organization-transaction-category'
+import { getOrganizationTransactionCategories } from '~/services/transaction-category'
 
 export const metadata: Metadata = {
     title: 'Transactions | Insomnee',

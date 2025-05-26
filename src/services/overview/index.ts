@@ -2,10 +2,10 @@ import dayjs from 'dayjs'
 
 import { getCurrencyRates } from '../currency-rate'
 import { CurrencyRate } from '../currency-rate/model'
-import { getOrganizationMessagingAgentResponses, getOrganizationMessagingAgentResponsesCount } from '../organization-messaging-agent'
-import { getOrganizationProductsAndServicesCount } from '../organization-products-and-services'
-import { getOrganizationTransactions } from '../organization-transaction'
-import { OrganizationTransaction } from '../organization-transaction/model'
+import { getOrganizationMessagingAgentResponses, getOrganizationMessagingAgentResponsesCount } from '../messaging-agent'
+import { getOrganizationProductsAndServicesCount } from '../product-and-service'
+import { getTransactions } from '../transaction'
+import { Transaction } from '../transaction/model'
 import { OverviewChartData, OverviewChartParams, OverviewStatisticsParams } from './model'
 
 export const getOrganizationOverviewStatistics = async (organizationId: string, params: OverviewStatisticsParams) => {
@@ -13,7 +13,7 @@ export const getOrganizationOverviewStatistics = async (organizationId: string, 
     const { startDate, endDate } = getParamsPeriodDates(params)
 
     const currencyRates = await getCurrencyRates()
-    const transactions = await getOrganizationTransactions(organizationId, startDate, endDate)
+    const transactions = await getTransactions(organizationId, startDate, endDate)
     const messagingAgentResponsesCount = await getOrganizationMessagingAgentResponsesCount(organizationId, startDate, endDate)
     const productsAndServicesCount = await getOrganizationProductsAndServicesCount(organizationId)
 
@@ -39,19 +39,19 @@ export const getOrganizationOverviewChatData = async (organizationId: string, pa
     return getAgentResponsesChartData(organizationId, params)
 }
 
-const calculateTransactionsRevenue = (transactions: OrganizationTransaction[]) => {
+const calculateTransactionsRevenue = (transactions: Transaction[]) => {
     const revenueTransactions = transactions.filter((transaction) => transaction.category.type === 'INCOME')
     const revenue = revenueTransactions.reduce((acc, transaction) => acc + transaction.amount, 0)
     return revenue
 }
 
-const calculateTransactionsExpenses = (transactions: OrganizationTransaction[]) => {
+const calculateTransactionsExpenses = (transactions: Transaction[]) => {
     const expensesTransactions = transactions.filter((transaction) => transaction.category.type !== 'INCOME')
     const expenses = expensesTransactions.reduce((acc, transaction) => acc + transaction.amount, 0)
     return expenses
 }
 
-const getTransactionsValueBasedOnCurrency = (transaction: OrganizationTransaction, currency: string, currencyRates: CurrencyRate[]) => {
+const getTransactionsValueBasedOnCurrency = (transaction: Transaction, currency: string, currencyRates: CurrencyRate[]) => {
     const currencyRate = currencyRates.find((rate) => rate.currency.toLowerCase() === currency.toLowerCase())
     if (!currencyRate) {
         return 0
@@ -79,7 +79,7 @@ const getTransactionsChartData = async (organizationId: string, params: Overview
 
     const currencyRates = await getCurrencyRates()
 
-    const transactions = await getOrganizationTransactions(organizationId, startDate, endDate)
+    const transactions = await getTransactions(organizationId, startDate, endDate)
     const transactionsWithCurrency = transactions.map((transaction) => ({
         ...transaction,
         amount: getTransactionsValueBasedOnCurrency(transaction, currency, currencyRates),

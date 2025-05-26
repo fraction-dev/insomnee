@@ -3,8 +3,8 @@ import { useEffect, useRef } from 'react'
 import { Card, CardContent } from '~/components/ui/card'
 import { ScrollArea } from '~/components/ui/scroll-area'
 import { useInstagramSendMessage } from '~/hooks/dialogs/useInstagramSendMessage'
-import { useUpdateOrganizationIntegrationInstagram } from '~/hooks/organization-integration/useUpdateOrganizationIntegrationInstagram'
-import { OrganizationIntegration, OrganizationIntegrationType } from '~/services/integration/model'
+import { useUpdateIntegrationInstagram } from '~/hooks/integration/useUpdateIntegrationInstagram'
+import { Integration, IntegrationType } from '~/services/integration/model'
 import { DialogMessage, DialogUser } from '~/services/messaging/model'
 
 import { ChatMessagesBotEnabledBanner } from './chat-messages-bot-enabled-banner'
@@ -21,18 +21,17 @@ export const ChatMessages = ({
     isBotEnabled,
     selectedIntegration,
 }: {
-    type: OrganizationIntegrationType
+    type: IntegrationType
     messages: DialogMessage[]
     targetUser: DialogUser
     organizationId: string
     isSubmitting: boolean
     isBotEnabled: boolean
-    selectedIntegration: OrganizationIntegration | null
+    selectedIntegration: Integration | null
 }) => {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
     const { mutate: sendInstagramMessage, isPending: isSendingInstagramMessage } = useInstagramSendMessage(organizationId)
-    const { mutate: updateOrganizationIntegrationInstagram, isPending: isUpdatingOrganizationIntegrationInstagram } =
-        useUpdateOrganizationIntegrationInstagram(organizationId)
+    const { mutate: updateIntegrationInstagram, isPending: isUpdatingIntegrationInstagram } = useUpdateIntegrationInstagram(organizationId)
 
     const isLoading = isSendingInstagramMessage || isSubmitting
 
@@ -52,7 +51,7 @@ export const ChatMessages = ({
             return
         }
 
-        updateOrganizationIntegrationInstagram({
+        updateIntegrationInstagram({
             integrationId: selectedIntegration.id,
             payload: {
                 isBotEnabled: false,
@@ -76,10 +75,7 @@ export const ChatMessages = ({
 
             <div className="absolute bottom-0 left-0 right-0 p-2 flex flex-col gap-2">
                 {isBotEnabled && (
-                    <ChatMessagesBotEnabledBanner
-                        isLoading={isUpdatingOrganizationIntegrationInstagram}
-                        onBotDisableClick={handleDisableBot}
-                    />
+                    <ChatMessagesBotEnabledBanner isLoading={isUpdatingIntegrationInstagram} onBotDisableClick={handleDisableBot} />
                 )}
 
                 {!isBotEnabled && <ChatMessagesForm isLoading={isLoading} onSubmit={handleSendInstagramMessage} />}

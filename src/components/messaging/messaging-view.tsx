@@ -4,8 +4,8 @@ import { last } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 
 import { useInstagramDialogs } from '~/hooks/dialogs/useInstagramDialogs'
-import { useOrganizationIntegrations } from '~/hooks/organization-integration/useOrganizationIntegrations'
-import { OrganizationIntegration } from '~/services/integration/model'
+import { useIntegrations } from '~/hooks/integration/useIntegrations'
+import { Integration } from '~/services/integration/model'
 import { Dialog } from '~/services/messaging/model'
 
 import { Input } from '../ui/input'
@@ -20,10 +20,10 @@ interface Props {
 }
 
 export const MessagingView = ({ organizationId }: Props) => {
-    const { data: integrations, isLoading: isLoadingIntegrations } = useOrganizationIntegrations(organizationId)
+    const { data: integrations, isLoading: isLoadingIntegrations } = useIntegrations(organizationId)
     const { data: instagramDialogsData, isLoading: isLoadingInstagramDialogs } = useInstagramDialogs(organizationId)
 
-    const [selectedIntegration, setSelectedIntegration] = useState<OrganizationIntegration | null>(null)
+    const [selectedIntegration, setSelectedIntegration] = useState<Integration | null>(null)
     const [selectedDialog, setSelectedDialog] = useState<Dialog | null>(null)
 
     const isDialogsLoading = isLoadingInstagramDialogs

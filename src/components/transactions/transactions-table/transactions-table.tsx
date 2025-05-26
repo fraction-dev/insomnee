@@ -4,16 +4,16 @@ import { useEffect, useState } from 'react'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~/components/ui/table'
 import { ROUTES } from '~/config/routes'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { Transaction } from '~/services/transaction/model'
 
 import { TransactionsTableActions } from './transactions-table-actions'
 import { transactionsTableColumns } from './transactions-table-columns'
 
 interface Props {
     organizationId: string
-    transactions: OrganizationTransaction[]
-    selectedTransactions: OrganizationTransaction[]
-    setSelectedTransactions: (transactions: OrganizationTransaction[]) => void
+    transactions: Transaction[]
+    selectedTransactions: Transaction[]
+    setSelectedTransactions: (transactions: Transaction[]) => void
 }
 
 export const TransactionsTable = ({ organizationId, transactions, selectedTransactions, setSelectedTransactions }: Props) => {

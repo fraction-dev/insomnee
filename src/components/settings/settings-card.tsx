@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react'
 import { FaInstagram } from 'react-icons/fa'
 
-import { OrganizationIntegrationType } from '~/services/integration/model'
+import { IntegrationType } from '~/services/integration/model'
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { Separator } from '../ui/separator'
@@ -9,7 +9,7 @@ import { Skeleton } from '../ui/skeleton'
 
 interface Props {
     isLoading?: boolean
-    type?: OrganizationIntegrationType
+    type?: IntegrationType
     title: string
     description?: string | ReactNode
     rightHeaderContent?: ReactNode

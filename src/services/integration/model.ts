@@ -1,30 +1,30 @@
-export type OrganizationIntegrationType = 'INSTAGRAM' | 'FACEBOOK' | 'WHATSAPP' | 'TWITTER' | 'TELEGRAM' | 'SIMPALS'
+export type IntegrationType = 'INSTAGRAM' | 'FACEBOOK' | 'WHATSAPP' | 'TWITTER' | 'TELEGRAM' | 'SIMPALS'
 
-export interface OrganizationIntegration {
+export interface Integration {
     id: string
-    type: OrganizationIntegrationType
+    type: IntegrationType
     organizationId: string
-    instagramIntegration: OrganizationIntegrationInstagramPayload | null
+    instagramIntegration: IntegrationInstagramPayload | null
     createdAt: Date
     updatedAt: Date
 }
 
-export type OrganizationIntegrationInstagramPayload = {
+export type IntegrationInstagramPayload = {
     accessToken: string
     tokenType: string
     expiresIn: number
     instagramUserId: string
     instagramBusinessId: string | null
-    configuration?: OrganizationIntegrationInstagramConfiguration
+    configuration?: IntegrationInstagramConfiguration
 }
 
-export type OrganizationIntegrationVoiceMessageService = 'ELEVENLABS'
-export type OrganizationIntegrationVoiceMessageVoice = 'SARAH' | 'ALEX' | 'DOMINIQUE' | 'EMMA' | 'SOPHIA' | 'LUCIA'
+export type IntegrationVoiceMessageService = 'ELEVENLABS'
+export type IntegrationVoiceMessageVoice = 'SARAH' | 'ALEX' | 'DOMINIQUE' | 'EMMA' | 'SOPHIA' | 'LUCIA'
 
-export type OrganizationIntegrationInstagramConfiguration = {
+export type IntegrationInstagramConfiguration = {
     isBotEnabled: boolean
     isVoiceMessageResponseEnabled: boolean
     replyDelay: number
-    voiceMessageService: OrganizationIntegrationVoiceMessageService
-    voiceMessageVoice: OrganizationIntegrationVoiceMessageVoice
+    voiceMessageService: IntegrationVoiceMessageService
+    voiceMessageVoice: IntegrationVoiceMessageVoice
 }

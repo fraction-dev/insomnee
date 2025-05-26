@@ -4,11 +4,11 @@ import { Hint } from '~/components/shared/hint'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Button } from '~/components/ui/button'
 import { getInitials } from '~/lib/strings/get-string-initials'
-import { OrganizationIntegrationType } from '~/services/integration/model'
+import { IntegrationType } from '~/services/integration/model'
 import { DialogUser } from '~/services/messaging/model'
 
 interface Props {
-    type: OrganizationIntegrationType
+    type: IntegrationType
     user: DialogUser
 }
 

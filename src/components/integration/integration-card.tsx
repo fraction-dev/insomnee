@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { createElement } from 'react'
 import { IconType } from 'react-icons/lib'
 
-import { OrganizationIntegrationType } from '~/services/integration/model'
+import { IntegrationType } from '~/services/integration/model'
 
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
@@ -10,7 +10,7 @@ import { Card, CardContent, CardFooter } from '../ui/card'
 import { IntegrationInstagramButton } from './integration-instagram-button'
 
 export interface IntegrationCardItem {
-    type: OrganizationIntegrationType
+    type: IntegrationType
     icon?: IconType
     image?: string
     title: string

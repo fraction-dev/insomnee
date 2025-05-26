@@ -77,7 +77,7 @@ const mapPrismaToModel = (customer: PrismaCustomerWithRelations): Customer => {
     return {
         id: customer.id,
         name: customer.name,
-        email: customer.email,
+        email: customer.email ?? '',
         phoneNumber: customer.phoneNumber ?? '',
         avatarUrl: customer.avatarUrl ?? '',
         country: customer.country ?? '',

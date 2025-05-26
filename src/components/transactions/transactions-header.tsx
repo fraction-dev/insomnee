@@ -3,22 +3,22 @@ import Link from 'next/link'
 import { useState } from 'react'
 
 import { ROUTES } from '~/config/routes'
-import { useDeleteOrganizationTransactions } from '~/hooks/organization-transaction/useDeleteOrganizationTransactions'
 import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { useDeleteTransactions } from '~/hooks/transaction/useDeleteTransactions'
+import { Transaction } from '~/services/transaction/model'
 
 import { DeleteDialog } from '../shared/delete-dialog'
 import { Button } from '../ui/button'
 
 interface Props {
     organizationId: string
-    selectedTransactions: OrganizationTransaction[]
-    setSelectedTransactions: (transactions: OrganizationTransaction[]) => void
+    selectedTransactions: Transaction[]
+    setSelectedTransactions: (transactions: Transaction[]) => void
 }
 
 export const TransactionsHeader = ({ organizationId, selectedTransactions, setSelectedTransactions }: Props) => {
     const { createQueryString } = useCreateQueryString()
-    const { mutate: deleteTransactions, isPending: isDeletingTransactions } = useDeleteOrganizationTransactions(organizationId)
+    const { mutate: deleteTransactions, isPending: isDeletingTransactions } = useDeleteTransactions(organizationId)
 
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
 
