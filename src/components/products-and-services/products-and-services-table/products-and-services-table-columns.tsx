@@ -5,11 +5,11 @@ import { FileIcon } from 'lucide-react'
 import { Checkbox } from '~/components/ui/checkbox'
 import { formatCurrency } from '~/lib/currency/format-currency'
 import { formatDateToReadableString } from '~/lib/date/date'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 const MAX_FILES_TO_SHOW = 1
 
-export const productsAndServicesTableColumns: ColumnDef<OrganizationProductsAndServices>[] = [
+export const productsAndServicesTableColumns: ColumnDef<ProductAndService>[] = [
     {
         id: 'select',
         size: 30,

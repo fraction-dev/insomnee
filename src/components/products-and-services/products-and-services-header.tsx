@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 
 import { ROUTES } from '~/config/routes'
-import { useDeleteOrganizationProductsAndServices } from '~/hooks/organization-products-and-services/useDeleteOrganizationProductsAndServices'
+import { useDeleteProductsAndServices } from '~/hooks/product-and-service/useDeleteProductsAndServices'
 import { useCreateQueryString } from '~/hooks/shared/useCreateQueryString'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 import { DeleteDialog } from '../shared/delete-dialog'
 import { Button } from '../ui/button'
@@ -15,13 +15,13 @@ import { ProductsAndServicesImportModal } from './products-and-services-import-m
 
 interface Props {
     organizationId: string
-    selectedProductsAndServices: OrganizationProductsAndServices[]
-    setSelectedProductsAndServices: (productsAndServices: OrganizationProductsAndServices[]) => void
+    selectedProductsAndServices: ProductAndService[]
+    setSelectedProductsAndServices: (productsAndServices: ProductAndService[]) => void
 }
 
 export const ProductsAndServicesHeader = ({ organizationId, selectedProductsAndServices, setSelectedProductsAndServices }: Props) => {
     const { createQueryString } = useCreateQueryString()
-    const { mutate: deleteProductsAndServices, isPending: isDeleting } = useDeleteOrganizationProductsAndServices(organizationId)
+    const { mutate: deleteProductsAndServices, isPending: isDeleting } = useDeleteProductsAndServices(organizationId)
 
     const [isImportModalOpen, setIsImportModalOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)

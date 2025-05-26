@@ -3,10 +3,10 @@ import { logger, task } from '@trigger.dev/sdk/v3'
 import { generateText } from 'ai'
 
 import { perplexity } from '~/lib/server/ai'
-import { OrganizationIntegration } from '~/services/integration/model'
+import { logOrganizationAIUsage } from '~/services/ai-usage'
+import { Integration } from '~/services/integration/model'
+import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '~/services/messaging-agent'
 import { getOrganizationById } from '~/services/organization'
-import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
-import { bootstrapOrganizationMessagingAgent, updateOrganizationMessagingAgent } from '~/services/organization-messaging-agent'
 import { Organization } from '~/services/organization/model'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
@@ -14,7 +14,7 @@ import { OPENAI_BUILD_MESSAGING_AGENT_PROMPT, OPENAI_WEBSITE_SUMMARY_PROMPT, PER
 
 interface Payload {
     organization: Organization
-    integration: OrganizationIntegration
+    integration: Integration
 }
 
 export const setupInstagramMessagingTaskAgent = task({

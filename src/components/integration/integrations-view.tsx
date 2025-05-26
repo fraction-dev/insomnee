@@ -2,18 +2,18 @@
 
 import { FaFacebook, FaInstagram, FaTelegram, FaWhatsapp } from 'react-icons/fa'
 
-import { OrganizationIntegration, OrganizationIntegrationType } from '~/services/integration/model'
+import { Integration, IntegrationType } from '~/services/integration/model'
 
 import { IntegrationCard, IntegrationCardItem } from './integration-card'
 
 interface Props {
-    integrations: OrganizationIntegration[]
+    integrations: Integration[]
     instagramAppId: string
     organizationId: string
 }
 
 export const IntegrationsView = ({ integrations, instagramAppId, organizationId }: Props) => {
-    const isIntegrationConnected = (type: OrganizationIntegrationType) => {
+    const isIntegrationConnected = (type: IntegrationType) => {
         return integrations.some((integration) => integration.type === type)
     }
 

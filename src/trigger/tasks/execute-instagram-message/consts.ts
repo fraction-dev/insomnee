@@ -1,11 +1,11 @@
 import { DialogMessage } from '~/services/messaging/model'
 import { Organization } from '~/services/organization/model'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 interface InstagramMessageGenerationAssistantPromptPayload {
     previousConversations: DialogMessage[]
     organization: Organization
-    productsAndServices: OrganizationProductsAndServices[]
+    productsAndServices: ProductAndService[]
     rules: string
 }
 

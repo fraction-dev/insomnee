@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
-import { deleteTransactions } from '~/services/organization-transaction'
+import { deleteTransactions } from '~/services/transaction'
 
 import { baseOrganizationIdSchema } from '../../schemas'
 

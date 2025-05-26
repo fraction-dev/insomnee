@@ -2,10 +2,10 @@ import { openai } from '@ai-sdk/openai'
 import { generateObject } from 'ai'
 
 import { getOrganizationIntegrations } from '../integration'
+import { getOrganizationMessagingAgentResponses } from '../messaging-agent'
 import { getOrganizationById } from '../organization'
-import { getOrganizationMessagingAgentResponses } from '../organization-messaging-agent'
-import { getOrganizationProductsAndServices } from '../organization-products-and-services'
-import { getOrganizationTransactions } from '../organization-transaction'
+import { getOrganizationProductsAndServices } from '../product-and-service'
+import { getTransactions } from '../transaction'
 
 type Classification = 'transactions' | 'productsAndServices' | 'messaging' | 'integrations' | 'organization' | 'other'
 
@@ -31,7 +31,7 @@ const classifyRelevantQuestion = async (content: string): Promise<Classification
 const getClassificationDataFromDatabase = async (classification: Classification, organizationId: string) => {
     switch (classification) {
         case 'transactions':
-            return await getOrganizationTransactions(organizationId)
+            return await getTransactions(organizationId)
         case 'productsAndServices':
             return await getOrganizationProductsAndServices(organizationId)
         case 'messaging':

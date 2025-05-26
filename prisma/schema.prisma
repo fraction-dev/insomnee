@@ -10,20 +10,20 @@ datasource db {
 }
 
 model User {
-  id                      String                    @id @default(cuid())
-  email                   String                    @unique
-  name                    String?
-  emailVerified           Boolean
-  image                   String?
-  createdAt               DateTime
-  updatedAt               DateTime
-  sessions                Session[]
-  accounts                Account[]
-  OrganizationMember      OrganizationMember[]
-  OrganizationTransaction OrganizationTransaction[]
-  FileUpload              FileUpload[]
-  UserChat                UserChat[]
-  Customers               Customer[]
+  id                 String               @id @default(cuid())
+  email              String               @unique
+  name               String?
+  emailVerified      Boolean
+  image              String?
+  createdAt          DateTime
+  updatedAt          DateTime
+  sessions           Session[]
+  accounts           Account[]
+  OrganizationMember OrganizationMember[]
+  Transactions       Transaction[]
+  FileUpload         FileUpload[]
+  UserChat           UserChat[]
+  Customers          Customer[]
 
   @@map("user")
 }
@@ -101,34 +101,34 @@ enum OrganizationCurrency {
 }
 
 model Organization {
-  id                              String                            @id @default(cuid())
-  name                            String
-  defaultLanguage                 OrganizationLanguage              @default(RU)
-  defaultCurrency                 OrganizationCurrency              @default(MDL)
-  websiteUrl                      String?
-  logoUrl                         String?
-  address                         String?
-  phone                           String?
-  email                           String?
-  city                            String?
-  country                         String?
-  registrationNumber              String?
-  referralCode                    String?
-  isActive                        Boolean?                          @default(true)
-  isVerified                      Boolean?                          @default(false)
-  verificationStatus              OrganizationVerificationStatus?
-  createdAt                       DateTime?                         @default(now()) @db.Timestamptz(6)
-  updatedAt                       DateTime?                         @default(now()) @db.Timestamptz(6)
-  deletedAt                       DateTime?
-  members                         OrganizationMember[]
-  OrganizationIntegration         OrganizationIntegration[]
-  OrganizationTransactionCategory OrganizationTransactionCategory[]
-  OrganizationTransaction         OrganizationTransaction[]
-  OrganizationMessagingAgent      OrganizationMessagingAgent[]
-  OrganizationAIUsage             OrganizationAIUsage[]
-  OrganizationProductsAndServices OrganizationProductsAndServices[]
-  MessagingAgentResponseMessages  MessagingAgentResponseMessages[]
-  Customers                       Customer[]
+  id                             String                           @id @default(cuid())
+  name                           String
+  defaultLanguage                OrganizationLanguage             @default(RU)
+  defaultCurrency                OrganizationCurrency             @default(MDL)
+  websiteUrl                     String?
+  logoUrl                        String?
+  address                        String?
+  phone                          String?
+  email                          String?
+  city                           String?
+  country                        String?
+  registrationNumber             String?
+  referralCode                   String?
+  isActive                       Boolean?                         @default(true)
+  isVerified                     Boolean?                         @default(false)
+  verificationStatus             OrganizationVerificationStatus?
+  createdAt                      DateTime?                        @default(now()) @db.Timestamptz(6)
+  updatedAt                      DateTime?                        @default(now()) @db.Timestamptz(6)
+  deletedAt                      DateTime?
+  members                        OrganizationMember[]
+  Integrations                   Integration[]
+  TransactionCategories          TransactionCategory[]
+  Transactions                   Transaction[]
+  MessagingAgents                MessagingAgent[]
+  AIUsages                       AIUsage[]
+  ProductsAndServices            ProductAndService[]
+  MessagingAgentResponseMessages MessagingAgentResponseMessages[]
+  Customers                      Customer[]
 
   @@map("organization")
 }
@@ -152,7 +152,7 @@ model OrganizationMember {
   @@map("organization_member")
 }
 
-enum OrganizationIntegrationType {
+enum IntegrationType {
   INSTAGRAM
   FACEBOOK
   WHATSAPP
@@ -160,85 +160,89 @@ enum OrganizationIntegrationType {
   TELEGRAM
   SIMPALS
 
-  @@map("organization_integration_type")
+  @@map("integration_type")
 }
 
-model OrganizationIntegration {
-  id                         String                            @id @default(cuid())
-  type                       OrganizationIntegrationType
-  instagramIntegrationId     String?
-  instagramIntegration       OrganizationIntegrationInstagram? @relation(fields: [instagramIntegrationId], references: [id], onDelete: Cascade)
-  organizationId             String
-  organization               Organization                      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  createdAt                  DateTime                          @default(now())
-  updatedAt                  DateTime                          @updatedAt
-  OrganizationMessagingAgent OrganizationMessagingAgent[]
+model Integration {
+  id                     String                @id @default(cuid())
+  type                   IntegrationType
+  instagramIntegrationId String?
+  instagramIntegration   IntegrationInstagram? @relation(fields: [instagramIntegrationId], references: [id], onDelete: Cascade)
+  organizationId         String
+  organization           Organization          @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
+  MessagingAgents        MessagingAgent[]
 
-  @@map("organization_integration")
+  @@map("integration")
 }
 
-enum OrganizationIntegrationVoiceMessageService {
+enum IntegrationVoiceMessageService {
   ELEVENLABS
+
+  @@map("integration_voice_message_service")
 }
 
-enum OrganizationIntegrationVoiceMessageVoice {
+enum VoiceMessageService {
   SARAH
   ALEX
   DOMINIQUE
   EMMA
   SOPHIA
   LUCIA
+
+  @@map("voice_message_service")
 }
 
-model OrganizationIntegrationInstagram {
-  id                            String                                     @id @default(cuid())
-  instagramUserId               String                                     @unique
+model IntegrationInstagram {
+  id                            String                         @id @default(cuid())
+  instagramUserId               String                         @unique
   accessToken                   String
   tokenType                     String
   expiresIn                     Int
   instagramBusinessId           String?
-  OrganizationIntegration       OrganizationIntegration[]
-  isBotEnabled                  Boolean                                    @default(false)
-  isVoiceMessageResponseEnabled Boolean                                    @default(false)
-  replyDelay                    Int                                        @default(0)
-  voiceMessageService           OrganizationIntegrationVoiceMessageService @default(ELEVENLABS)
-  voiceMessageVoice             OrganizationIntegrationVoiceMessageVoice   @default(SARAH)
+  Integrations                  Integration[]
+  isBotEnabled                  Boolean                        @default(false)
+  isVoiceMessageResponseEnabled Boolean                        @default(false)
+  replyDelay                    Int                            @default(0)
+  voiceMessageService           IntegrationVoiceMessageService @default(ELEVENLABS)
+  voiceMessageVoice             VoiceMessageService            @default(SARAH)
 
-  @@map("organization_integration_instagram")
+  @@map("integration_instagram")
 }
 
-model OrganizationTransactionCategory {
-  id                      String                    @id @default(cuid())
-  type                    String
-  organizationId          String
-  organization            Organization              @relation(fields: [organizationId], references: [id])
-  OrganizationTransaction OrganizationTransaction[]
-  createdAt               DateTime                  @default(now())
-  updatedAt               DateTime                  @updatedAt
-  color                   String?
+model TransactionCategory {
+  id             String        @id @default(cuid())
+  type           String
+  organizationId String
+  organization   Organization  @relation(fields: [organizationId], references: [id])
+  Transactions   Transaction[]
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  color          String?
 
-  @@map("organization_transaction_category")
+  @@map("transaction_category")
 }
 
-model OrganizationTransaction {
-  id             String                          @id @default(cuid())
+model Transaction {
+  id             String              @id @default(cuid())
   description    String
   amount         Int
   currency       String
   date           DateTime
   categoryId     String
-  category       OrganizationTransactionCategory @relation(fields: [categoryId], references: [id])
+  category       TransactionCategory @relation(fields: [categoryId], references: [id])
   assignedTo     String?
-  assignedToUser User?                           @relation(fields: [assignedTo], references: [id])
+  assignedToUser User?               @relation(fields: [assignedTo], references: [id])
   attachmentUrl  String?
   notes          String?
   organizationId String
-  organization   Organization                    @relation(fields: [organizationId], references: [id])
-  createdAt      DateTime                        @default(now())
-  updatedAt      DateTime                        @updatedAt
+  organization   Organization        @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
   files          FileUpload[]
 
-  @@map("organization_transaction")
+  @@map("transaction")
 }
 
 enum FileUploadType {
@@ -260,48 +264,48 @@ enum FileUploadAccessType {
 }
 
 model FileUpload {
-  id                                String                           @id @default(cuid())
-  name                              String
-  type                              FileUploadType
-  mimeType                          String
-  accessType                        FileUploadAccessType
-  size                              Int
-  url                               String
-  createdBy                         String
-  createdByUser                     User                             @relation(fields: [createdBy], references: [id])
-  createdAt                         DateTime                         @default(now())
-  updatedAt                         DateTime                         @updatedAt
-  organizationTransactionId         String?
-  organizationTransaction           OrganizationTransaction?         @relation(fields: [organizationTransactionId], references: [id])
-  OrganizationProductsAndServices   OrganizationProductsAndServices? @relation(fields: [organizationProductsAndServicesId], references: [id])
-  organizationProductsAndServicesId String?
+  id                  String               @id @default(cuid())
+  name                String
+  type                FileUploadType
+  mimeType            String
+  accessType          FileUploadAccessType
+  size                Int
+  url                 String
+  createdBy           String
+  createdByUser       User                 @relation(fields: [createdBy], references: [id])
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  transactionId       String?
+  transaction         Transaction?         @relation(fields: [transactionId], references: [id])
+  productAndServiceId String?
+  productAndService   ProductAndService?   @relation(fields: [productAndServiceId], references: [id])
 
   @@map("file_upload")
 }
 
-enum OrganizationAgentStatus {
+enum AgentStatus {
   PENDING
   ACTIVE
 
-  @@map("organization_agent_status")
+  @@map("agent_status")
 }
 
-model OrganizationMessagingAgent {
-  id                             String                   @id @default(cuid())
+model MessagingAgent {
+  id                             String       @id @default(cuid())
   organizationId                 String
-  organization                   Organization             @relation(fields: [organizationId], references: [id])
-  status                         OrganizationAgentStatus  @default(PENDING)
+  organization                   Organization @relation(fields: [organizationId], references: [id])
+  status                         AgentStatus  @default(PENDING)
   prompt                         String?
   integrationId                  String?
-  integration                    OrganizationIntegration? @relation(fields: [integrationId], references: [id])
-  hasAccessToProductsAndServices Boolean                  @default(false)
-  createdAt                      DateTime                 @default(now())
-  updatedAt                      DateTime                 @updatedAt
+  integration                    Integration? @relation(fields: [integrationId], references: [id])
+  hasAccessToProductsAndServices Boolean      @default(false)
+  createdAt                      DateTime     @default(now())
+  updatedAt                      DateTime     @updatedAt
 
-  @@map("organization_messaging_agent")
+  @@map("messaging_agent")
 }
 
-model OrganizationAIUsage {
+model AIUsage {
   id             String       @id @default(cuid())
   organizationId String
   organization   Organization @relation(fields: [organizationId], references: [id])
@@ -310,7 +314,7 @@ model OrganizationAIUsage {
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
 
-  @@map("organization_ai_usage")
+  @@map("ai_usage")
 }
 
 enum OrganizationProductsAndServiceStatus {
@@ -318,10 +322,10 @@ enum OrganizationProductsAndServiceStatus {
   IN_REVIEW
   DELETED
 
-  @@map("organization_products_and_service_status")
+  @@map("products_and_service_status")
 }
 
-model OrganizationProductsAndServices {
+model ProductAndService {
   id              String                               @id @default(cuid())
   organizationId  String
   organization    Organization                         @relation(fields: [organizationId], references: [id])
@@ -336,7 +340,7 @@ model OrganizationProductsAndServices {
   createdAt       DateTime                             @default(now())
   updatedAt       DateTime                             @updatedAt
 
-  @@map("organization_products_and_services")
+  @@map("product_and_service")
 }
 
 model MessagingAgentResponseMessages {

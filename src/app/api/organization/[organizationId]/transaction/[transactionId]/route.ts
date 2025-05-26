@@ -2,8 +2,8 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
-import { updateTransaction } from '~/services/organization-transaction'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { updateTransaction } from '~/services/transaction'
+import { Transaction } from '~/services/transaction/model'
 
 import { baseOrganizationIdSchema } from '../../schemas'
 
@@ -23,7 +23,7 @@ const bodySchema = z.object({
 /**
  * Update a transaction
  */
-export const PATCH = createRouteHandler<OrganizationTransaction>()({ auth: true, paramsSchema, bodySchema }, async ({ params, body }) => {
+export const PATCH = createRouteHandler<Transaction>()({ auth: true, paramsSchema, bodySchema }, async ({ params, body }) => {
     const { transactionId } = params
     const { description, amount, currency, categoryId, notes, assignedTo } = body
 

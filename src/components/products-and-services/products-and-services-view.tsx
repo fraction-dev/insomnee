@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 
-import { useOrganizationProductsAndServices } from '~/hooks/organization-products-and-services/useOrganizationProductsAndServices'
-import { useOrganizationProductsAndServicesSheet } from '~/hooks/organization-products-and-services/useOrganizationProductsAndServicesSheet'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { useProductsAndServices } from '~/hooks/product-and-service/useProductsAndServices'
+import { useProductsAndServicesSheet } from '~/hooks/product-and-service/useProductsAndServicesSheet'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 import { Skeleton } from '../ui/skeleton'
 import { ProductsAndServicesHeader } from './products-and-services-header'
@@ -16,10 +16,10 @@ interface Props {
 }
 
 export const ProductsAndServicesView = ({ organizationId }: Props) => {
-    const { data: productsAndServices, isLoading } = useOrganizationProductsAndServices(organizationId)
-    const { isSheetOpen, handleCleanQueryParams, productAndServiceId } = useOrganizationProductsAndServicesSheet()
+    const { data: productsAndServices, isLoading } = useProductsAndServices(organizationId)
+    const { isSheetOpen, handleCleanQueryParams, productAndServiceId } = useProductsAndServicesSheet()
 
-    const [selectedProductsAndServices, setSelectedProductsAndServices] = useState<OrganizationProductsAndServices[]>([])
+    const [selectedProductsAndServices, setSelectedProductsAndServices] = useState<ProductAndService[]>([])
 
     if (isLoading) {
         return (

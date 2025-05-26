@@ -11,11 +11,11 @@ import { Separator } from '~/components/ui/separator'
 import { Switch } from '~/components/ui/switch'
 import { Textarea } from '~/components/ui/textarea'
 import { useUpdateMessagingAgent } from '~/hooks/settings/useUpdateSettingMessagingAgent'
-import { OrganizationMessagingAgent } from '~/services/organization-messaging-agent/model'
+import { MessagingAgent } from '~/services/messaging-agent/model'
 
 interface Props {
     organizationId: string
-    agent: OrganizationMessagingAgent
+    agent: MessagingAgent
 }
 
 const formSchema = z.object({

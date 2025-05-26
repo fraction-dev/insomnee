@@ -1,13 +1,13 @@
 import { toLower, upperFirst } from 'lodash'
 
 import { SettingsCard } from '~/components/settings/settings-card'
-import { OrganizationMessagingAgent } from '~/services/organization-messaging-agent/model'
+import { MessagingAgent } from '~/services/messaging-agent/model'
 
 import { MessagingAgentForm } from './messaging-agent-form'
 
 interface Props {
     organizationId: string
-    agent: OrganizationMessagingAgent
+    agent: MessagingAgent
 }
 
 export const MessagingAgentView = ({ organizationId, agent }: Props) => {

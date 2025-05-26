@@ -3,12 +3,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useCreateOrganizationProductAndService } from '~/hooks/organization-products-and-services/useCreateOrganizationProductAndService'
-import { useUpdateOrganizationProductAndService } from '~/hooks/organization-products-and-services/useUpdateOrganizationProductAndService'
+import { useCreateProductAndService } from '~/hooks/product-and-service/useCreateProductAndService'
+import { useUpdateProductAndService } from '~/hooks/product-and-service/useUpdateProductAndService'
 import { CURRENCIES } from '~/lib/consts/currencies'
 import { useSession } from '~/lib/shared/auth-client'
 import { FileUpload } from '~/services/file-upload/model'
-import { OrganizationProductsAndServices } from '~/services/organization-products-and-services/model'
+import { ProductAndService } from '~/services/product-and-service/model'
 
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
@@ -30,7 +30,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 interface Props {
-    productAndService?: OrganizationProductsAndServices
+    productAndService?: ProductAndService
     organizationId: string
     onSubmit: () => void
 }
@@ -38,8 +38,8 @@ interface Props {
 export const ProductsAndServicesForm = ({ organizationId, productAndService, onSubmit }: Props) => {
     const { data: session } = useSession()
 
-    const { mutate: createOrganizationProductAndService, isPending: isCreating } = useCreateOrganizationProductAndService(organizationId)
-    const { mutate: updateOrganizationProductAndService, isPending: isUpdating } = useUpdateOrganizationProductAndService(organizationId)
+    const { mutate: createProductAndService, isPending: isCreating } = useCreateProductAndService(organizationId)
+    const { mutate: updateProductAndService, isPending: isUpdating } = useUpdateProductAndService(organizationId)
 
     const isLoading = isCreating || isUpdating
 
@@ -58,7 +58,7 @@ export const ProductsAndServicesForm = ({ organizationId, productAndService, onS
 
     const handleSubmit = (data: FormData) => {
         if (productAndService) {
-            updateOrganizationProductAndService(
+            updateProductAndService(
                 {
                     productAndServiceId: productAndService.id,
                     data: {
@@ -73,7 +73,7 @@ export const ProductsAndServicesForm = ({ organizationId, productAndService, onS
                 { onSuccess: () => onSubmit() },
             )
         } else {
-            createOrganizationProductAndService(
+            createProductAndService(
                 {
                     name: data.name,
                     description: data.description,

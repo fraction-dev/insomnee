@@ -1,5 +1,5 @@
-import { OrganizationMessagingAgent } from '../organization-messaging-agent/model'
+import { MessagingAgent } from '../messaging-agent/model'
 
 export interface SettingsAgentsOutput {
-    messagingAgent: OrganizationMessagingAgent
+    messagingAgent: MessagingAgent
 }

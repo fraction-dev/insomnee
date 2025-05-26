@@ -8,9 +8,9 @@ import { CustomersTable } from '~/components/customers/customers-table/customers
 import { TableHeader } from '~/components/table/table-header'
 import { Skeleton } from '~/components/ui/skeleton'
 import { ROUTES } from '~/config/routes'
-import { useArchiveCustomers } from '~/hooks/customers/useArchiveCustomers'
-import { useCustomers } from '~/hooks/customers/useCustomers'
-import { useCustomersSheet } from '~/hooks/customers/useCustomersSheet'
+import { useArchiveCustomers } from '~/hooks/customer/useArchiveCustomers'
+import { useCustomers } from '~/hooks/customer/useCustomers'
+import { useCustomersSheet } from '~/hooks/customer/useCustomersSheet'
 import { Customer } from '~/services/customer/model'
 
 interface Props {

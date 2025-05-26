@@ -6,10 +6,11 @@ import { Checkbox } from '~/components/ui/checkbox'
 import { formatCurrency } from '~/lib/currency/format-currency'
 import { formatDateToReadableString } from '~/lib/date/date'
 import { cn } from '~/lib/shared/utils'
-import { formatOrganizationTransactionCategoryType } from '~/services/organization-transaction-category/lib/formatOrganizationTransactionCategoryType'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
+import { formatOrganizationTransactionCategoryType } from '~/services/transaction-category/lib/formatOrganizationTransactionCategoryType'
+import { BASE_TRANSACTION_CATEGORY } from '~/services/transaction-category/model'
+import { Transaction } from '~/services/transaction/model'
 
-export const transactionsTableColumns: ColumnDef<OrganizationTransaction>[] = [
+export const transactionsTableColumns: ColumnDef<Transaction>[] = [
     {
         id: 'select',
         size: 30,
@@ -57,7 +58,7 @@ export const transactionsTableColumns: ColumnDef<OrganizationTransaction>[] = [
         cell: ({ row }) => (
             <div className="flex items-center gap-2">
                 <div className={cn('h-2 w-2 rounded-xs')} style={{ backgroundColor: row.original.category.color || '#000000' }} />
-                <span>{formatOrganizationTransactionCategoryType(row.original.category.type)}</span>
+                <span>{formatOrganizationTransactionCategoryType(row.original.category.type as BASE_TRANSACTION_CATEGORY)}</span>
             </div>
         ),
     },

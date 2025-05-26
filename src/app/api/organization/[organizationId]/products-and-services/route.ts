@@ -8,7 +8,7 @@ import {
     createOrganizationProductsAndServices,
     deleteOrganizationProductsAndServices,
     getOrganizationProductsAndServices,
-} from '~/services/organization-products-and-services'
+} from '~/services/product-and-service'
 
 const bodySchema = z.object({
     name: z.string().min(1),

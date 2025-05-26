@@ -11,16 +11,16 @@ import { Popover, PopoverContent, PopoverTrigger } from '~/components/ui/popover
 import { Separator } from '~/components/ui/separator'
 import { Switch } from '~/components/ui/switch'
 import { ROUTES } from '~/config/routes'
-import { useUpdateOrganizationIntegrationInstagram } from '~/hooks/organization-integration/useUpdateOrganizationIntegrationInstagram'
-import { OrganizationIntegration } from '~/services/integration/model'
+import { useUpdateIntegrationInstagram } from '~/hooks/integration/useUpdateIntegrationInstagram'
+import { Integration } from '~/services/integration/model'
 
 interface Props {
-    integration: OrganizationIntegration
+    integration: Integration
     organizationId: string
 }
 
 export const InstagramBot = ({ integration, organizationId }: Props) => {
-    const { mutate: updateConfiguration, isPending } = useUpdateOrganizationIntegrationInstagram(organizationId)
+    const { mutate: updateConfiguration, isPending } = useUpdateIntegrationInstagram(organizationId)
 
     const isBotEnabled = integration.instagramIntegration?.configuration?.isBotEnabled ?? false
     const isVoiceMessageResponseEnabled = integration.instagramIntegration?.configuration?.isVoiceMessageResponseEnabled ?? false

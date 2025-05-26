@@ -3,18 +3,18 @@ import { task } from '@trigger.dev/sdk/v3'
 import logger from '~/core/logger'
 import { generateText } from '~/lib/server/ai/lib/generate-text'
 import { sendTextMessage } from '~/lib/server/instagram/api'
+import { logOrganizationAIUsage } from '~/services/ai-usage'
 import { getInstagramConversations } from '~/services/instagram'
-import { OrganizationIntegration } from '~/services/integration/model'
+import { Integration } from '~/services/integration/model'
+import { getOrganizationMessagingAgentByIntegrationId, saveMessagingAgentResponseMessage } from '~/services/messaging-agent'
 import { getOrganizationById } from '~/services/organization'
-import { logOrganizationAIUsage } from '~/services/organization-ai-usage'
-import { getOrganizationMessagingAgentByIntegrationId, saveMessagingAgentResponseMessage } from '~/services/organization-messaging-agent'
-import { getOrganizationProductsAndServices } from '~/services/organization-products-and-services'
+import { getOrganizationProductsAndServices } from '~/services/product-and-service'
 import { TriggerTasks } from '~/trigger/types/tasks'
 
 import { INSTAGRAM_MESSAGE_GENERATION_ASSISTANT_PROMPT } from './consts'
 
 interface Payload {
-    integration: OrganizationIntegration
+    integration: Integration
     message: string
     senderId: string
 }

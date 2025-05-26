@@ -3,10 +3,10 @@
 import { useState } from 'react'
 
 import { useOrganizationMembers } from '~/hooks/organization-member/useOrganizationMembers'
-import { useOrganizationTransactions } from '~/hooks/organization-transaction/useOrganizationTransactions'
-import { useOrganizationTransactionSheet } from '~/hooks/organization-transaction/useOrganizationTransactionSheet'
-import { OrganizationTransaction } from '~/services/organization-transaction/model'
-import { OrganizationTransactionCategory } from '~/services/organization-transaction-category/model'
+import { useTransactions } from '~/hooks/transaction/useTransactions'
+import { useTransactionSheet } from '~/hooks/transaction/useTransactionSheet'
+import { TransactionCategory } from '~/services/transaction-category/model'
+import { Transaction } from '~/services/transaction/model'
 
 import { TransactionsHeader } from './transactions-header'
 import { TransactionsSheet } from './transactions-sheet'
@@ -15,15 +15,15 @@ import { TransactionsViewSkeleton } from './transactions-view-skeleton'
 
 interface Props {
     organizationId: string
-    transactionCategories: OrganizationTransactionCategory[]
+    transactionCategories: TransactionCategory[]
 }
 
 export const TransactionsView = ({ organizationId, transactionCategories }: Props) => {
-    const { data, isLoading, isPending } = useOrganizationTransactions(organizationId)
+    const { data, isLoading, isPending } = useTransactions(organizationId)
     const { data: organizationMembers } = useOrganizationMembers(organizationId)
-    const { isSheetOpen, transactionId, handleCleanQueryParams } = useOrganizationTransactionSheet()
+    const { isSheetOpen, transactionId, handleCleanQueryParams } = useTransactionSheet()
 
-    const [selectedTransactions, setSelectedTransactions] = useState<OrganizationTransaction[]>([])
+    const [selectedTransactions, setSelectedTransactions] = useState<Transaction[]>([])
 
     if (isLoading || isPending) {
         return <TransactionsViewSkeleton />
@@ -59,7 +59,7 @@ export const TransactionsView = ({ organizationId, transactionCategories }: Prop
     )
 }
 
-const getTransaction = (transactions: OrganizationTransaction[], transactionId: string | null) => {
+const getTransaction = (transactions: Transaction[], transactionId: string | null) => {
     if (!transactionId) {
         return undefined
     }
