@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~
 import { ROUTES } from '~/config/routes'
 import { Customer } from '~/services/customer/model'
 
+import { CustomersTableActions } from './customers-table-actions'
 import { customersTableColumns } from './customers-table-columns'
 
 interface Props {
@@ -65,17 +66,16 @@ export const CustomersTable = ({ organizationId, customers, selectedRows, setSel
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow
-                                key={row.id}
-                                data-state={row.getIsSelected() && 'selected'}
-                                className="cursor-pointer hover:bg-gray-50"
-                                onClick={() => handleRowClick(row.original.id)}
-                            >
+                            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="hover:bg-gray-50">
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell key={cell.id} onClick={() => handleRowClick(row.original.id)}>
+                                    <TableCell key={cell.id} className="cursor-pointer" onClick={() => handleRowClick(row.original.id)}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
+
+                                <TableCell className="flex justify-center">
+                                    <CustomersTableActions organizationId={organizationId} customer={row.original} />
+                                </TableCell>
                             </TableRow>
                         ))
                     ) : (

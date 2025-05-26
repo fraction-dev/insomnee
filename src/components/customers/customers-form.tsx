@@ -47,7 +47,7 @@ export const CustomersForm = ({ customer, organizationId, onSuccess }: Props) =>
     })
 
     const handleSubmit = (data: CustomerForm) => {
-        if (customer) {
+        if (customer?.id) {
             updateCustomer(
                 {
                     id: customer.id,
