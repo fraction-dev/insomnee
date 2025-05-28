@@ -6,6 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '~
 import { ROUTES } from '~/config/routes'
 import { Invoice } from '~/services/invoice/model'
 
+import { InvoicesTableActions } from './invoices-table-actions'
 import { invoicesTableColumns } from './invoices-table-columns'
 
 interface Props {
@@ -71,6 +72,10 @@ export const InvoicesTable = ({ organizationId, invoices, selectedRows, setSelec
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}
+
+                                <TableCell className="flex justify-center">
+                                    <InvoicesTableActions organizationId={organizationId} invoice={row.original} />
+                                </TableCell>
                             </TableRow>
                         ))
                     ) : (
