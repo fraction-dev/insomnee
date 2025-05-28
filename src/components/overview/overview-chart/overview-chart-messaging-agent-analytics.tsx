@@ -3,7 +3,7 @@ import { CartesianGrid, LabelList, Line, LineChart, XAxis, YAxis } from 'rechart
 
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '~/components/ui/chart'
 import { Separator } from '~/components/ui/separator'
-import { formatDateToReadableString } from '~/lib/date/date'
+import { formatDateToReadableString } from '~/lib/date'
 import { cn } from '~/lib/shared/utils'
 import { OverviewChartData } from '~/services/overview/model'
 

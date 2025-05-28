@@ -15,7 +15,7 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
 import { signOut } from '~/lib/shared/auth-client'
-import { getInitials } from '~/lib/strings/get-string-initials'
+import { getInitials } from '~/lib/strings'
 import { User } from '~/services/user/model'
 
 export function SidebarNavUser({ user }: { user: User }) {

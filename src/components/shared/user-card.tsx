@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
 interface Props {
-    image: string | null
+    image?: string | null
     name: string
 }
 

@@ -34,6 +34,7 @@
         "@logtail/next": "^0.2.0",
         "@logtail/pino": "^0.5.4",
         "@neondatabase/serverless": "^1.0.0",
+        "@number-flow/react": "^0.5.9",
         "@paralleldrive/cuid2": "^2.2.2",
         "@prisma/adapter-neon": "^6.7.0",
         "@prisma/client": "^6.5.0",
@@ -48,7 +49,7 @@
         "@radix-ui/react-scroll-area": "^1.2.6",
         "@radix-ui/react-select": "^2.1.7",
         "@radix-ui/react-separator": "^1.1.3",
-        "@radix-ui/react-slot": "^1.2.0",
+        "@radix-ui/react-slot": "^1.2.3",
         "@radix-ui/react-switch": "^1.2.2",
         "@radix-ui/react-tooltip": "^1.2.0",
         "@tanstack/react-query": "^5.71.1",
@@ -71,11 +72,12 @@
         "input-otp": "^1.4.2",
         "lodash": "^4.17.21",
         "lucide-react": "^0.486.0",
-        "motion": "^12.7.3",
+        "motion": "^12.12.2",
         "next": "15.2.4",
         "next-i18next": "^15.4.2",
         "next-themes": "^0.4.6",
         "openai": "^4.96.0",
+        "pluralize": "^8.0.0",
         "qs": "^6.14.0",
         "react": "^19.0.0",
         "react-aiwriter": "^1.0.0",
@@ -112,6 +114,7 @@
         "@types/jest": "^29.5.14",
         "@types/lodash": "^4.17.16",
         "@types/node": "^20",
+        "@types/pluralize": "^0.0.33",
         "@types/qs": "^6.9.18",
         "@types/react": "^19",
         "@types/react-dom": "^19",
@@ -165,5 +168,10 @@
         "@radix-ui/react-dismissable-layer": "^1.0.5",
         "@radix-ui/react-focus-scope": "^1.0.4"
     },
-    "packageManager": "pnpm@9.14.2"
+    "packageManager": "pnpm@9.14.2",
+    "config": {
+        "commitizen": {
+            "path": "cz-conventional-changelog"
+        }
+    }
 }

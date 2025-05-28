@@ -12,7 +12,6 @@ import { useUploadFile } from '~/hooks/file-upload/useUploadFile'
 import { useOrganization } from '~/hooks/organization/useOrganization'
 import { useUpdateOrganizationLogo } from '~/hooks/organization/useUpdateOrganizationLogo'
 import { useUpdateOrganizationName } from '~/hooks/organization/useUpdateOrganizationName'
-import { useSession } from '~/lib/shared/auth-client'
 
 import { SettingsCard } from '../settings-card'
 
@@ -23,9 +22,8 @@ interface Props {
 export const SettingsGeneralView = ({ organizationId }: Props) => {
     const ref = useRef<HTMLInputElement>(null)
 
-    const { data: session } = useSession()
     const { data, isLoading } = useOrganization(organizationId)
-    const { mutate: uploadFile } = useUploadFile(session?.user.id)
+    const { mutate: uploadFile } = useUploadFile()
     const { mutate: updateOrganizationLogo } = useUpdateOrganizationLogo(organizationId)
     const { mutate: updateOrganizationName, isPending: isUpdatingOrganizationName } = useUpdateOrganizationName(organizationId)
 

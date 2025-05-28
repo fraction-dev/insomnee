@@ -1,9 +1,9 @@
 import { ExternalLinkIcon } from 'lucide-react'
 
-import { Hint } from '~/components/shared/hint'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Button } from '~/components/ui/button'
-import { getInitials } from '~/lib/strings/get-string-initials'
+import { Hint } from '~/components/ui/hint'
+import { getInitials } from '~/lib/strings'
 import { IntegrationType } from '~/services/integration/model'
 import { DialogUser } from '~/services/messaging/model'
 

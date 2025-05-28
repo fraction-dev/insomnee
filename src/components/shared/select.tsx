@@ -1,7 +1,7 @@
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { ReactNode, useState } from 'react'
 
-import { SelectContent, SelectItem, SelectTrigger, SelectValue, Select as ShadcnSelect } from '~/components/ui/select'
+import { Select as ShadcnSelect,SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { cn } from '~/lib/shared/utils'
 
 import { Button } from '../ui/button'
@@ -17,19 +17,24 @@ interface Props {
     placeholder?: string
     className?: string
     onChange: (value: string) => void
+    children?: ReactNode
 }
 
-export const Select = ({ id, disabled, options, value, onChange, placeholder, withSearch = false, className }: Props) => {
+export const Select = ({ id, disabled, options, value, onChange, placeholder, withSearch = false, className, children }: Props) => {
     const [open, setOpen] = useState(false)
 
     if (withSearch) {
         return (
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
-                    <Button variant="outline" role="combobox" aria-expanded={open} className="justify-between">
-                        {value ? options.find((option) => option.value === value)?.label : 'Select framework...'}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
+                    {children ? (
+                        children
+                    ) : (
+                        <Button variant="outline" role="combobox" aria-expanded={open} className="justify-between">
+                            {value ? options.find((option) => option.value === value)?.label : 'Select framework...'}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                    )}
                 </PopoverTrigger>
                 <PopoverContent className={cn('p-3', className)}>
                     <Command>
@@ -60,7 +65,7 @@ export const Select = ({ id, disabled, options, value, onChange, placeholder, wi
     return (
         <ShadcnSelect disabled={disabled} value={value} onValueChange={onChange}>
             <SelectTrigger className={cn('w-full', className)}>
-                <SelectValue placeholder={placeholder} />
+                {children ? children : <SelectValue placeholder={placeholder} />}
             </SelectTrigger>
             <SelectContent id={id}>
                 {options.map((option) => (

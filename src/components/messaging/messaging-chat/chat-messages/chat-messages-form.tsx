@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { FormField } from '~/components/shared/form-field'
-import { Hint } from '~/components/shared/hint'
 import { Button } from '~/components/ui/button'
 import { Form } from '~/components/ui/form'
+import { Hint } from '~/components/ui/hint'
 import { Textarea } from '~/components/ui/textarea'
 
 interface Props {

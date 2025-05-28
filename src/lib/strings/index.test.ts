@@ -1,4 +1,4 @@
-import { getInitials } from './get-string-initials'
+import { getInitials, pluralize } from '.'
 
 describe('getInitials', () => {
     it('should return the initials of a name', () => {
@@ -39,5 +39,23 @@ describe('getInitials', () => {
 
     it('should include titles and suffixes and ignore words and strip punctuation', () => {
         expect(getInitials('mr. John Doe Jr.', { ignoreWords: ['Doe'], stripPunctuation: true })).toEqual('J')
+    })
+})
+
+describe('pluralize', () => {
+    it('should pluralize a word ending in y', () => {
+        expect(pluralize('item')).toEqual('items')
+    })
+
+    it('should pluralize a word ending in y', () => {
+        expect(pluralize('foot')).toEqual('feet')
+    })
+
+    it('should pluralize a word ending in y', () => {
+        expect(pluralize('person')).toEqual('people')
+    })
+
+    it('should pluralize a word ending in y', () => {
+        expect(pluralize('mouse')).toEqual('mice')
     })
 })

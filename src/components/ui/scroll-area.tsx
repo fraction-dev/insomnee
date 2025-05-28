@@ -5,7 +5,12 @@ import * as React from 'react'
 
 import { cn } from '~/lib/shared/utils'
 
-function ScrollArea({ className, children, ...props }: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+function ScrollArea({
+    className,
+    children,
+    isScrollBarHidden = false,
+    ...props
+}: React.ComponentProps<typeof ScrollAreaPrimitive.Root> & { isScrollBarHidden?: boolean }) {
     return (
         <ScrollAreaPrimitive.Root data-slot="scroll-area" className={cn('relative', className)} {...props}>
             <ScrollAreaPrimitive.Viewport
@@ -14,7 +19,7 @@ function ScrollArea({ className, children, ...props }: React.ComponentProps<type
             >
                 {children}
             </ScrollAreaPrimitive.Viewport>
-            <ScrollBar />
+            <ScrollBar className={cn(isScrollBarHidden && 'hidden')} />
             <ScrollAreaPrimitive.Corner />
         </ScrollAreaPrimitive.Root>
     )

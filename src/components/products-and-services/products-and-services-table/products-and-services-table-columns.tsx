@@ -4,7 +4,7 @@ import { FileIcon } from 'lucide-react'
 
 import { Checkbox } from '~/components/ui/checkbox'
 import { formatCurrency } from '~/lib/currency/format-currency'
-import { formatDateToReadableString } from '~/lib/date/date'
+import { formatDateToReadableString } from '~/lib/date'
 import { ProductAndService } from '~/services/product-and-service/model'
 
 const MAX_FILES_TO_SHOW = 1
