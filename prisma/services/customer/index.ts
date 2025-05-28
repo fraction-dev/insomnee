@@ -1,17 +1,46 @@
-import { Customer as PrismaCustomer, Organization as PrismaOrganization, User as PrismaUser } from '@prisma/client'
+import {
+    Customer as PrismaCustomer,
+    Invoice as PrismaInvoice,
+    Organization as PrismaOrganization,
+    User as PrismaUser,
+} from '@prisma/client'
 import { prisma } from 'prisma/db'
 
 import { NotFoundException } from '~/core/exception'
 import { Customer, CustomerCreatePayload, CustomerUpdatePayload } from '~/services/customer/model'
 
+import { mapPrismaInvoiceToModel } from '../invoice'
+
 type PrismaCustomerWithRelations = PrismaCustomer & {
     createdByUser: PrismaUser
     organization: PrismaOrganization
+    invoices: (PrismaInvoice & {
+        customer:
+            | (PrismaCustomer & {
+                  createdByUser: PrismaUser
+                  organization: PrismaOrganization
+              })
+            | null
+        createdByUser: PrismaUser
+        organization: PrismaOrganization
+    })[]
 }
 
 const INCLUDE_CLAUSE = {
     createdByUser: true,
     organization: true,
+    invoices: {
+        include: {
+            customer: {
+                include: {
+                    createdByUser: true,
+                    organization: true,
+                },
+            },
+            createdByUser: true,
+            organization: true,
+        },
+    },
 }
 
 export const getOrganizationCustomers = async (organizationId: string) => {
@@ -21,7 +50,7 @@ export const getOrganizationCustomers = async (organizationId: string) => {
         orderBy: { createdAt: 'desc' },
     })
 
-    return customers.map(mapPrismaToModel)
+    return customers.map(mapPrismaCustomerToModel)
 }
 
 export const createCustomer = async (userId: string, organizationId: string, data: CustomerCreatePayload): Promise<Customer> => {
@@ -31,11 +60,12 @@ export const createCustomer = async (userId: string, organizationId: string, dat
             email: data.email ?? '',
             organization: { connect: { id: organizationId } },
             createdByUser: { connect: { id: userId } },
+            invoices: { create: [] },
         },
         include: INCLUDE_CLAUSE,
     })
 
-    return mapPrismaToModel(customer)
+    return mapPrismaCustomerToModel(customer)
 }
 
 export const updateCustomer = async (userId: string, organizationId: string, data: CustomerUpdatePayload) => {
@@ -63,7 +93,7 @@ export const updateCustomer = async (userId: string, organizationId: string, dat
         throw new NotFoundException(`Customer with id ${data.id} not found`)
     }
 
-    return mapPrismaToModel(customer)
+    return mapPrismaCustomerToModel(customer)
 }
 
 export const archiveManyCustomers = async (userId: string, organizationId: string, ids: string[]) => {
@@ -73,7 +103,7 @@ export const archiveManyCustomers = async (userId: string, organizationId: strin
     })
 }
 
-const mapPrismaToModel = (customer: PrismaCustomerWithRelations): Customer => {
+export const mapPrismaCustomerToModel = (customer: PrismaCustomerWithRelations): Customer => {
     return {
         id: customer.id,
         name: customer.name,
@@ -94,5 +124,6 @@ const mapPrismaToModel = (customer: PrismaCustomerWithRelations): Customer => {
         updatedAt: customer.updatedAt,
         createdBy: customer.createdByUser,
         contactPerson: customer.contactPerson ?? '',
+        invoices: customer.invoices.map(mapPrismaInvoiceToModel),
     }
 }

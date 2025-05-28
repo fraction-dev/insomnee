@@ -3,7 +3,7 @@ import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-fo
 
 import { cn } from '~/lib/shared/utils'
 
-import { FormControl, FormItem, FormLabel, FormMessage, FormField as ShadcnFormField } from '../ui/form'
+import { FormControl, FormField as ShadcnFormField,FormItem, FormLabel, FormMessage } from '../ui/form'
 
 interface Props<T extends FieldValues> {
     isRequired?: boolean

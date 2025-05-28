@@ -1,3 +1,9 @@
+import Pluralize from 'pluralize'
+
+export const pluralize = (word: string, count: number = 2, inclusive: boolean = false) => {
+    return Pluralize(word, count, inclusive)
+}
+
 /**
  * Generates initials from a given string.
  *

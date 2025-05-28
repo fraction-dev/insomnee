@@ -1,7 +1,7 @@
 'use client'
 
 import { upperCase } from 'lodash'
-import { ChartNoAxesColumn, Command, CreditCard, LifeBuoy, Send, Settings2, Users2Icon } from 'lucide-react'
+import { ChartNoAxesColumn, Command, CreditCard, FileDigitIcon, LifeBuoy, Send, Settings2, Users2Icon } from 'lucide-react'
 import Link from 'next/link'
 import * as React from 'react'
 
@@ -87,6 +87,11 @@ const data = (organizationId: string) => ({
             title: 'Customers',
             url: ROUTES.DASHBOARD.CUSTOMERS(organizationId),
             icon: Users2Icon,
+        },
+        {
+            title: 'Invoices',
+            url: ROUTES.DASHBOARD.INVOICES(organizationId),
+            icon: FileDigitIcon,
         },
         // {
         //     title: 'Products & Services',

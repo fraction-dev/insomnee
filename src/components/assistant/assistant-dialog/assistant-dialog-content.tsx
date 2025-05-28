@@ -7,7 +7,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { ScrollArea } from '~/components/ui/scroll-area'
 import { cn } from '~/lib/shared/utils'
-import { getInitials } from '~/lib/strings/get-string-initials'
+import { getInitials } from '~/lib/strings'
 
 interface Props {
     user: User

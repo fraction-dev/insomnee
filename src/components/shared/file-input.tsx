@@ -62,7 +62,6 @@ const MAX_SIZE = 10 * 1024 * 1024 // 10MB
 const MAX_FILES = 10
 
 export const FileInput = ({
-    userId,
     accept,
     files = [],
     onUpload,
@@ -71,7 +70,7 @@ export const FileInput = ({
     maxFiles = MAX_FILES,
     maxSize = MAX_SIZE,
 }: Props) => {
-    const { mutate: uploadFile, isPending: isUploading } = useUploadFile(userId)
+    const { mutate: uploadFile, isPending: isUploading } = useUploadFile()
     const [processingFilesCount, setProcessingFilesCount] = useState(0)
 
     const [

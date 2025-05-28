@@ -57,6 +57,6 @@ export const customersTableColumns: ColumnDef<Customer>[] = [
     {
         header: 'Invoices',
         accessorKey: 'invoices',
-        cell: () => <p className="text-muted-foreground">-</p>,
+        cell: ({ row }) => ((row.original.invoices?.length ?? 0) > 0 ? row.original.invoices?.length : '-'),
     },
 ]
