@@ -24,6 +24,7 @@ model User {
   FileUpload         FileUpload[]
   UserChat           UserChat[]
   Customers          Customer[]
+  Invoice            Invoice[]
 
   @@map("user")
 }
@@ -129,6 +130,8 @@ model Organization {
   ProductsAndServices            ProductAndService[]
   MessagingAgentResponseMessages MessagingAgentResponseMessages[]
   Customers                      Customer[]
+  Invoice                        Invoice[]
+  files                          FileUpload[]
 
   @@map("organization")
 }
@@ -263,6 +266,14 @@ enum FileUploadAccessType {
   @@map("file_upload_access_type")
 }
 
+enum FileUploadStatus {
+  PROCESSING
+  COMPLETED
+  FAILED
+
+  @@map("file_upload_status")
+}
+
 model FileUpload {
   id                  String               @id @default(cuid())
   name                String
@@ -279,6 +290,12 @@ model FileUpload {
   transaction         Transaction?         @relation(fields: [transactionId], references: [id])
   productAndServiceId String?
   productAndService   ProductAndService?   @relation(fields: [productAndServiceId], references: [id])
+  organizationId      String
+  organization        Organization         @relation(fields: [organizationId], references: [id])
+  title               String?              @default("")
+  description         String?              @default("")
+  tags                String[]             @default([])
+  status              FileUploadStatus     @default(COMPLETED)
 
   @@map("file_upload")
 }
@@ -408,6 +425,50 @@ model Customer {
   createdBy      String
   createdByUser  User           @relation(fields: [createdBy], references: [id])
   updatedAt      DateTime       @default(now()) @updatedAt @db.Timestamptz(6)
+  invoices       Invoice[]
 
   @@map("customer")
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  CANCELLED
+  UNPAID
+  OVERDUE
+
+  @@map("invoice_status")
+}
+
+model Invoice {
+  id             String        @id @default(cuid())
+  title          String
+  number         String
+  imageUrl       String?
+  dateFormat     String        @default("DD/MM/YYYY")
+  currency       String
+  issueDate      DateTime
+  dueDate        DateTime
+  from           String
+  customerId     String?
+  customer       Customer?     @relation(fields: [customerId], references: [id])
+  items          Json          @default("[]")
+  paymentDetails String?
+  notes          String?
+  discount       Int?          @default(0)
+  vat            Int?          @default(0)
+  tax            Int?          @default(0)
+  organizationId String
+  organization   Organization  @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt      DateTime      @default(now()) @updatedAt @db.Timestamptz(6)
+  createdBy      String
+  createdByUser  User          @relation(fields: [createdBy], references: [id])
+  status         InvoiceStatus @default(DRAFT)
+  paidAt         DateTime?     @db.Timestamptz(6)
+  cancelledAt    DateTime?     @db.Timestamptz(6)
+  internalNotes  String?
+
+  @@map("invoice")
 }

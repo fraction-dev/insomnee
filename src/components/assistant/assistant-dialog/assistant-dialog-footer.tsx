@@ -48,12 +48,12 @@ export const AssistantDialogFooter = ({ inputValue, onInputChange, onSubmit }: P
                             <Button
                                 variant="outline"
                                 size="sm"
-                                className={cn('rounded-xs bg-neutral-100 border-neutral-100', {
+                                className={cn('rounded-xs bg-neutral-100 border-neutral-100 dark:bg-neutral-600 dark:border-neutral-600', {
                                     'mr-5': index === DEFAULT_SUGGESTIONS.length - 1,
                                 })}
                                 onClick={() => handleSuggestionClick(suggestion)}
                             >
-                                <span className="text-sm font-normal text-black/80">{suggestion}</span>
+                                <span className="text-sm font-normal text-black/80 dark:text-neutral-50">{suggestion}</span>
                             </Button>
                         </BlurFade>
                     ))}
@@ -67,7 +67,7 @@ export const AssistantDialogFooter = ({ inputValue, onInputChange, onSubmit }: P
             <Input
                 autoFocus
                 placeholder="Ask Insomnee a question..."
-                className="border-none mx-5 p-0"
+                className="border-none placeholder:px-5 !px-5 p-0"
                 value={inputValue}
                 onChange={onInputChange}
                 onKeyDown={handleKeyDown}
@@ -79,9 +79,9 @@ export const AssistantDialogFooter = ({ inputValue, onInputChange, onSubmit }: P
                 <Image src="/images/logo.svg" alt="Logo" width={15} height={15} />
 
                 <div className="flex items-center gap-1 cursor-pointer" onClick={onSubmit}>
-                    <span className="text-xs font-normal text-black">Submit</span>
-                    <kbd className="rounded-xs bg-border px-1.5 py-0.5 text-xs font-medium text-muted-foreground">
-                        <span className="text-xs font-normal text-black">↵</span>
+                    <span className="text-xs font-normal text-black dark:text-neutral-50">Submit</span>
+                    <kbd className="rounded-xs bg-border px-1.5 py-0.5 text-xs font-medium text-muted-foreground dark:text-neutral-50">
+                        <span className="text-xs font-normal text-black dark:text-neutral-50">↵</span>
                     </kbd>
                 </div>
             </div>

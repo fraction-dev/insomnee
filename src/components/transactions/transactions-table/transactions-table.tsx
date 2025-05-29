@@ -55,13 +55,7 @@ export const TransactionsTable = ({ organizationId, transactions, selectedTransa
                         <TableRow key={headerGroup.id}>
                             {headerGroup.headers.map((header) => {
                                 return (
-                                    <TableHead
-                                        key={header.id}
-                                        style={{
-                                            minWidth: header.column.columnDef.size,
-                                            maxWidth: header.column.columnDef.size,
-                                        }}
-                                    >
+                                    <TableHead key={header.id}>
                                         {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                     </TableHead>
                                 )
@@ -72,20 +66,9 @@ export const TransactionsTable = ({ organizationId, transactions, selectedTransa
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow
-                                key={row.id}
-                                data-state={row.getIsSelected() && 'selected'}
-                                className="cursor-pointer hover:bg-gray-50"
-                            >
+                            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                                 {row.getVisibleCells().map((cell) => (
-                                    <TableCell
-                                        key={cell.id}
-                                        style={{
-                                            minWidth: cell.column.columnDef.size,
-                                            maxWidth: cell.column.columnDef.size,
-                                        }}
-                                        onClick={() => handleRowClick(row.original.id)}
-                                    >
+                                    <TableCell key={cell.id} onClick={() => handleRowClick(row.original.id)}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </TableCell>
                                 ))}

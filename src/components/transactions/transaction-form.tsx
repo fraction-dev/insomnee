@@ -12,9 +12,9 @@ import { useSession } from '~/lib/shared/auth-client'
 import { cn } from '~/lib/shared/utils'
 import { FileUpload } from '~/services/file-upload/model'
 import { OrganizationMember } from '~/services/organization/model'
+import { Transaction } from '~/services/transaction/model'
 import { formatOrganizationTransactionCategoryType } from '~/services/transaction-category/lib/formatOrganizationTransactionCategoryType'
 import { TransactionCategory } from '~/services/transaction-category/model'
-import { Transaction } from '~/services/transaction/model'
 
 import { FileInput } from '../shared/file-input'
 import { FormField } from '../shared/form-field'
@@ -236,6 +236,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                                     <AccordionTrigger className="text-base font-normal">Attachments</AccordionTrigger>
                                     <AccordionContent>
                                         <FileInput
+                                            organizationId={organizationId}
                                             userId={session.user.id}
                                             accept={['image/*']}
                                             files={transactionFiles}

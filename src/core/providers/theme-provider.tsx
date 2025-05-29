@@ -5,7 +5,7 @@ import * as React from 'react'
 
 export function ThemeProvider({ children }: React.ComponentProps<typeof NextThemesProvider>) {
     return (
-        <NextThemesProvider defaultTheme="light" enableSystem={false}>
+        <NextThemesProvider enableSystem disableTransitionOnChange defaultTheme="light" attribute="class">
             {children}
         </NextThemesProvider>
     )

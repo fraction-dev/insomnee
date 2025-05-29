@@ -15,8 +15,13 @@ import {
 import { SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar } from '~/components/ui/sidebar'
 import { ROUTES } from '~/config/routes'
 import { signOut } from '~/lib/shared/auth-client'
-import { getInitials } from '~/lib/strings/get-string-initials'
+import { getInitials } from '~/lib/strings'
 import { User } from '~/services/user/model'
+
+const THEME_OPTIONS = [
+    { label: '💡 Light', value: 'light' },
+    { label: '🌙 Dark', value: 'dark' },
+]
 
 export function SidebarNavUser({ user }: { user: User }) {
     const router = useRouter()
@@ -41,10 +46,10 @@ export function SidebarNavUser({ user }: { user: User }) {
                                 <AvatarFallback className="rounded-lg">{getInitials(user.name ?? '')}</AvatarFallback>
                             </Avatar>
                             <div className="grid flex-1 text-left text-sm leading-tight">
-                                <span className="truncate font-semibold">{user.name}</span>
-                                <span className="truncate text-xs">{user.email}</span>
+                                <span className="truncate font-semibold dark:text-neutral-50">{user.name}</span>
+                                <span className="truncate text-xs dark:text-neutral-50">{user.email}</span>
                             </div>
-                            <ChevronsUpDown className="ml-auto size-4" />
+                            <ChevronsUpDown className="ml-auto size-4 dark:text-neutral-50" />
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
@@ -67,8 +72,8 @@ export function SidebarNavUser({ user }: { user: User }) {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-xs" onClick={handleLogout}>
-                            <LogOutIcon className="size-3" />
-                            Log out
+                            <LogOutIcon className="size-3 dark:text-neutral-50" />
+                            <span className="dark:text-neutral-50">Log out</span>
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>

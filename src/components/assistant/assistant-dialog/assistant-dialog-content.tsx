@@ -7,7 +7,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { ScrollArea } from '~/components/ui/scroll-area'
 import { cn } from '~/lib/shared/utils'
-import { getInitials } from '~/lib/strings/get-string-initials'
+import { getInitials } from '~/lib/strings'
 
 interface Props {
     user: User
@@ -72,7 +72,7 @@ const MessageItem = ({ content, role, user }: { content: string; role: Message['
                 {role === 'user' && <AvatarFallback className="text-xs">{getInitials(user.name || user.email || '')}</AvatarFallback>}
             </Avatar>
 
-            <p className="text-neutral-800 leading-normal font-normal text-xs font-mono">{content}</p>
+            <p className="text-neutral-800 leading-normal font-normal text-xs font-mono dark:text-neutral-50">{content}</p>
         </div>
     )
 }

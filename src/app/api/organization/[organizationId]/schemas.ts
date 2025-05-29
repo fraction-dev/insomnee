@@ -1,5 +1,5 @@
 import { z } from 'zod'
 
-export const baseOrganizationIdSchema = z.object({
+export const Params = z.object({
     organizationId: z.string(),
 })

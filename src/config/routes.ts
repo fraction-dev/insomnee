@@ -20,8 +20,11 @@ export const ROUTES = {
         PRODUCTS_AND_SERVICES: (organizationId: string) => `/dashboard/${organizationId}/products-and-services`,
         MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
         CUSTOMERS: (organizationId: string) => `/dashboard/${organizationId}/customers`,
+        INVOICES: (organizationId: string) => `/dashboard/${organizationId}/invoices`,
+        VAULT: (organizationId: string) => `/dashboard/${organizationId}/vault`,
     },
     ORGANIZATION: {
         CREATE: '/organization/create',
     },
+    INVOICE: (invoiceId: string) => `/invoice/${invoiceId}`,
 }

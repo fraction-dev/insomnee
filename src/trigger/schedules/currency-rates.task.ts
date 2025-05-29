@@ -1,5 +1,5 @@
 import { schedules } from '@trigger.dev/sdk/v3'
-import * as CurrencyRateDB from 'prisma/services/currency-rates'
+import { getCurrencyRates, upsertCurrencyRate } from 'prisma/services/currency-rates'
 
 import { CURRENCIES } from '~/lib/consts/currencies'
 import { fetchCurrencyRate } from '~/lib/server/currency/fetch-currency-rate'
@@ -13,14 +13,14 @@ export const fetchCurrencyRatesTask = schedules.task({
         timezone: 'Europe/Bucharest',
     },
     run: async () => {
-        const dbCurrencyRates = await CurrencyRateDB.getCurrencyRates()
+        const dbCurrencyRates = await getCurrencyRates()
         if (!dbCurrencyRates.length) {
             const results = await Promise.allSettled(CURRENCIES.map(async (currency) => fetchCurrencyRate(currency.code)))
             const rates = results
                 .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
                 .map((result) => result.value)
 
-            await Promise.all(rates.map(async (rate) => CurrencyRateDB.upsertCurrencyRate(rate)))
+            await Promise.all(rates.map(async (rate) => upsertCurrencyRate(rate)))
             return
         }
 
@@ -29,6 +29,6 @@ export const fetchCurrencyRatesTask = schedules.task({
             .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
             .map((result) => result.value)
 
-        await Promise.all(rates.map(async (rate) => CurrencyRateDB.upsertCurrencyRate(rate)))
+        await Promise.all(rates.map(async (rate) => upsertCurrencyRate(rate)))
     },
 })

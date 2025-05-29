@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 import { CustomersSheet } from '~/components/customers/customers-sheet'
 import { CustomersTable } from '~/components/customers/customers-table/customers-table'
+import { EmptyDataState } from '~/components/shared/empty-data-state'
 import { TableHeader } from '~/components/table/table-header'
 import { Skeleton } from '~/components/ui/skeleton'
 import { ROUTES } from '~/config/routes'
@@ -38,6 +39,15 @@ export const CustomersView = ({ organizationId }: Props) => {
                 </div>
                 <Skeleton className="h-96 w-full" />
             </div>
+        )
+    }
+
+    if (!isLoading && customers?.data.length === 0) {
+        return (
+            <>
+                <EmptyDataState type="customer" href={`${ROUTES.DASHBOARD.CUSTOMERS(organizationId)}?isCreateNew=true`} />
+                <CustomersSheet organizationId={organizationId} isOpen={isSheetOpen} onClose={handleCleanQueryParams} />
+            </>
         )
     }
 

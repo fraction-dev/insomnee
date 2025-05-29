@@ -92,115 +92,121 @@ export const CustomersForm = ({ customer, organizationId, onSuccess }: Props) =>
 
     return (
         <Form {...form}>
-            <form className="relative pb-12 h-full flex flex-col gap-6" onSubmit={form.handleSubmit(handleSubmit)}>
-                <FormField
-                    isRequired
-                    label="Name"
-                    control={form.control}
-                    name="name"
-                    errorMessage={form.formState.errors.name?.message}
-                    render={(field) => <Input {...field} value={field.value as string} placeholder="John Doe" />}
-                />
+            <form onSubmit={form.handleSubmit(handleSubmit)}>
+                <div className="flex flex-col gap-6 relative pb-6">
+                    <h3 className="text-lg font-medium">{customer?.id ? 'Edit customer' : 'Create customer'}</h3>
 
-                <div className="grid grid-cols-2 gap-4 items-start">
-                    <FormField
-                        label="Email"
-                        control={form.control}
-                        name="email"
-                        errorMessage={form.formState.errors.email?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="john.doe@example.com" />}
-                    />
+                    <div className="flex flex-col gap-6">
+                        <FormField
+                            isRequired
+                            label="Name"
+                            control={form.control}
+                            name="name"
+                            errorMessage={form.formState.errors.name?.message}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="John Doe" />}
+                        />
 
-                    <FormField
-                        label="Phone number"
-                        control={form.control}
-                        name="phoneNumber"
-                        errorMessage={form.formState.errors.phoneNumber?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="1234567890" />}
-                    />
+                        <div className="grid grid-cols-2 gap-4 items-start">
+                            <FormField
+                                label="Email"
+                                control={form.control}
+                                name="email"
+                                errorMessage={form.formState.errors.email?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="john.doe@example.com" />}
+                            />
+
+                            <FormField
+                                label="Phone number"
+                                control={form.control}
+                                name="phoneNumber"
+                                errorMessage={form.formState.errors.phoneNumber?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="1234567890" />}
+                            />
+                        </div>
+
+                        <FormField
+                            label="Website URL"
+                            control={form.control}
+                            name="websiteUrl"
+                            errorMessage={form.formState.errors.websiteUrl?.message}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="https://www.example.com" />}
+                        />
+
+                        <FormField
+                            label="Contact person"
+                            control={form.control}
+                            name="contactPerson"
+                            errorMessage={form.formState.errors.contactPerson?.message}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="John Doe" />}
+                        />
+
+                        <Separator />
+
+                        <FormField
+                            label="Address line 1"
+                            control={form.control}
+                            name="addressLine1"
+                            errorMessage={form.formState.errors.addressLine1?.message}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="123 Main St" />}
+                        />
+
+                        <FormField
+                            label="Address line 2"
+                            control={form.control}
+                            name="addressLine1"
+                            errorMessage={form.formState.errors.addressLine1?.message}
+                            render={(field) => <Input {...field} value={field.value as string} placeholder="123 Main St" />}
+                        />
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <FormField
+                                label="Country"
+                                control={form.control}
+                                name="country"
+                                errorMessage={form.formState.errors.city?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="United States" />}
+                            />
+
+                            <FormField
+                                label="City"
+                                control={form.control}
+                                name="city"
+                                errorMessage={form.formState.errors.state?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="New York" />}
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                            <FormField
+                                label="State"
+                                control={form.control}
+                                name="state"
+                                errorMessage={form.formState.errors.state?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="California" />}
+                            />
+
+                            <FormField
+                                label="Zip code"
+                                control={form.control}
+                                name="zipCode"
+                                errorMessage={form.formState.errors.zipCode?.message}
+                                render={(field) => <Input {...field} value={field.value as string} placeholder="10001" />}
+                            />
+                        </div>
+
+                        <Separator />
+
+                        <FormField
+                            label="Notes"
+                            control={form.control}
+                            name="notes"
+                            errorMessage={form.formState.errors.notes?.message}
+                            render={(field) => <Textarea {...field} value={field.value as string} placeholder="Notes" className="h-24" />}
+                        />
+                    </div>
                 </div>
 
-                <FormField
-                    label="Website URL"
-                    control={form.control}
-                    name="websiteUrl"
-                    errorMessage={form.formState.errors.websiteUrl?.message}
-                    render={(field) => <Input {...field} value={field.value as string} placeholder="https://www.example.com" />}
-                />
-
-                <FormField
-                    label="Contact person"
-                    control={form.control}
-                    name="contactPerson"
-                    errorMessage={form.formState.errors.contactPerson?.message}
-                    render={(field) => <Input {...field} value={field.value as string} placeholder="John Doe" />}
-                />
-
-                <Separator />
-
-                <FormField
-                    label="Address line 1"
-                    control={form.control}
-                    name="addressLine1"
-                    errorMessage={form.formState.errors.addressLine1?.message}
-                    render={(field) => <Input {...field} value={field.value as string} placeholder="123 Main St" />}
-                />
-
-                <FormField
-                    label="Address line 2"
-                    control={form.control}
-                    name="addressLine1"
-                    errorMessage={form.formState.errors.addressLine1?.message}
-                    render={(field) => <Input {...field} value={field.value as string} placeholder="123 Main St" />}
-                />
-
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        label="Country"
-                        control={form.control}
-                        name="country"
-                        errorMessage={form.formState.errors.city?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="United States" />}
-                    />
-
-                    <FormField
-                        label="City"
-                        control={form.control}
-                        name="city"
-                        errorMessage={form.formState.errors.state?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="New York" />}
-                    />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        label="State"
-                        control={form.control}
-                        name="state"
-                        errorMessage={form.formState.errors.state?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="California" />}
-                    />
-
-                    <FormField
-                        label="Zip code"
-                        control={form.control}
-                        name="zipCode"
-                        errorMessage={form.formState.errors.zipCode?.message}
-                        render={(field) => <Input {...field} value={field.value as string} placeholder="10001" />}
-                    />
-                </div>
-
-                <Separator />
-
-                <FormField
-                    label="Notes"
-                    control={form.control}
-                    name="notes"
-                    errorMessage={form.formState.errors.notes?.message}
-                    render={(field) => <Textarea {...field} value={field.value as string} placeholder="Notes" className="h-24" />}
-                />
-
-                <Button isLoading={isLoading} type="submit" className="w-full absolute bottom-0 left-0 right-0">
+                <Button isLoading={isLoading} type="submit" className="w-fit absolute bottom-0 right-0">
                     {customer ? 'Update' : 'Create'}
                 </Button>
             </form>

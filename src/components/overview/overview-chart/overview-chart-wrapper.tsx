@@ -4,7 +4,7 @@ import { Button } from '~/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/components/ui/card'
 import { ChartConfig } from '~/components/ui/chart'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
-import { formatDateToReadableString } from '~/lib/date/date'
+import { formatDateToReadableString } from '~/lib/date'
 import { OverviewChartData, OverviewChartType } from '~/services/overview/model'
 
 import { OverviewChartMessagingAgentAnalytics } from './overview-chart-messaging-agent-analytics'

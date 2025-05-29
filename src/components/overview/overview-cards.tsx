@@ -55,9 +55,11 @@ const OverviewCard = ({
         <Card>
             <CardHeader className="space-y-2">
                 <CardTitle className="text-xl font-mono text-default font-light">{value}</CardTitle>
-                <CardDescription className="text-sm text-default text-neutral-600 font-normal">{title}</CardDescription>
+                <CardDescription className="text-sm text-default text-neutral-600 dark:text-neutral-50 font-normal">
+                    {title}
+                </CardDescription>
                 {description && (
-                    <CardDescription className="text-xs text-default text-neutral-400 font-normal leading-normal">
+                    <CardDescription className="text-xs text-default text-neutral-400 dark:text-neutral-300 font-normal leading-normal">
                         {description}
                     </CardDescription>
                 )}

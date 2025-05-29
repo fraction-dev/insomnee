@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { Invoice } from '../invoice/model'
 import { Organization } from '../organization/model'
 import { User } from '../user/model'
 
@@ -26,6 +27,7 @@ export interface Customer {
     createdBy: User
     organization?: Organization
     contactPerson?: string
+    invoices?: Invoice[]
 }
 
 export type CustomerCreatePayload = Omit<Customer, 'id' | 'createdAt' | 'updatedAt' | 'createdBy' | 'status' | 'organization'>
