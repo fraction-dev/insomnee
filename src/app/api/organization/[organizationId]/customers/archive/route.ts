@@ -4,10 +4,10 @@ import { archiveManyCustomers } from 'prisma/services/customer'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { customersDeleteManySchema } from '~/services/customer/model'
 
-import { baseOrganizationIdSchema } from '../../schemas'
+import { Params } from '../../schemas'
 
 export const POST = createRouteHandler()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema, bodySchema: customersDeleteManySchema },
+    { auth: true, paramsSchema: Params, bodySchema: customersDeleteManySchema },
     async ({ params, body, userId }) => {
         const { organizationId } = params
 

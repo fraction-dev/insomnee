@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
+import { Params } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { getOrganizationOverviewChatData } from '~/services/overview'
 
@@ -12,7 +12,7 @@ const querySchema = z.object({
     chartType: z.enum(['expenses-over-revenue', 'messaging-agent-statistics']),
 })
 
-export const GET = createRouteHandler()({ paramsSchema: baseOrganizationIdSchema, querySchema }, async ({ params, query }) => {
+export const GET = createRouteHandler()({ paramsSchema: Params, querySchema }, async ({ params, query }) => {
     const organizationId = params.organizationId
     const { startDate, endDate, currency, chartType } = query
 

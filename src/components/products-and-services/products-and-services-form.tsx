@@ -187,6 +187,7 @@ export const ProductsAndServicesForm = ({ organizationId, productAndService, onS
                                 <AccordionContent>
                                     <FileInput
                                         multiple
+                                        organizationId={organizationId}
                                         userId={session.user.id}
                                         accept={[
                                             'text/csv',

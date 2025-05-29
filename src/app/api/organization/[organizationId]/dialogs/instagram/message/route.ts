@@ -5,14 +5,14 @@ import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { sendTextMessage } from '~/lib/server/instagram/api'
 import { getInstagramIntegrationByOrganizationId } from '~/services/integration'
 
-import { baseOrganizationIdSchema } from '../../../schemas'
+import { Params } from '../../../schemas'
 
 const bodySchema = z.object({
     recipientId: z.string(),
     message: z.string(),
 })
 
-export const POST = createRouteHandler()({ auth: true, paramsSchema: baseOrganizationIdSchema, bodySchema }, async ({ params, body }) => {
+export const POST = createRouteHandler()({ auth: true, paramsSchema: Params, bodySchema }, async ({ params, body }) => {
     const { organizationId } = params
     const { recipientId, message } = body
 

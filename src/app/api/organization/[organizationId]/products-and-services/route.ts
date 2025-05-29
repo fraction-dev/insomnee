@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
+import { Params } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { BadRequestError } from '~/lib/shared/operational-errors'
 import {
@@ -24,14 +24,14 @@ const deleteQueryParams = z.object({
     ids: z.string(),
 })
 
-export const POST = createRouteHandler()({ auth: true, bodySchema, paramsSchema: baseOrganizationIdSchema }, async ({ body, params }) => {
+export const POST = createRouteHandler()({ auth: true, bodySchema, paramsSchema: Params }, async ({ body, params }) => {
     const { organizationId } = params
 
     const product = await createOrganizationProductsAndServices(organizationId, body)
     return NextResponse.json({ data: product })
 })
 
-export const GET = createRouteHandler()({ auth: true, paramsSchema: baseOrganizationIdSchema }, async ({ params }) => {
+export const GET = createRouteHandler()({ auth: true, paramsSchema: Params }, async ({ params }) => {
     const { organizationId } = params
 
     const productsAndServices = await getOrganizationProductsAndServices(organizationId)
@@ -39,7 +39,7 @@ export const GET = createRouteHandler()({ auth: true, paramsSchema: baseOrganiza
 })
 
 export const DELETE = createRouteHandler()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema, querySchema: deleteQueryParams },
+    { auth: true, paramsSchema: Params, querySchema: deleteQueryParams },
     async ({ params, query }) => {
         const { organizationId } = params
         const { ids } = query

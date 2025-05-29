@@ -5,10 +5,10 @@ import { createCustomer, getOrganizationCustomers } from '~/services/customer'
 import { Customer, customerCreateSchema } from '~/services/customer/model'
 import { BaseResponse } from '~/types/response'
 
-import { baseOrganizationIdSchema } from '../schemas'
+import { Params } from '../schemas'
 
 export const POST = createRouteHandler<BaseResponse<Customer>>()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema, bodySchema: customerCreateSchema },
+    { auth: true, paramsSchema: Params, bodySchema: customerCreateSchema },
     async ({ params, body, userId }) => {
         const { organizationId } = params
 
@@ -18,13 +18,10 @@ export const POST = createRouteHandler<BaseResponse<Customer>>()(
     },
 )
 
-export const GET = createRouteHandler<BaseResponse<Customer[]>>()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema },
-    async ({ params }) => {
-        const { organizationId } = params
+export const GET = createRouteHandler<BaseResponse<Customer[]>>()({ auth: true, paramsSchema: Params }, async ({ params }) => {
+    const { organizationId } = params
 
-        const customers = await getOrganizationCustomers(organizationId)
+    const customers = await getOrganizationCustomers(organizationId)
 
-        return NextResponse.json({ data: customers })
-    },
-)
+    return NextResponse.json({ data: customers })
+})

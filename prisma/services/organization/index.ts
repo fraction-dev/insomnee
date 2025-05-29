@@ -88,7 +88,7 @@ export const updateOrganizationName = async (organizationId: string, name: strin
     })
 }
 
-const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizationWithRelations): Organization => {
+export const mapPrismaOrganizationToOrganizationModel = (organization: PrismaOrganizationWithRelations): Organization => {
     return {
         ...organization,
         members: organization.members.map(mapPrismaOrganizationMemberToOrganizationMemberModel),

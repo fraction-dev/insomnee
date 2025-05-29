@@ -6,9 +6,9 @@ import { updateCustomer } from '~/services/customer'
 import { Customer, customerUpdateSchema } from '~/services/customer/model'
 import { BaseResponse } from '~/types/response'
 
-import { baseOrganizationIdSchema } from '../../schemas'
+import { Params } from '../../schemas'
 
-export const paramsSchema = baseOrganizationIdSchema.merge(
+export const paramsSchema = Params.merge(
     z.object({
         customerId: z.string(),
     }),

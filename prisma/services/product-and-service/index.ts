@@ -1,16 +1,23 @@
-import { ProductAndService as PrismaProductAndService } from '@prisma/client'
+import { FileUpload as PrismaFileUpload, ProductAndService as PrismaProductAndService, User as PrismaUser } from '@prisma/client'
 import { prisma } from 'prisma/db'
 
-import { FileUpload } from '~/services/file-upload/model'
 import { OrganizationProductAndServiceNotFoundError } from '~/services/product-and-service/errors'
 import { ProductAndService, ProductAndServiceCreate, ProductAndServiceUpdate } from '~/services/product-and-service/model'
 
+import { mapPrismaFileUploadToFileUpload } from '../file-upload'
+
 type ProductAndServiceWithRelations = PrismaProductAndService & {
-    files: FileUpload[]
+    files: (PrismaFileUpload & {
+        createdByUser: PrismaUser
+    })[]
 }
 
 const INCLUDE_CLAUSE = {
-    files: true,
+    files: {
+        include: {
+            createdByUser: true,
+        },
+    },
 }
 
 export const createOrganizationProductsAndServices = async (organizationId: string, data: ProductAndServiceCreate) => {
@@ -91,7 +98,7 @@ const mapPrismaOrganizationProductsAndServicesToModel = (data: ProductAndService
         price: data.price ?? 0,
         currency: data.currency ?? 'MDL',
         status: data.status,
-        files: data.files,
+        files: data.files.map(mapPrismaFileUploadToFileUpload),
         websiteUrlLink: data.websiteUrlLink ?? undefined,
         createdAt: data.createdAt,
         updatedAt: data.updatedAt,

@@ -7,9 +7,9 @@ import { updateInvoice } from '~/services/invoice'
 import { createInvoiceSchema, Invoice } from '~/services/invoice/model'
 import { BaseResponse } from '~/types/response'
 
-import { baseOrganizationIdSchema } from '../../schemas'
+import { Params } from '../../schemas'
 
-const paramsSchema = baseOrganizationIdSchema.merge(z.object({ invoiceId: z.string() }))
+const paramsSchema = Params.merge(z.object({ invoiceId: z.string() }))
 
 export const PATCH = createRouteHandler<BaseResponse<Invoice>>()(
     { auth: true, body: createInvoiceSchema, paramsSchema },

@@ -5,9 +5,9 @@ import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { updateTransaction } from '~/services/transaction'
 import { Transaction } from '~/services/transaction/model'
 
-import { baseOrganizationIdSchema } from '../../schemas'
+import { Params } from '../../schemas'
 
-const paramsSchema = baseOrganizationIdSchema.merge(z.object({ transactionId: z.string() }))
+const paramsSchema = Params.merge(z.object({ transactionId: z.string() }))
 
 const bodySchema = z.object({
     description: z.string().optional(),
