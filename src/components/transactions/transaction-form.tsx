@@ -236,6 +236,7 @@ export const TransactionForm = ({ organizationId, transaction, transactionCatego
                                     <AccordionTrigger className="text-base font-normal">Attachments</AccordionTrigger>
                                     <AccordionContent>
                                         <FileInput
+                                            organizationId={organizationId}
                                             userId={session.user.id}
                                             accept={['image/*']}
                                             files={transactionFiles}

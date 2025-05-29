@@ -1,6 +1,5 @@
 'use client'
 
-import { upperCase } from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -12,6 +11,7 @@ import { useUploadFile } from '~/hooks/file-upload/useUploadFile'
 import { useOrganization } from '~/hooks/organization/useOrganization'
 import { useUpdateOrganizationLogo } from '~/hooks/organization/useUpdateOrganizationLogo'
 import { useUpdateOrganizationName } from '~/hooks/organization/useUpdateOrganizationName'
+import { getInitials } from '~/lib/strings'
 
 import { SettingsCard } from '../settings-card'
 
@@ -23,7 +23,7 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
     const ref = useRef<HTMLInputElement>(null)
 
     const { data, isLoading } = useOrganization(organizationId)
-    const { mutate: uploadFile } = useUploadFile()
+    const { mutate: uploadFile } = useUploadFile(organizationId)
     const { mutate: updateOrganizationLogo } = useUpdateOrganizationLogo(organizationId)
     const { mutate: updateOrganizationName, isPending: isUpdatingOrganizationName } = useUpdateOrganizationName(organizationId)
 
@@ -53,17 +53,20 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
         const formData = new FormData()
         formData.append('file', file)
 
-        uploadFile(formData, {
-            onSuccess: (data) => {
-                if (data.data) {
-                    updateOrganizationLogo(data.data.url, {
-                        onSuccess: () => {
-                            toast.success('Organization logo updated successfully')
-                        },
-                    })
-                }
+        uploadFile(
+            { formData, accessType: 'PRIVATE' },
+            {
+                onSuccess: (data) => {
+                    if (data.data) {
+                        updateOrganizationLogo(data.data.url, {
+                            onSuccess: () => {
+                                toast.success('Organization logo updated successfully')
+                            },
+                        })
+                    }
+                },
             },
-        })
+        )
     }
 
     const handleOrganizationNameUpdate = () => {
@@ -83,7 +86,7 @@ export const SettingsGeneralView = ({ organizationId }: Props) => {
                     <>
                         <Avatar className="size-16 cursor-pointer" onClick={handleAvatarClick}>
                             <AvatarImage src={data?.data.logoUrl ?? undefined} />
-                            <AvatarFallback>{upperCase(data?.data.name.slice(0, 2))}</AvatarFallback>
+                            <AvatarFallback>{getInitials(data?.data.name ?? '', { maxInitials: 2 })}</AvatarFallback>
                         </Avatar>
 
                         <input ref={ref} type="file" className="hidden" onChange={(e) => handleFileUpload(e.target.files?.[0] ?? null)} />

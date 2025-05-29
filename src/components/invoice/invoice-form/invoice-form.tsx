@@ -94,7 +94,7 @@ export const InvoiceForm = ({ organizationId, invoice, customers }: Props) => {
             <form onSubmit={form.handleSubmit(onSubmit)}>
                 <div className="flex flex-col gap-12 relative">
                     <div className="flex flex-col gap-6">
-                        <InvoiceHeader />
+                        <InvoiceHeader organizationId={organizationId} />
                         <InvoiceAddresses customers={customers} />
                         <InvoiceItems />
                     </div>

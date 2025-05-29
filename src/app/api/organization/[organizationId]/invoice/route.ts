@@ -5,10 +5,10 @@ import { createInvoice, getInvoices } from '~/services/invoice'
 import { createInvoiceSchema, Invoice } from '~/services/invoice/model'
 import { BaseResponse } from '~/types/response'
 
-import { baseOrganizationIdSchema } from '../schemas'
+import { Params } from '../schemas'
 
 export const POST = createRouteHandler<BaseResponse<Invoice>>()(
-    { auth: true, body: createInvoiceSchema, paramsSchema: baseOrganizationIdSchema },
+    { auth: true, body: createInvoiceSchema, paramsSchema: Params },
     async ({ params, body, userId }) => {
         const { organizationId } = params
 
@@ -34,13 +34,10 @@ export const POST = createRouteHandler<BaseResponse<Invoice>>()(
     },
 )
 
-export const GET = createRouteHandler<BaseResponse<Invoice[]>>()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema },
-    async ({ params }) => {
-        const { organizationId } = params
+export const GET = createRouteHandler<BaseResponse<Invoice[]>>()({ auth: true, paramsSchema: Params }, async ({ params }) => {
+    const { organizationId } = params
 
-        const invoices = await getInvoices(organizationId)
+    const invoices = await getInvoices(organizationId)
 
-        return NextResponse.json({ data: invoices })
-    },
-)
+    return NextResponse.json({ data: invoices })
+})

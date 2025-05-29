@@ -8,10 +8,10 @@ import { cn } from '~/lib/shared/utils'
 
 import { InvoicePlaceholder } from './invoice-placeholder'
 
-export const InvoiceLogo = memo(() => {
+export const InvoiceLogo = memo(({ organizationId }: { organizationId: string }) => {
     const ref = useRef<HTMLInputElement>(null)
     const { watch, setValue } = useFormContext()
-    const { mutate: uploadFile } = useUploadFile()
+    const { mutate: uploadFile } = useUploadFile(organizationId)
 
     const imageUrl = watch('imageUrl') as string
 
@@ -21,13 +21,16 @@ export const InvoiceLogo = memo(() => {
         const formData = new FormData()
         formData.append('file', file)
 
-        uploadFile(formData, {
-            onSuccess: (data) => {
-                if (data.data) {
-                    setValue('imageUrl', data.data.url)
-                }
+        uploadFile(
+            { formData, accessType: 'PRIVATE' },
+            {
+                onSuccess: (data) => {
+                    if (data.data) {
+                        setValue('imageUrl', data.data.url)
+                    }
+                },
             },
-        })
+        )
     }
 
     return (

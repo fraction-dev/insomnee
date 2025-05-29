@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { getOrganizationOverviewStatistics } from '~/services/overview'
 
-import { baseOrganizationIdSchema } from '../schemas'
+import { Params } from '../schemas'
 
 const querySchema = z.object({
     startDate: z.string().optional(),
@@ -12,7 +12,7 @@ const querySchema = z.object({
     currency: z.string().optional(),
 })
 
-export const GET = createRouteHandler()({ paramsSchema: baseOrganizationIdSchema, querySchema }, async ({ params, query }) => {
+export const GET = createRouteHandler()({ paramsSchema: Params, querySchema }, async ({ params, query }) => {
     const organizationId = params.organizationId
     const { startDate, endDate, currency } = query
 

@@ -1,10 +1,11 @@
-import { Transaction as PrismaTransaction, User as PrismaUser } from '@prisma/client'
+import { FileUpload as PrismaFileUpload, Transaction as PrismaTransaction, User as PrismaUser } from '@prisma/client'
 import dayjs from 'dayjs'
 import { prisma } from 'prisma/db'
 
-import { FileUpload } from '~/services/file-upload/model'
 import { BASE_TRANSACTION_CATEGORY } from '~/services/transaction-category/model'
 import { Transaction, TransactionCreate, TransactionUpdate } from '~/services/transaction/model'
+
+import { mapPrismaFileUploadToFileUpload } from '../file-upload'
 
 type PrismaTransactionWithRelations = PrismaTransaction & {
     category: {
@@ -16,7 +17,19 @@ type PrismaTransactionWithRelations = PrismaTransaction & {
         color: string | null
     }
     assignedToUser: PrismaUser | null
-    files: FileUpload[]
+    files: (PrismaFileUpload & {
+        createdByUser: PrismaUser
+    })[]
+}
+
+const INCLUDE_CLAUSE = {
+    category: true,
+    assignedToUser: true,
+    files: {
+        include: {
+            createdByUser: true,
+        },
+    },
 }
 
 export const getTransactions = async (organizationId: string, startDate?: Date, endDate?: Date): Promise<Transaction[]> => {
@@ -28,11 +41,7 @@ export const getTransactions = async (organizationId: string, startDate?: Date, 
                 lte: endDate ?? undefined,
             },
         },
-        include: {
-            category: true,
-            assignedToUser: true,
-            files: true,
-        },
+        include: INCLUDE_CLAUSE,
         orderBy: {
             date: 'desc',
         },
@@ -57,11 +66,7 @@ export const createTransaction = async (organizationId: string, transaction: Tra
                 connect: transaction.files.map((file) => ({ id: file })),
             },
         },
-        include: {
-            category: true,
-            assignedToUser: true,
-            files: true,
-        },
+        include: INCLUDE_CLAUSE,
     })
 
     return mapPrismaTransactionToTransaction(prismaTransaction)
@@ -80,11 +85,7 @@ export const updateTransaction = async (transactionId: string, transaction: Tran
             notes: transaction.notes ?? undefined,
             assignedTo: transaction.assignedTo ?? undefined,
         },
-        include: {
-            category: true,
-            assignedToUser: true,
-            files: true,
-        },
+        include: INCLUDE_CLAUSE,
     })
 
     return mapPrismaTransactionToTransaction(prismaTransaction)
@@ -144,6 +145,6 @@ const mapPrismaTransactionToTransaction = (prismaTransaction: PrismaTransactionW
         notes: prismaTransaction.notes,
         createdAt: prismaTransaction.createdAt,
         updatedAt: prismaTransaction.updatedAt,
-        files: prismaTransaction.files,
+        files: prismaTransaction.files.map(mapPrismaFileUploadToFileUpload),
     }
 }

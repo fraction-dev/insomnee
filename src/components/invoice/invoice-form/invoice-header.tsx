@@ -9,7 +9,7 @@ import { InvoiceInput } from './invoice-input'
 import { InvoiceLogo } from './invoice-logo'
 import { InvoicePlaceholder } from './invoice-placeholder'
 
-export const InvoiceHeader = () => {
+export const InvoiceHeader = ({ organizationId }: { organizationId: string }) => {
     const { register, watch, setValue } = useFormContext<InvoiceFormValues>()
     const { isFieldTouched, handleTouch } = useInvoiceTouchedFields()
 
@@ -64,7 +64,7 @@ export const InvoiceHeader = () => {
             </div>
 
             {/* <InvoicePlaceholder className="h-24 w-24 justify-self-end" /> */}
-            <InvoiceLogo />
+            <InvoiceLogo organizationId={organizationId} />
         </div>
     )
 }

@@ -21,6 +21,7 @@ export const ROUTES = {
         MESSAGING: (organizationId: string) => `/dashboard/${organizationId}/messaging`,
         CUSTOMERS: (organizationId: string) => `/dashboard/${organizationId}/customers`,
         INVOICES: (organizationId: string) => `/dashboard/${organizationId}/invoices`,
+        VAULT: (organizationId: string) => `/dashboard/${organizationId}/vault`,
     },
     ORGANIZATION: {
         CREATE: '/organization/create',

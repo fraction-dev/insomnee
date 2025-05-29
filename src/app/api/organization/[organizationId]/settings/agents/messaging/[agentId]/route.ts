@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
+import { Params } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { updateOrganizationSettingsMessagingAgent } from '~/services/settings'
 
-const paramsSchema = baseOrganizationIdSchema.merge(
+const paramsSchema = Params.merge(
     z.object({
         agentId: z.string(),
     }),

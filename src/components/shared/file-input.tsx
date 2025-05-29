@@ -21,6 +21,7 @@ import { Button } from '../ui/button'
 import { Skeleton } from '../ui/skeleton'
 
 interface Props {
+    organizationId: string
     multiple?: boolean
     userId: string
     accept?: string[]
@@ -62,6 +63,7 @@ const MAX_SIZE = 10 * 1024 * 1024 // 10MB
 const MAX_FILES = 10
 
 export const FileInput = ({
+    organizationId,
     accept,
     files = [],
     onUpload,
@@ -70,7 +72,7 @@ export const FileInput = ({
     maxFiles = MAX_FILES,
     maxSize = MAX_SIZE,
 }: Props) => {
-    const { mutate: uploadFile, isPending: isUploading } = useUploadFile()
+    const { mutate: uploadFile, isPending: isUploading } = useUploadFile(organizationId)
     const [processingFilesCount, setProcessingFilesCount] = useState(0)
 
     const [
@@ -99,17 +101,20 @@ export const FileInput = ({
                         try {
                             // Create a promise for this file upload
                             const result = await new Promise<any>((resolve, reject) => {
-                                uploadFile(formData, {
-                                    onSuccess: (response) => {
-                                        resolve(response)
+                                uploadFile(
+                                    { formData, accessType: 'PRIVATE' },
+                                    {
+                                        onSuccess: (response) => {
+                                            resolve(response)
+                                        },
+                                        onError: (error) => {
+                                            reject(error)
+                                        },
+                                        onSettled: () => {
+                                            setProcessingFilesCount((prev) => prev + 1)
+                                        },
                                     },
-                                    onError: (error) => {
-                                        reject(error)
-                                    },
-                                    onSettled: () => {
-                                        setProcessingFilesCount((prev) => prev + 1)
-                                    },
-                                })
+                                )
                             })
 
                             if (result && result.data) {

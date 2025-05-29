@@ -5,9 +5,9 @@ import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { createTransaction, getTransactions } from '~/services/transaction'
 import { Transaction } from '~/services/transaction/model'
 
-import { baseOrganizationIdSchema } from '../schemas'
+import { Params } from '../schemas'
 
-export const GET = createRouteHandler<Transaction[]>()({ auth: true, paramsSchema: baseOrganizationIdSchema }, async ({ params }) => {
+export const GET = createRouteHandler<Transaction[]>()({ auth: true, paramsSchema: Params }, async ({ params }) => {
     const { organizationId } = params
 
     const transactions = await getTransactions(organizationId)
@@ -27,7 +27,7 @@ const bodySchema = z.object({
 })
 
 export const POST = createRouteHandler<Transaction>()(
-    { auth: true, paramsSchema: baseOrganizationIdSchema, bodySchema: bodySchema },
+    { auth: true, paramsSchema: Params, bodySchema: bodySchema },
     async ({ params, body }) => {
         const { organizationId } = params
         const { description, amount, currency, categoryId, notes, assignedTo, files } = body

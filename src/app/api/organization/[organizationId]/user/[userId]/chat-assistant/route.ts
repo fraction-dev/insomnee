@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-import { baseOrganizationIdSchema } from '~/app/api/organization/[organizationId]/schemas'
+import { Params } from '~/app/api/organization/[organizationId]/schemas'
 import { createRouteHandler } from '~/core/middleware/with-route-handler'
 import { streamRagChatbot } from '~/lib/server/ai/lib/stream-rag-chatbot'
 import { getUserChats } from '~/services/user-chat'
 import { UserChat } from '~/services/user-chat/model'
 import { BaseResponse } from '~/types/response'
 
-export const paramsSchema = baseOrganizationIdSchema.merge(
+export const paramsSchema = Params.merge(
     z.object({
         userId: z.string(),
     }),
