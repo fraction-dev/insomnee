@@ -14,6 +14,13 @@ interface Props {
     statistics: InvoicesStatistics
 }
 
+const getPaymentScoreColor = (score: number, forText: boolean = false) => {
+    if (score === 0) return forText ? 'text-gray-500' : 'bg-gray-500'
+    if (score >= 80) return forText ? 'text-green-500' : 'bg-green-500'
+    if (score >= 50) return forText ? 'text-yellow-500' : 'bg-yellow-500'
+    return 'bg-red-500'
+}
+
 export const InvoicesStatisticsTabs = ({ organization, statistics }: Props) => {
     const { total, overdue, paid } = statistics
 
@@ -35,8 +42,13 @@ export const InvoicesStatisticsTabs = ({ organization, statistics }: Props) => {
         return 'Paying late, or not at all'
     }, [statistics.paymentScore])
 
+    const paymentScoreTitleClassName = useMemo(() => {
+        const score = statistics.paymentScore ?? 0
+        return getPaymentScoreColor(score, true)
+    }, [statistics.paymentScore])
+
     return (
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             <Tab
                 title={formatCurrency(total.amount, organization.defaultCurrency ?? 'USD')}
                 subtitle="Open"
@@ -61,6 +73,7 @@ export const InvoicesStatisticsTabs = ({ organization, statistics }: Props) => {
 
             <Tab
                 title={paymentScoreTitle}
+                titleClassName={paymentScoreTitleClassName}
                 subtitle="Payment Score"
                 description={paymentScoreDescription}
                 addon={<PaymentScoreChart score={statistics.paymentScore} />}
@@ -69,12 +82,24 @@ export const InvoicesStatisticsTabs = ({ organization, statistics }: Props) => {
     )
 }
 
-const Tab = ({ title, subtitle, description, addon }: { title: string; subtitle: string; description: string; addon?: ReactNode }) => {
+const Tab = ({
+    title,
+    subtitle,
+    description,
+    addon,
+    titleClassName,
+}: {
+    title: string
+    subtitle: string
+    description: string
+    addon?: ReactNode
+    titleClassName?: string
+}) => {
     return (
         <Card>
             <CardContent className="flex flex-col gap-4">
                 <div className="flex items-center justify-between gap-12">
-                    <h3 className="font-mono text-xl font-normal">{title}</h3>
+                    <h3 className={cn('font-mono text-xl font-normal', titleClassName)}>{title}</h3>
                     {addon}
                 </div>
 
@@ -90,15 +115,10 @@ const Tab = ({ title, subtitle, description, addon }: { title: string; subtitle:
 const PaymentScoreChart = ({ score }: { score: number }) => {
     const bars = 10
 
-    const barsColors = useMemo(() => {
-        if (score === 0) return 'bg-gray-500'
-        if (score >= 80) return 'bg-green-500'
-        if (score >= 50) return 'bg-yellow-500'
-        return 'bg-red-500'
-    }, [score])
+    const barsColors = getPaymentScoreColor(score)
 
     return (
-        <div className="flex items-end gap-[6px]">
+        <div className="hidden sm:flex items-end gap-[6px]">
             {Array.from({ length: bars }).map((_, index) => {
                 return (
                     <BlurFade key={index} delay={index * 0.01} className="relative">

@@ -41,7 +41,7 @@ export const InvoicesView = ({ organization }: Props) => {
     if (isLoading) {
         return (
             <div className="flex flex-col gap-4">
-                <div className="grid grid-cols-4 gap-6">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <Skeleton className="h-44 w-full" />
                     <Skeleton className="h-44 w-full" />
                     <Skeleton className="h-44 w-full" />

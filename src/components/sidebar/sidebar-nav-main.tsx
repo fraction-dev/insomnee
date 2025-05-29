@@ -14,6 +14,7 @@ import {
     SidebarMenuSub,
     SidebarMenuSubButton,
     SidebarMenuSubItem,
+    useSidebar,
 } from '~/components/ui/sidebar'
 import { cn } from '~/lib/shared/utils'
 
@@ -29,6 +30,7 @@ interface Props {
 
 export function SidebarNavMain({ items }: Props) {
     const pathname = usePathname()
+    const { setOpenMobile } = useSidebar()
 
     return (
         <SidebarGroup>
@@ -43,7 +45,7 @@ export function SidebarNavMain({ items }: Props) {
                                     'bg-accent': item.url === pathname,
                                 })}
                             >
-                                <Link href={item.url}>
+                                <Link href={item.url} onClick={() => setOpenMobile(false)}>
                                     <item.icon className="dark:text-neutral-50" />
                                     <span className="dark:text-neutral-50">{item.title}</span>
                                 </Link>
@@ -61,7 +63,7 @@ export function SidebarNavMain({ items }: Props) {
                                             {item.items?.map((subItem) => (
                                                 <SidebarMenuSubItem key={subItem.title}>
                                                     <SidebarMenuSubButton asChild>
-                                                        <Link href={subItem.url}>
+                                                        <Link href={subItem.url} onClick={() => setOpenMobile(false)}>
                                                             <span>{subItem.title}</span>
                                                         </Link>
                                                     </SidebarMenuSubButton>

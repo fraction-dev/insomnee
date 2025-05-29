@@ -4,16 +4,15 @@ import dayjs from 'dayjs'
 import { useState } from 'react'
 import { DateRange } from 'react-day-picker'
 
+import { OverviewCards } from '~/components/overview/overview-cards'
+import { OverviewChartWrapper } from '~/components/overview/overview-chart/overview-chart-wrapper'
+import { OverviewHeader } from '~/components/overview/overview-header'
+import { OverviewLoading } from '~/components/overview/overview-loading'
+import { Skeleton } from '~/components/ui/skeleton'
 import { useOverviewChart } from '~/hooks/overview/useOverviewChart'
 import { useOverviewStatistics } from '~/hooks/overview/useOverviewStatistics'
 import { Organization } from '~/services/organization/model'
 import { OverviewChartType } from '~/services/overview/model'
-
-import { Skeleton } from '../ui/skeleton'
-import { OverviewCards } from './overview-cards'
-import { OverviewChartWrapper } from './overview-chart/overview-chart-wrapper'
-import { OverviewHeader } from './overview-header'
-import { OverviewLoading } from './overview-loading'
 
 interface Props {
     organization: Organization

@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
-import { OverviewView } from '~/components/overview/overview-view'
 import { getOrganizationById } from '~/services/organization'
+import { OverviewView } from '~/views/overview.view'
 
 export const metadata: Metadata = {
     title: 'Overview | Insomnee',
