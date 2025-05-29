@@ -66,7 +66,11 @@ export const CustomersTable = ({ organizationId, customers, selectedRows, setSel
                 <TableBody>
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => (
-                            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="hover:bg-gray-50">
+                            <TableRow
+                                key={row.id}
+                                data-state={row.getIsSelected() && 'selected'}
+                                className="hover:bg-gray-50 dark:hover:bg-neutral-900"
+                            >
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell key={cell.id} className="cursor-pointer" onClick={() => handleRowClick(row.original.id)}>
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}

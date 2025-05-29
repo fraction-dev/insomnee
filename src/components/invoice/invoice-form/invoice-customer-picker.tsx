@@ -20,9 +20,9 @@ export const InvoiceCustomerPicker = ({ customers }: Props) => {
                 placeholder="Choose customer"
                 displayValue={
                     <div className="flex flex-col gap-1">
-                        <p className="text-[11px] text-black font-mono">{customer?.name}</p>
-                        <p className="text-[11px] text-black font-mono">{customer?.email}</p>
-                        <p className="text-[11px] text-black font-mono">{customer?.phoneNumber}</p>
+                        <p className="text-[11px] text-black dark:text-neutral-50 font-mono">{customer?.name}</p>
+                        <p className="text-[11px] text-black dark:text-neutral-50 font-mono">{customer?.email}</p>
+                        <p className="text-[11px] text-black dark:text-neutral-50 font-mono">{customer?.phoneNumber}</p>
                     </div>
                 }
                 options={customers.map((customer) => ({ label: customer.name, value: customer.id }))}

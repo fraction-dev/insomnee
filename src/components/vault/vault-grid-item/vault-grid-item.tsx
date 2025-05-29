@@ -46,7 +46,7 @@ export const VaultGridItem = ({ organizationId, file }: Props) => {
 
     return (
         <>
-            <Card className="hover:bg-neutral-50 transition-colors group relative">
+            <Card className="hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors group relative">
                 <CardContent className="flex flex-col gap-6">
                     <div className="flex justify-between gap-12 items-start">
                         <button

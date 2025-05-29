@@ -51,7 +51,9 @@ const ActivityItem = ({
 
                     {!isLast && <div className="absolute top-2 left-1/2 w-px h-6 bg-border -translate-x-1/2" />}
                 </div>
-                <span className={cn('text-sm font-light', isCompleted ? 'text-black' : 'text-muted-foreground')}>{label}</span>
+                <span className={cn('text-sm font-light', isCompleted ? 'text-black dark:text-neutral-50' : 'text-muted-foreground')}>
+                    {label}
+                </span>
             </div>
 
             <span className="text-sm text-muted-foreground">{value}</span>

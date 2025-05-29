@@ -72,7 +72,7 @@ const MessageItem = ({ content, role, user }: { content: string; role: Message['
                 {role === 'user' && <AvatarFallback className="text-xs">{getInitials(user.name || user.email || '')}</AvatarFallback>}
             </Avatar>
 
-            <p className="text-neutral-800 leading-normal font-normal text-xs font-mono">{content}</p>
+            <p className="text-neutral-800 leading-normal font-normal text-xs font-mono dark:text-neutral-50">{content}</p>
         </div>
     )
 }
