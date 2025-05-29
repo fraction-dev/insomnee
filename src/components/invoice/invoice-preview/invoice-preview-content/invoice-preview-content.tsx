@@ -39,16 +39,16 @@ export const InvoicePreviewContent = ({ invoice }: Props) => {
                     label="To"
                     value={
                         <div className="flex flex-col gap-1">
-                            <p className="text-black text-[11px] leading-relaxed">{invoice.customer?.name}</p>
+                            <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">{invoice.customer?.name}</p>
                             <Link
                                 href={`mailto:${invoice.customer?.email}`}
-                                className="text-black text-[11px] leading-relaxed underline w-fit"
+                                className="text-black dark:text-neutral-50 text-[11px] leading-relaxed underline w-fit"
                             >
                                 {invoice.customer?.email}
                             </Link>
                             <Link
                                 href={`tel:${invoice.customer?.phoneNumber}`}
-                                className="text-black text-[11px] leading-relaxed underline w-fit"
+                                className="text-black dark:text-neutral-50 text-[11px] leading-relaxed underline w-fit"
                             >
                                 {invoice.customer?.phoneNumber}
                             </Link>
@@ -71,10 +71,12 @@ export const InvoicePreviewContent = ({ invoice }: Props) => {
                             key={idx}
                             className="grid grid-cols-4 gap-4 border-b border-border border-dashed pb-2 last:border-b-0 last:pb-0"
                         >
-                            <p className="text-black text-[11px] leading-relaxed">{item.description || '-'}</p>
-                            <p className="text-black text-[11px] leading-relaxed">{item.quantity || '0'}</p>
-                            <p className="text-black text-[11px] leading-relaxed">{item.price || '0'}</p>
-                            <p className="text-black text-[11px] leading-relaxed text-right">
+                            <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">{item.description || '-'}</p>
+                            <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">{item.quantity || '0'}</p>
+                            <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">
+                                {formatCurrency(item.price, invoice.currency || 'USD')}
+                            </p>
+                            <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed text-right">
                                 {formatCurrency(item.price * item.quantity, invoice.currency || 'USD')}
                             </p>
                         </div>
@@ -117,12 +119,12 @@ export const InvoicePreviewContent = ({ invoice }: Props) => {
                 <div className="grid grid-cols-2 gap-12">
                     <div className="flex flex-col gap-2">
                         <p className="text-[11px] text-muted-foreground">Payment Details</p>
-                        <p className="text-black text-[11px] leading-relaxed">{invoice.paymentDetails || '-'}</p>
+                        <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">{invoice.paymentDetails || '-'}</p>
                     </div>
 
                     <div className="flex flex-col gap-2">
                         <p className="text-[11px] text-muted-foreground">Notes</p>
-                        <p className="text-black text-[11px] leading-relaxed">{invoice.notes || '-'}</p>
+                        <p className="text-black dark:text-neutral-50 text-[11px] leading-relaxed">{invoice.notes || '-'}</p>
                     </div>
                 </div>
             </div>
@@ -133,7 +135,7 @@ export const InvoicePreviewContent = ({ invoice }: Props) => {
 const ParagraphItem = ({ label, value }: { label: string; value: string }) => {
     return (
         <p className="text-[11px] text-muted-foreground">
-            {label}: <span className="text-black">{value}</span>
+            {label}: <span className="text-black dark:text-neutral-50">{value}</span>
         </p>
     )
 }
@@ -142,7 +144,7 @@ const AddressField = ({ label, value }: { label: string; value: string | ReactNo
     return (
         <div className="flex flex-col gap-2">
             <p className="text-[11px] text-muted-foreground">{label}</p>
-            {typeof value === 'string' ? <p className="text-black text-[11px] leading-relaxed">{value}</p> : value}
+            {typeof value === 'string' ? <p className="text-black dark:text-neutral-50 text-[11px]  leading-relaxed">{value}</p> : value}
         </div>
     )
 }
