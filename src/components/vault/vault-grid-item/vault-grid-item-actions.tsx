@@ -6,6 +6,7 @@ import { DeleteDialog } from '~/components/shared/delete-dialog'
 import { Button } from '~/components/ui/button'
 import { Hint } from '~/components/ui/hint'
 import { useDeleteVaultFiles } from '~/hooks/vault/useDeleteVaultFiles'
+import { useVaultFileActions } from '~/hooks/vault/useVaultFileActions'
 import { FileUpload } from '~/services/file-upload/model'
 
 interface Props {
@@ -15,22 +16,9 @@ interface Props {
 
 export const VaultGridItemActions = ({ organizationId, file }: Props) => {
     const { mutate: deleteFiles, isPending: isDeleting } = useDeleteVaultFiles(organizationId)
+    const { isCopied, handleCopyFileLink, handleDownloadFile } = useVaultFileActions(file)
 
-    const [isCopied, setIsCopied] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
-
-    const handleCopyFileLink = () => {
-        navigator.clipboard.writeText(file.url)
-        setIsCopied(true)
-        toast.success('File link copied to clipboard')
-        setTimeout(() => {
-            setIsCopied(false)
-        }, 2000)
-    }
-
-    const handleDownloadFile = () => {
-        window.open(file.url, '_blank')
-    }
 
     const handleTriggerDeleteDialog = () => {
         setIsDeleteDialogOpen((prev) => !prev)

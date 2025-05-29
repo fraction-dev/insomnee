@@ -41,7 +41,7 @@ export const AssistantDialog = ({ user, isOpen, organizationId, onClose }: Props
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="[&>button]:hidden md:min-w-4xl w-full px-0 py-0 overflow-hidden">
+            <DialogContent className="[&>button]:hidden md:min-w-4xl w-full px-0 py-0">
                 <div className="flex w-full">
                     {/* <div className="bg-neutral-50 w-56 h-full relative">
                         {userChats?.data.length === 0 && (

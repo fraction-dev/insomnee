@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation'
 
-type Type = 'customer' | 'invoice' | 'transaction'
+type Type = 'customer' | 'invoice' | 'transaction' | 'vaultFile'
 
 export const useSheet = (type: Type) => {
     const searchParams = useSearchParams()

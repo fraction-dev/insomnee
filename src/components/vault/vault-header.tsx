@@ -54,7 +54,7 @@ export const VaultHeader = ({ organizationId, layout, onLayoutChange }: Props) =
                         <Button
                             size="icon"
                             variant="outline"
-                            className={cn(l.value === layout && 'bg-neutral-100')}
+                            className={cn(l.value === layout && 'bg-neutral-100 dark:bg-neutral-600')}
                             onClick={() => onLayoutChange(l.value)}
                         >
                             <l.icon className="size-4" />

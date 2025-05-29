@@ -2,6 +2,7 @@ import { ReactNode, useMemo } from 'react'
 
 import { formatCurrency } from '~/lib/currency/format-currency'
 import { cn } from '~/lib/shared/utils'
+import { pluralize } from '~/lib/strings'
 import { InvoicesStatistics } from '~/services/invoice/model'
 import { Organization } from '~/services/organization/model'
 
@@ -39,19 +40,23 @@ export const InvoicesStatisticsTabs = ({ organization, statistics }: Props) => {
             <Tab
                 title={formatCurrency(total.amount, organization.defaultCurrency ?? 'USD')}
                 subtitle="Open"
-                description={total.invoicesCount === 0 ? 'No invoices' : `${total.invoicesCount} invoices`}
+                description={
+                    total.invoicesCount === 0 ? 'No invoices' : `${total.invoicesCount} ${pluralize('invoice', total.invoicesCount)}`
+                }
             />
 
             <Tab
                 title={formatCurrency(overdue.amount, organization.defaultCurrency ?? 'USD')}
                 subtitle="Overdue"
-                description={overdue.invoicesCount === 0 ? 'No invoices' : `${overdue.invoicesCount} invoices`}
+                description={
+                    overdue.invoicesCount === 0 ? 'No invoices' : `${overdue.invoicesCount} ${pluralize('invoice', overdue.invoicesCount)}`
+                }
             />
 
             <Tab
                 title={formatCurrency(paid.amount, organization.defaultCurrency ?? 'USD')}
                 subtitle="Paid"
-                description={paid.invoicesCount === 0 ? 'No invoices' : `${paid.invoicesCount} invoices`}
+                description={paid.invoicesCount === 0 ? 'No invoices' : `${paid.invoicesCount} ${pluralize('invoice', paid.invoicesCount)}`}
             />
 
             <Tab

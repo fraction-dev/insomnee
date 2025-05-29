@@ -67,7 +67,7 @@ export const AssistantDialogFooter = ({ inputValue, onInputChange, onSubmit }: P
             <Input
                 autoFocus
                 placeholder="Ask Insomnee a question..."
-                className="border-none mx-5 p-0"
+                className="border-none placeholder:px-5 !px-5 p-0"
                 value={inputValue}
                 onChange={onInputChange}
                 onKeyDown={handleKeyDown}

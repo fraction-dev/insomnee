@@ -5,11 +5,12 @@ import { Skeleton } from '~/components/ui/skeleton'
 import { cn } from '~/lib/shared/utils'
 
 interface Props {
+    withBorder?: boolean
     mimeType: string
     filePath: string
 }
 
-export const VaultGridItemFilePreview = ({ mimeType, filePath }: Props) => {
+export const VaultGridItemFilePreview = ({ mimeType, filePath, withBorder = true }: Props) => {
     const [isLoading] = useState(false)
 
     let src = null
@@ -30,7 +31,8 @@ export const VaultGridItemFilePreview = ({ mimeType, filePath }: Props) => {
                 src={src}
                 alt="File Preview"
                 className={cn(
-                    'w-full h-full object-contain border border-border dark:border-none',
+                    'w-full h-full object-contain',
+                    withBorder && 'border border-border dark:border-none',
                     isLoading ? 'opacity-0' : 'opacity-100',
                     'transition-opacity duration-100',
                 )}
