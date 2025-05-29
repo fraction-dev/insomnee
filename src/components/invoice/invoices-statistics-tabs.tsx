@@ -74,7 +74,7 @@ const Tab = ({ title, subtitle, description, addon }: { title: string; subtitle:
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <p className="text-base text-neutral-800 font-normal">{subtitle}</p>
+                    <p className="text-base text-neutral-800 dark:text-neutral-50 font-normal">{subtitle}</p>
                     <p className="text-sm text-muted-foreground font-light">{description}</p>
                 </div>
             </CardContent>

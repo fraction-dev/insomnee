@@ -44,8 +44,8 @@ export function SidebarNavMain({ items }: Props) {
                                 })}
                             >
                                 <Link href={item.url}>
-                                    <item.icon />
-                                    <span>{item.title}</span>
+                                    <item.icon className="dark:text-neutral-50" />
+                                    <span className="dark:text-neutral-50">{item.title}</span>
                                 </Link>
                             </SidebarMenuButton>
                             {item.items?.length ? (

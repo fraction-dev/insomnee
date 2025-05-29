@@ -168,7 +168,7 @@ export function DashboardSidebar({ organizationId, user, ...props }: Props & Rea
                                     </Avatar>
 
                                     <div className="grid flex-1 text-left text-sm leading-tight">
-                                        <span className="truncate font-semibold">{organization.name}</span>
+                                        <span className="truncate font-semibold dark:text-neutral-50">{organization.name}</span>
                                     </div>
                                 </Link>
                             )}

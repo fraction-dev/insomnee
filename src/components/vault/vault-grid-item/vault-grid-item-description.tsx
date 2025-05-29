@@ -13,6 +13,6 @@ export const VaultGridItemDescription = ({ description, isProcessing }: Props) =
             <Skeleton className="w-full h-4" />
         </div>
     ) : (
-        <p className="text-xs font-normal text-black/30 leading-tight">{description || '-'}</p>
+        <p className="text-xs font-normal text-muted-foreground leading-relaxed">{description || '-'}</p>
     )
 }
