@@ -18,11 +18,6 @@ import { signOut } from '~/lib/shared/auth-client'
 import { getInitials } from '~/lib/strings'
 import { User } from '~/services/user/model'
 
-const THEME_OPTIONS = [
-    { label: '💡 Light', value: 'light' },
-    { label: '🌙 Dark', value: 'dark' },
-]
-
 export function SidebarNavUser({ user }: { user: User }) {
     const router = useRouter()
     const { isMobile } = useSidebar()

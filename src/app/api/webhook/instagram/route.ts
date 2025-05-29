@@ -1,10 +1,6 @@
-import { tasks } from '@trigger.dev/sdk/v3'
 import { NextRequest, NextResponse } from 'next/server'
 
 import { env } from '~/config/env'
-import { getInstagramIntegrationByInstagramBusinessId } from '~/services/integration'
-import { executeInstagramMessageTask } from '~/trigger/tasks/execute-instagram-message'
-import { TriggerTasks } from '~/trigger/types/tasks'
 
 export async function POST(request: NextRequest) {
     const body = await request.json()
@@ -17,13 +13,12 @@ export async function POST(request: NextRequest) {
         return
     }
 
-    const integration = await getInstagramIntegrationByInstagramBusinessId(recipientId)
-
-    await tasks.trigger<typeof executeInstagramMessageTask>(TriggerTasks.EXECUTE_INSTAGRAM_MESSAGE, {
-        integration,
-        message,
-        senderId,
-    })
+    // const integration = await getInstagramIntegrationByInstagramBusinessId(recipientId)
+    // await tasks.trigger<typeof executeInstagramMessageTask>(TriggerTasks.EXECUTE_INSTAGRAM_MESSAGE, {
+    //     integration,
+    //     message,
+    //     senderId,
+    // })
 
     return NextResponse.json({ message: 'Webhook received successfully' })
 }

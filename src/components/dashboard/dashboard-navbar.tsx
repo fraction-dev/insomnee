@@ -1,6 +1,5 @@
 'use client'
 
-import { useTheme } from 'next-themes'
 import { useState } from 'react'
 import { useHotkeys } from 'react-hotkeys-hook'
 
@@ -18,7 +17,6 @@ interface Props {
 export const DashboardNavbar = ({ organizationId }: Props) => {
     const { data: session } = useSession()
     const isMobile = useIsMobile()
-    const { setTheme } = useTheme()
     const [isAssistantOpen, setIsAssistantOpen] = useState(false)
 
     useHotkeys('command+k', () => {
