@@ -1,4 +1,4 @@
-import 'server-only'
+'use server'
 
 import acceptLanguage from 'accept-language'
 import { cookies, headers } from 'next/headers'

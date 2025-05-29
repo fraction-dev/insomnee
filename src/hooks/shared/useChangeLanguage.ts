@@ -1,7 +1,5 @@
 'use client'
 
-import 'client-only'
-
 import { useRouter } from 'next/navigation'
 import { useCallback, useContext } from 'react'
 import { I18nContext } from 'react-i18next'
