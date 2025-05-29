@@ -33,7 +33,7 @@ export const VaultItemPreviewSheet = ({ organizationId, file, isOpen, onClose }:
                                 <VaultGridItemActions organizationId={organizationId} file={file} />
                             </div>
 
-                            <div className="min-h-[700px] flex flex-col justify-center items-center bg-neutral-100">
+                            <div className="min-h-[700px] flex flex-col justify-center items-center bg-neutral-100 dark:bg-neutral-950">
                                 {file.mimeType.startsWith('image') ? (
                                     <VaultGridItemFilePreview filePath={file.url} mimeType={file.mimeType} />
                                 ) : (
