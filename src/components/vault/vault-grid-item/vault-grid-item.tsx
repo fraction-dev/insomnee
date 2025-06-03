@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import { Card, CardContent } from '~/components/ui/card'
-import { Skeleton } from '~/components/ui/skeleton'
 import { useVaultFile } from '~/hooks/vault/useVaultFile'
 import { cn } from '~/lib/shared/utils'
 import { FileUpload } from '~/services/file-upload/model'
@@ -56,16 +55,7 @@ export const VaultGridItem = ({ organizationId, file }: Props) => {
                                 setIsPreviewSheetOpen(true)
                             }}
                         >
-                            {isProcessing && (
-                                <div className="absolute inset-0 flex items-center justify-center bg-background/80">
-                                    <Skeleton className="w-6 h-6 rounded-full" />
-                                </div>
-                            )}
-                            {file.mimeType === 'image/heic' ? (
-                                <Skeleton className="absolute inset-0 w-full h-full" />
-                            ) : (
-                                <VaultGridItemFilePreview filePath={file.url} mimeType={file.mimeType} />
-                            )}
+                            <VaultGridItemFilePreview filePath={file.url} mimeType={file.mimeType} />
                         </button>
 
                         <div className="absolute top-4 right-4 hidden group-hover:flex">

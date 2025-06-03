@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { FilePreviewIcon } from '~/components/file-preview/file-preview-icon'
-import { Skeleton } from '~/components/ui/skeleton'
 import { cn } from '~/lib/shared/utils'
 
 interface Props {
@@ -25,8 +24,6 @@ export const VaultGridItemFilePreview = ({ mimeType, filePath, withBorder = true
 
     return (
         <div className="w-full h-full relative">
-            {isLoading && <Skeleton className="absolute inset-0 w-full h-full" />}
-
             <img
                 src={src}
                 alt="File Preview"

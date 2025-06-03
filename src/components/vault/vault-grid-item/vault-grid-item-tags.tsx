@@ -8,7 +8,7 @@ interface Props {
 
 export const VaultGridItemTags = ({ tags, isProcessing }: Props) => {
     return isProcessing
-        ? Array.from({ length: 6 }).map((_, index) => <Skeleton key={index} className="w-full h-4" />)
+        ? Array.from({ length: 3 }).map((_, index) => <Skeleton key={index} className="w-8 h-4" />)
         : tags.map((tag, index) => (
               <Badge
                   key={index}
