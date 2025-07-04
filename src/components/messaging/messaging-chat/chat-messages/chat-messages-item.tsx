@@ -1,4 +1,4 @@
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { cn } from '~/lib/shared/utils'
 import { DialogMessage, DialogUser } from '~/services/messaging/model'
 

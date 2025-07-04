@@ -130,3 +130,7 @@ export const getInvoicesStatistics = async (organizationId: string): Promise<Inv
         paymentScore: isNaN(paymentScore) ? 0 : Math.round(paymentScore * 100) / 100, // Handle NaN and round to 2 decimal places
     }
 }
+
+export const getTotalInvoicesCount = async (): Promise<number> => {
+    return InvoiceDB.getTotalInvoicesCount()
+}

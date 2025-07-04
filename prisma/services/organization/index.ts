@@ -136,3 +136,9 @@ export const mapPrismaOrganizationMemberToOrganizationMemberModel = (member: Pri
         user: member.user,
     }
 }
+
+export const getTotalOrganizationsCount = async (): Promise<number> => {
+    const count = await prisma.organization.count()
+
+    return count
+}

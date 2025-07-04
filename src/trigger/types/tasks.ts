@@ -18,4 +18,9 @@ export enum TriggerTasks {
      * Create AI details of the uploaded 'PUBLIC' files.
      */
     EXECUTE_FILE_AI_DETAILS = 'execute-file-ai-details',
+
+    /**
+     * Fill lead generation agent configuration
+     */
+    FILL_LEAD_GENERATION_AGENT_CONFIGURATION = 'fill-lead-generation-agent-configuration',
 }

@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import { UserCard } from '~/components/shared/user-card'
 import { Checkbox } from '~/components/ui/checkbox'
 import { formatCurrency } from '~/lib/currency/format-currency'
-import { getReadableDateDiff } from '~/lib/date'
+import { getReadableDateDiff } from '~/lib/date/date'
 import { calculateInvoiceAmounts } from '~/lib/invoice/calculate-invoice-amounts'
 import { Invoice } from '~/services/invoice/model'
 

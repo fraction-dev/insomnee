@@ -54,6 +54,9 @@ const envSchema = z.object({
     OPENAI_API_KEY: prepareToValidate('OPENAI_API_KEY'),
     ELEVENLABS_API_KEY: prepareToValidate('ELEVENLABS_API_KEY'),
     PERPLEXITY_API_KEY: prepareToValidate('PERPLEXITY_API_KEY'),
+    LEADS_GENERATION_AGENT_URL: prepareToValidate('LEADS_GENERATION_AGENT_URL'),
+
+    SERPER_API_KEY: prepareToValidate('SERPER_API_KEY'),
 })
 
 const getEnv = () => {

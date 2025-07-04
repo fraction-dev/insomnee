@@ -102,36 +102,38 @@ enum OrganizationCurrency {
 }
 
 model Organization {
-  id                             String                           @id @default(cuid())
-  name                           String
-  defaultLanguage                OrganizationLanguage             @default(RU)
-  defaultCurrency                OrganizationCurrency             @default(MDL)
-  websiteUrl                     String?
-  logoUrl                        String?
-  address                        String?
-  phone                          String?
-  email                          String?
-  city                           String?
-  country                        String?
-  registrationNumber             String?
-  referralCode                   String?
-  isActive                       Boolean?                         @default(true)
-  isVerified                     Boolean?                         @default(false)
-  verificationStatus             OrganizationVerificationStatus?
-  createdAt                      DateTime?                        @default(now()) @db.Timestamptz(6)
-  updatedAt                      DateTime?                        @default(now()) @db.Timestamptz(6)
-  deletedAt                      DateTime?
-  members                        OrganizationMember[]
-  Integrations                   Integration[]
-  TransactionCategories          TransactionCategory[]
-  Transactions                   Transaction[]
-  MessagingAgents                MessagingAgent[]
-  AIUsages                       AIUsage[]
-  ProductsAndServices            ProductAndService[]
-  MessagingAgentResponseMessages MessagingAgentResponseMessages[]
-  Customers                      Customer[]
-  Invoice                        Invoice[]
-  files                          FileUpload[]
+  id                                String                             @id @default(cuid())
+  name                              String
+  defaultLanguage                   OrganizationLanguage               @default(RU)
+  defaultCurrency                   OrganizationCurrency               @default(MDL)
+  websiteUrl                        String?
+  logoUrl                           String?
+  address                           String?
+  phone                             String?
+  email                             String?
+  city                              String?
+  country                           String?
+  registrationNumber                String?
+  referralCode                      String?
+  isActive                          Boolean?                           @default(true)
+  isVerified                        Boolean?                           @default(false)
+  verificationStatus                OrganizationVerificationStatus?
+  createdAt                         DateTime?                          @default(now()) @db.Timestamptz(6)
+  updatedAt                         DateTime?                          @default(now()) @db.Timestamptz(6)
+  deletedAt                         DateTime?
+  members                           OrganizationMember[]
+  Integrations                      Integration[]
+  TransactionCategories             TransactionCategory[]
+  Transactions                      Transaction[]
+  MessagingAgents                   MessagingAgent[]
+  AIUsages                          AIUsage[]
+  ProductsAndServices               ProductAndService[]
+  MessagingAgentResponseMessages    MessagingAgentResponseMessages[]
+  Customers                         Customer[]
+  Invoice                           Invoice[]
+  files                             FileUpload[]
+  LeadGenerationAgentConfigurations LeadGenerationAgentConfiguration[]
+  LeadGenerationAgentRuns           LeadGenerationAgentRun[]
 
   @@map("organization")
 }
@@ -471,4 +473,78 @@ model Invoice {
   internalNotes  String?
 
   @@map("invoice")
+}
+
+enum LeadGenerationAgentConfigurationStatus {
+  ACTIVE
+  PAUSED
+
+  @@map("lead_generation_agent_configuration_status")
+}
+
+model LeadGenerationAgentConfiguration {
+  id                                 String                                 @id @default(cuid())
+  organizationId                     String
+  organization                       Organization                           @relation(fields: [organizationId], references: [id])
+  companyName                        String
+  newsFrameworkSearchKeywords        String[]
+  newsFrameworkEssentialSignals      Json
+  newsFrameworkAdditionalSignals     Json
+  newsFrameworkSearchConfigCountries String[]
+  solution                           String
+  icpCompanySizeRange                String[]
+  icpAnnualRevenue                   String[]
+  icpIndustryVertical                String[]
+  icpHqLocation                      String?
+  icpPhysicalPresence                Boolean
+  decisionMakers                     String[]
+  status                             LeadGenerationAgentConfigurationStatus @default(ACTIVE)
+  createdAt                          DateTime                               @default(now()) @db.Timestamptz(6)
+  updatedAt                          DateTime                               @updatedAt @db.Timestamptz(6)
+  run                                LeadGenerationAgentRun?
+  runId                              String?                                @unique
+
+  @@map("lead_generation_agent_configuration")
+}
+
+enum LeadGenerationAgentStatus {
+  PENDING
+  PAUSED
+  COMPLETED
+  FAILED
+
+  @@map("lead_generation_agent_status")
+}
+
+model LeadGenerationAgentRun {
+  id                     String                           @id @default(cuid())
+  organizationId         String
+  organization           Organization                     @relation(fields: [organizationId], references: [id])
+  configurationId        String                           @unique
+  configuration          LeadGenerationAgentConfiguration @relation(fields: [configurationId], references: [id])
+  threadId               String
+  runId                  String
+  assistantId            String
+  status                 LeadGenerationAgentStatus        @default(PENDING)
+  executionTimeInSeconds Int?                             @default(0)
+  insights               Json                             @default("[]")
+  jobPostings            Json                             @default("[]")
+  newsArticles           Json                             @default("[]")
+  createdAt              DateTime                         @default(now())
+  updatedAt              DateTime                         @updatedAt
+
+  @@map("lead_generation_agent_run")
+}
+
+model OpenStartupMetrics {
+  id                                   String   @id @default(cuid())
+  totalBusinessCount                   Int      @default(0)
+  totalTransactionsCount               Int      @default(0)
+  totalVaultFilesCount                 Int      @default(0)
+  totalInvoicesCount                   Int      @default(0)
+  totalAssistantResponsesCount         Int      @default(0)
+  totalLeadGenerationWorkingHoursCount Int      @default(0)
+  createdAt                            DateTime @default(now()) @db.Timestamptz(6)
+
+  @@map("open_startup_metrics")
 }

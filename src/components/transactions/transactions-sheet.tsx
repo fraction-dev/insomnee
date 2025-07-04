@@ -1,5 +1,5 @@
 import { formatCurrency } from '~/lib/currency/format-currency'
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { OrganizationMember } from '~/services/organization/model'
 import { Transaction } from '~/services/transaction/model'
 import { TransactionCategory } from '~/services/transaction-category/model'

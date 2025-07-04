@@ -212,3 +212,9 @@ const mapPrismaInvoiceItemsToModel = (items: JsonValue): InvoiceItem[] => {
         price: item.price,
     }))
 }
+
+export const getTotalInvoicesCount = async (): Promise<number> => {
+    const count = await prisma.invoice.count()
+
+    return count
+}

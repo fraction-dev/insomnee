@@ -13,3 +13,7 @@ export const getPublicFileUploads = (userId: string, organizationId: string): Pr
 export const deleteManyFileUploads = (organizationId: string, ids: string[]): Promise<void> => {
     return FileUploadDB.deleteManyFileUploads(organizationId, ids)
 }
+
+export const getTotalFileUploadsCount = async (): Promise<number> => {
+    return FileUploadDB.getTotalFileUploadsCount()
+}

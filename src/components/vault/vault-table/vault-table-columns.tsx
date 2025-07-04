@@ -3,7 +3,7 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Badge } from '~/components/ui/badge'
 import { Checkbox } from '~/components/ui/checkbox'
 import { ScrollArea, ScrollBar } from '~/components/ui/scroll-area'
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { getReadableFileSize } from '~/lib/file'
 import { FileUpload } from '~/services/file-upload/model'
 

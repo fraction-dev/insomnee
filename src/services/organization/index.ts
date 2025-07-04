@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker'
+import { randomInt } from 'crypto'
 import * as OrganizationDB from 'prisma/services/organization'
 
 import { bootstrapOrganizationTransactionCategories } from '../transaction-category'
@@ -33,6 +35,30 @@ export const updateOrganizationName = async (organizationId: string, name: strin
 
 export const getOrganizationMembers = async (organizationId: string): Promise<OrganizationMember[]> => {
     return await OrganizationDB.getOrganizationMembers(organizationId)
+}
+
+export const getTotalOrganizationsCount = async (): Promise<number> => {
+    return await OrganizationDB.getTotalOrganizationsCount()
+}
+
+export const simulateOrganizationMetrics = async () => {
+    /**
+     * Generate random from 50 to 100 organizations
+     */
+    const organizationsCount = randomInt(50, 100)
+
+    for (let i = 0; i < organizationsCount; i++) {
+        const organization = await createOrganization(faker.string.uuid(), {
+            name: faker.company.name(),
+            defaultLanguage: 'EN',
+            defaultCurrency: 'USD',
+            phone: faker.phone.number(),
+            websiteUrl: faker.internet.url(),
+            simulationStatus: 'SIMULATED',
+        })
+
+        await bootstrapOrganization(organization)
+    }
 }
 
 const bootstrapOrganization = async (organization: Organization) => {

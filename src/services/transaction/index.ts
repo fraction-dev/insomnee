@@ -25,3 +25,7 @@ export const addFileToTransaction = async (transactionId: string, fileId: string
 export const removeFileFromTransaction = async (transactionId: string, fileId: string) => {
     return OrganizationTransactionDB.removeFileFromTransaction(transactionId, fileId)
 }
+
+export const getTotalTransactionsCount = async (): Promise<number> => {
+    return OrganizationTransactionDB.getTotalTransactionsCount()
+}

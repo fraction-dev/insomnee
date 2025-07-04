@@ -208,3 +208,13 @@ export class HttpVersionNotSupportedException extends HttpException {
         super(message, 505, 'HTTP Version Not Supported')
     }
 }
+
+export class DatabaseOperationError extends Error {
+    constructor(
+        message: string,
+        public readonly code: string,
+    ) {
+        super(message)
+        this.name = 'DatabaseOperationError'
+    }
+}

@@ -1,4 +1,4 @@
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { Invoice } from '~/services/invoice/model'
 
 interface Props {

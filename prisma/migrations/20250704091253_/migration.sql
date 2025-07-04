@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "open_startup_metrics" ADD COLUMN     "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT CURRENT_TIMESTAMP;

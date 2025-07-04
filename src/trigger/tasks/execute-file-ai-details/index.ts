@@ -4,7 +4,6 @@
  */
 
 import { openai } from '@ai-sdk/openai'
-import { faker } from '@faker-js/faker'
 import { logger, task } from '@trigger.dev/sdk/v3'
 import { CoreMessage, generateObject, Message } from 'ai'
 import { logOrganizationAIUsage } from 'prisma/services/ai-usage'
@@ -52,17 +51,17 @@ export const executeFileAIDetails = task({
                 return
             }
 
-            if (process.env.NODE_ENV === 'development') {
-                logger.info('Skipping AI details generation for development', { fileId })
-                await updateFileUploadById(file.id, {
-                    status: 'COMPLETED',
-                    title: faker.lorem.words(3),
-                    description: faker.lorem.paragraph(2),
-                    tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()],
-                })
+            // if (process.env.NODE_ENV === 'development') {
+            //     logger.info('Skipping AI details generation for development', { fileId })
+            //     await updateFileUploadById(file.id, {
+            //         status: 'COMPLETED',
+            //         title: faker.lorem.words(3),
+            //         description: faker.lorem.paragraph(2),
+            //         tags: [faker.lorem.word(), faker.lorem.word(), faker.lorem.word()],
+            //     })
 
-                return
-            }
+            //     return
+            // }
 
             /**
              * Update the file status to PROCESSING

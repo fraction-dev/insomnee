@@ -1,6 +1,6 @@
 'use client'
 
-import { ChartNoAxesColumn, CreditCard, FileDigitIcon, FolderOpen, LifeBuoy, Send, Settings2, Users2Icon } from 'lucide-react'
+import { BotIcon, ChartNoAxesColumn, CreditCard, FileDigitIcon, FolderOpen, LifeBuoy, Send, Settings2, Users2Icon } from 'lucide-react'
 import Link from 'next/link'
 import * as React from 'react'
 
@@ -33,56 +33,34 @@ const data = (organizationId: string) => ({
             icon: ChartNoAxesColumn,
             isActive: true,
         },
-        // {
-        //     title: 'Agents',
-        //     url: '#',
-        //     icon: Bot,
-        //     items: [
-        //         {
-        //             title: 'Always On Time',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Cost Reduction',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Clients Parser',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Competitors Parser',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Lead Generation',
-        //             url: '#',
-        //         },
-        //     ],
-        // },
-        // {
-        //     title: 'Digital Marketing',
-        //     url: '#',
-        //     icon: Currency,
-        //     items: [
-        //         {
-        //             title: 'Story Generation',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Posts Generation',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Account Analysis',
-        //             url: '#',
-        //         },
-        //         {
-        //             title: 'Content Analysis',
-        //             url: '#',
-        //         },
-        //     ],
-        // },
+        {
+            title: 'Agents',
+            url: ROUTES.DASHBOARD.AGENTS.INDEX(organizationId),
+            icon: BotIcon,
+            isActive: true,
+            items: [
+                {
+                    title: 'Leads generation',
+                    url: ROUTES.DASHBOARD.AGENTS.LEAD_GENERATION(organizationId),
+                },
+                // {
+                //     title: 'Cost Reduction',
+                //     url: '#',
+                // },
+                // {
+                //     title: 'Clients Parser',
+                //     url: '#',
+                // },
+                // {
+                //     title: 'Competitors Parser',
+                //     url: '#',
+                // },
+                // {
+                //     title: 'Lead Generation',
+                //     url: '#',
+                // },
+            ],
+        },
         {
             title: 'Customers',
             url: ROUTES.DASHBOARD.CUSTOMERS(organizationId),
@@ -98,26 +76,11 @@ const data = (organizationId: string) => ({
             url: ROUTES.DASHBOARD.VAULT(organizationId),
             icon: FolderOpen,
         },
-        // {
-        //     title: 'Products & Services',
-        //     url: ROUTES.DASHBOARD.PRODUCTS_AND_SERVICES(organizationId),
-        //     icon: SquareChartGantt,
-        // },
-        // {
-        //     title: 'Messaging',
-        //     url: ROUTES.DASHBOARD.MESSAGING(organizationId),
-        //     icon: Send,
-        // },
         {
             title: 'Transactions',
             url: ROUTES.DASHBOARD.TRANSACTIONS(organizationId),
             icon: CreditCard,
         },
-        // {
-        //     title: 'Integrations',
-        //     url: ROUTES.DASHBOARD.INTEGRATIONS(organizationId),
-        //     icon: LinkIcon,
-        // },
         {
             title: 'Settings',
             url: ROUTES.DASHBOARD.SETTINGS.INDEX(organizationId),

@@ -1,5 +1,5 @@
 import { AnimatedNumber } from '~/components/ui/animated-number'
-import { formatDateToReadableString } from '~/lib/date'
+import { formatDateToReadableString } from '~/lib/date/date'
 import { calculateInvoiceAmounts } from '~/lib/invoice/calculate-invoice-amounts'
 import { Invoice } from '~/services/invoice/model'
 

@@ -22,6 +22,11 @@ export const ROUTES = {
         CUSTOMERS: (organizationId: string) => `/dashboard/${organizationId}/customers`,
         INVOICES: (organizationId: string) => `/dashboard/${organizationId}/invoices`,
         VAULT: (organizationId: string) => `/dashboard/${organizationId}/vault`,
+        AGENTS: {
+            INDEX: (organizationId: string) => `/dashboard/${organizationId}/agents`,
+            LEAD_GENERATION: (organizationId: string) => `/dashboard/${organizationId}/agents/leads-generation`,
+            LEAD_GENERATION_RUN: (organizationId: string, runId: string) => `/dashboard/${organizationId}/agents/leads-generation/${runId}`,
+        },
     },
     ORGANIZATION: {
         CREATE: '/organization/create',

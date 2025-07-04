@@ -3,6 +3,7 @@ import { User } from '../user/model'
 export type OrganizationLanguage = 'RU' | 'EN' | 'RO' | 'UA'
 export type OrganizationCurrency = 'MDL' | 'USD' | 'EUR' | 'RON' | 'UAH'
 type OrganizationVerificationStatus = 'PENDING' | 'VERIFIED' | 'REJECTED'
+type OrganizationSimulationStatus = 'REAL' | 'SIMULATED'
 
 export interface Organization {
     id: string
@@ -25,6 +26,7 @@ export interface Organization {
     updatedAt: Date
     deletedAt: Date | null
     members: OrganizationMember[]
+    simulationStatus?: OrganizationSimulationStatus | null
 }
 
 export type OrganizationMemberRole = 'ADMIN' | 'MEMBER' | 'GUEST'
@@ -36,4 +38,7 @@ export interface OrganizationMember {
     user: User
 }
 
-export type OrganizationInput = Pick<Organization, 'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone' | 'websiteUrl'>
+export type OrganizationInput = Pick<
+    Organization,
+    'name' | 'defaultLanguage' | 'defaultCurrency' | 'phone' | 'websiteUrl' | 'simulationStatus'
+>

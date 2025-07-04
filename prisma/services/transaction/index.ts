@@ -148,3 +148,9 @@ const mapPrismaTransactionToTransaction = (prismaTransaction: PrismaTransactionW
         files: prismaTransaction.files.map(mapPrismaFileUploadToFileUpload),
     }
 }
+
+export const getTotalTransactionsCount = async (): Promise<number> => {
+    const count = await prisma.transaction.count()
+
+    return count
+}

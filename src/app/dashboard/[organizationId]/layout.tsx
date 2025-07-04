@@ -18,7 +18,7 @@ export default async function DashboardLayout({ children, params }: { children: 
     return (
         <SidebarProvider>
             <DashboardSidebar organizationId={organizationId} user={user} />
-            <SidebarInset className="max-w-full p-4">
+            <SidebarInset className="max-w-full p-4 relative">
                 <div className="mb-4">
                     <DashboardNavbar organizationId={organizationId} />
                 </div>

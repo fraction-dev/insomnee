@@ -7,6 +7,7 @@ import { cn } from '~/lib/shared/utils'
 import { Button } from '../ui/button'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '../ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { ScrollArea } from '../ui/scroll-area'
 
 interface Props {
     id?: string
@@ -25,38 +26,44 @@ export const Select = ({ id, disabled, options, value, onChange, placeholder, wi
 
     if (withSearch) {
         return (
-            <Popover open={open} onOpenChange={setOpen}>
+            <Popover modal open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     {children ? (
                         children
                     ) : (
                         <Button variant="outline" role="combobox" aria-expanded={open} className="justify-between">
-                            {value ? options.find((option) => option.value === value)?.label : 'Select framework...'}
+                            {value ? (
+                                options.find((option) => option.value === value)?.label
+                            ) : (
+                                <span className="text-muted-foreground text-sm font-normal">{placeholder}</span>
+                            )}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                     )}
                 </PopoverTrigger>
                 <PopoverContent className={cn('p-3', className)}>
-                    <Command>
-                        <CommandInput placeholder={placeholder} className="rounded-xs" />
-                        <CommandList>
-                            <CommandEmpty>No results found.</CommandEmpty>
-                            <CommandGroup>
-                                {options.map((option) => (
-                                    <CommandItem
-                                        key={option.value}
-                                        value={option.value}
-                                        onSelect={(currentValue) => {
-                                            onChange(currentValue === value ? '' : currentValue)
-                                        }}
-                                    >
-                                        {option.label}
-                                        <Check className={cn('ml-auto size-4', value === option.value ? 'opacity-100' : 'opacity-0')} />
-                                    </CommandItem>
-                                ))}
-                            </CommandGroup>
-                        </CommandList>
-                    </Command>
+                    <ScrollArea className="h-64">
+                        <Command>
+                            <CommandInput placeholder={placeholder} className="rounded-xs" />
+                            <CommandList>
+                                <CommandEmpty>No results found.</CommandEmpty>
+                                <CommandGroup>
+                                    {options.map((option) => (
+                                        <CommandItem
+                                            key={option.value}
+                                            value={option.value}
+                                            onSelect={(currentValue) => {
+                                                onChange(currentValue === value ? '' : currentValue)
+                                            }}
+                                        >
+                                            {option.label}
+                                            <Check className={cn('ml-auto size-4', value === option.value ? 'opacity-100' : 'opacity-0')} />
+                                        </CommandItem>
+                                    ))}
+                                </CommandGroup>
+                            </CommandList>
+                        </Command>
+                    </ScrollArea>
                 </PopoverContent>
             </Popover>
         )

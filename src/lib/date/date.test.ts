@@ -1,4 +1,4 @@
-import { formatDateToReadableString, formatToShortDate } from '.'
+import { formatDateToReadableString, formatToShortDate } from './date'
 
 describe('formatToShortDate', () => {
     it('Works with basic date', () => {

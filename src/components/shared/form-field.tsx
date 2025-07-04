@@ -3,7 +3,7 @@ import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-fo
 
 import { cn } from '~/lib/shared/utils'
 
-import { FormControl, FormField as ShadcnFormField,FormItem, FormLabel, FormMessage } from '../ui/form'
+import { FormControl, FormDescription, FormField as ShadcnFormField,FormItem, FormLabel, FormMessage } from '../ui/form'
 
 interface Props<T extends FieldValues> {
     isRequired?: boolean
@@ -11,10 +11,19 @@ interface Props<T extends FieldValues> {
     control: Control<T>
     name: Path<T>
     errorMessage?: string
+    description?: string
     render: (field: ControllerRenderProps<T, Path<T>>) => ReactNode
 }
 
-export const FormField = <T extends FieldValues>({ label, control, name, render, errorMessage, isRequired = false }: Props<T>) => {
+export const FormField = <T extends FieldValues>({
+    label,
+    control,
+    name,
+    render,
+    errorMessage,
+    isRequired = false,
+    description,
+}: Props<T>) => {
     return (
         <ShadcnFormField
             control={control}
@@ -32,6 +41,7 @@ export const FormField = <T extends FieldValues>({ label, control, name, render,
                         </FormLabel>
                     )}
                     <FormControl>{render(field)}</FormControl>
+                    {description && <FormDescription className="text-xs text-muted-foreground">{description}</FormDescription>}
                     {errorMessage && <FormMessage className="text-xs">{errorMessage}</FormMessage>}
                 </FormItem>
             )}

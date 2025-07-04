@@ -97,3 +97,9 @@ export const mapPrismaFileUploadToFileUpload = (prismaFileUpload: FileUploadWith
         updatedAt: prismaFileUpload.updatedAt,
     }
 }
+
+export const getTotalFileUploadsCount = async (): Promise<number> => {
+    const count = await prisma.fileUpload.count()
+
+    return count
+}
